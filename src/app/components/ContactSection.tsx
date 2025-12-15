@@ -38,6 +38,11 @@ export default function ContactSection() {
     }
   }
 
+  const handleExternalLink = (e: React.MouseEvent, url: string) => {
+    e.preventDefault()
+    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
+  }
+
   const contactInfo = [
     { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
     { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
@@ -95,8 +100,7 @@ export default function ContactSection() {
                   {item.href ? (
                     <a 
                       href={item.href} 
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      onClick={(e) => handleExternalLink(e, item.href!)}
                       className="text-white hover:text-cyan-400 transition-colors"
                     >
                       {item.value}
@@ -120,8 +124,7 @@ export default function ContactSection() {
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(e) => handleExternalLink(e, social.href)}
                     whileHover={{ scale: 1.1, y: -2 }}
                     className="p-3 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-cyan-500/30 transition-all"
                   >
