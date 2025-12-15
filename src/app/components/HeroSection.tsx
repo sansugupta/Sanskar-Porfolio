@@ -16,6 +16,11 @@ export default function HeroSection() {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
   }
 
+  const handleExternalLink = (e: React.MouseEvent, url: string) => {
+    e.preventDefault()
+    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
+  }
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-[#0a0a0f] to-[#0a0a0f]" />
@@ -44,8 +49,7 @@ export default function HeroSection() {
           </span>
           <a
             href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={(e) => handleExternalLink(e, "https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#14a800]/10 border border-[#14a800]/30 text-[#14a800] text-sm font-mono hover:bg-[#14a800]/20 transition-colors"
           >
             <UpworkIcon className="w-4 h-4" />
@@ -158,8 +162,7 @@ export default function HeroSection() {
         >
           <a
             href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={(e) => handleExternalLink(e, "https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")}
             className="px-6 py-3 rounded-lg bg-[#14a800] text-white font-medium flex items-center gap-2 hover:bg-[#14a800]/90 transition-colors"
           >
             <UpworkIcon className="w-5 h-5" />
