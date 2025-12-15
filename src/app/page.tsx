@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import HeroSection from "./components/HeroSection"
 import InfraBuildSection from "./components/InfraBuildSection"
@@ -8,6 +8,7 @@ import AboutSection from "./components/AboutSection"
 import ExperienceSection from "./components/ExperienceSection"
 import SkillsSection from "./components/SkillsSection"
 import ProjectsSection from "./components/ProjectsSection"
+import EducationSection from "./components/EducationSection"
 import CertificationsSection from "./components/CertificationsSection"
 import ContactSection from "./components/ContactSection"
 import Navigation from "./components/Navigation"
@@ -37,6 +38,7 @@ export default function Home() {
         <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
+        <EducationSection />
         <CertificationsSection />
         <ContactSection />
       </main>
