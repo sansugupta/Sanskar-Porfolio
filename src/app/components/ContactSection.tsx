@@ -39,17 +39,17 @@ export default function ContactSection() {
   }
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "mailto:sanskargupta966@gmail.com", onClick: () => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" } }, "*") },
+    { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
     { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
-    { icon: MessageCircle, label: "WhatsApp", value: "+91 9713492857", href: "#", onClick: () => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://wa.me/919713492857" } }, "*") },
+    { icon: MessageCircle, label: "WhatsApp", value: "+91 9713492857", href: "https://wa.me/919713492857" },
     { icon: MapPin, label: "Location", value: "Noida, India", href: null },
   ]
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/sansugupta", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/sanskargupta9/", label: "LinkedIn" },
-    { icon: Mail, href: "#", label: "Email", onClick: () => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" } }, "*") },
-    { icon: MessageCircle, href: "#", label: "WhatsApp", onClick: () => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://wa.me/919713492857" } }, "*") },
+    { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com", label: "Email" },
+    { icon: MessageCircle, href: "https://wa.me/919713492857", label: "WhatsApp" },
   ]
 
   return (
@@ -63,12 +63,12 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="text-cyan-400 font-mono text-sm">07.</span>
+          <span className="text-cyan-400 font-mono text-sm">08.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">Get In Touch</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mt-4 mx-auto" />
           <p className="text-gray-400 mt-6 max-w-lg mx-auto">
-            I'm currently open to new opportunities. Whether you have a question or just want to say hi, 
-            feel free to reach out!
+            Looking for a reliable technical partner? Whether it's DevOps, SRE, or full-stack development,
+            let's discuss how I can help your project succeed!
           </p>
         </motion.div>
 
@@ -95,12 +95,8 @@ export default function ContactSection() {
                   {item.href ? (
                     <a 
                       href={item.href} 
-                      onClick={(e) => {
-                        if (item.onClick) {
-                          e.preventDefault()
-                          item.onClick()
-                        }
-                      }}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-white hover:text-cyan-400 transition-colors"
                     >
                       {item.value}
@@ -120,16 +116,10 @@ export default function ContactSection() {
             >
               <p className="text-gray-500 text-sm mb-4">Connect with me</p>
               <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    onClick={(e) => {
-                      if (social.onClick) {
-                        e.preventDefault()
-                        social.onClick()
-                      }
-                    }}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }}
