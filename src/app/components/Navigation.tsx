@@ -2,15 +2,23 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Github, Linkedin, Mail, FileText } from "lucide-react"
+import { Menu, X, Github, Linkedin, Mail, FileText, MessageCircle } from "lucide-react"
+
+function UpworkIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.545-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+    </svg>
+  )
+}
 
 const navItems = [
   { id: "hero", label: "Home" },
+  { id: "infrabuild", label: "InfraBuild" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
   { id: "certifications", label: "Certifications" },
   { id: "contact", label: "Contact" },
 ]
@@ -75,7 +83,7 @@ export default function Navigation() {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`relative px-3 py-2 text-sm font-medium transition-colors ${
                     activeSection === item.id ? "text-cyan-400" : "text-gray-400 hover:text-white"
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -92,13 +100,24 @@ export default function Navigation() {
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2">
+              <motion.a
+                href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                className="p-2 text-gray-400 hover:text-[#14a800] transition-colors"
+                title="Upwork"
+              >
+                <UpworkIcon className="w-[18px] h-[18px]" />
+              </motion.a>
               <motion.a
                 href="https://github.com/sansugupta"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-white transition-colors"
+                title="GitHub"
               >
                 <Github size={18} />
               </motion.a>
@@ -108,13 +127,27 @@ export default function Navigation() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
+                title="LinkedIn"
               >
                 <Linkedin size={18} />
               </motion.a>
               <motion.a
-                href="mailto:sanskargupta966@gmail.com"
+                href="https://wa.me/919713492857"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                className="p-2 text-gray-400 hover:text-green-400 transition-colors"
+                title="WhatsApp"
+              >
+                <MessageCircle size={18} />
+              </motion.a>
+              <motion.a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-pink-400 transition-colors"
+                title="Email"
               >
                 <Mail size={18} />
               </motion.a>
@@ -185,14 +218,20 @@ export default function Navigation() {
                 ))}
               </div>
               <div className="mt-8 pt-8 border-t border-white/10">
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-3">
+                  <a href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-[#14a800] bg-white/5 rounded-lg">
+                    <UpworkIcon className="w-5 h-5" />
+                  </a>
                   <a href="https://github.com/sansugupta" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-white bg-white/5 rounded-lg">
                     <Github size={20} />
                   </a>
                   <a href="https://www.linkedin.com/in/sanskargupta9/" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-cyan-400 bg-white/5 rounded-lg">
                     <Linkedin size={20} />
                   </a>
-                  <a href="mailto:sanskargupta966@gmail.com" className="p-3 text-gray-400 hover:text-pink-400 bg-white/5 rounded-lg">
+                  <a href="https://wa.me/919713492857" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-green-400 bg-white/5 rounded-lg">
+                    <MessageCircle size={20} />
+                  </a>
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-pink-400 bg-white/5 rounded-lg">
                     <Mail size={20} />
                   </a>
                 </div>
