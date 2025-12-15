@@ -7,6 +7,7 @@ import InfraBuildSection from "./components/InfraBuildSection"
 import AboutSection from "./components/AboutSection"
 import ExperienceSection from "./components/ExperienceSection"
 import SkillsSection from "./components/SkillsSection"
+import TestimonialsSection from "./components/TestimonialsSection"
 import ProjectsSection from "./components/ProjectsSection"
 import EducationSection from "./components/EducationSection"
 import CertificationsSection from "./components/CertificationsSection"
@@ -37,6 +38,7 @@ export default function Home() {
         <AboutSection />
         <ExperienceSection />
         <SkillsSection />
+        <TestimonialsSection />
         <ProjectsSection />
         <EducationSection />
         <CertificationsSection />
