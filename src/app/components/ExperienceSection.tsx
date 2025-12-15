@@ -87,7 +87,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-cyan-400 font-mono text-sm">02.</span>
+          <span className="text-cyan-400 font-mono text-sm">04.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">Experience</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mt-4" />
         </motion.div>
