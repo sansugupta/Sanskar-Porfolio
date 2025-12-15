@@ -59,7 +59,13 @@ export default function Navigation() {
 
   const handleExternalLink = (e: React.MouseEvent, url: string) => {
     e.preventDefault()
-    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
+    if (typeof window !== 'undefined') {
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      }
+    }
   }
 
   return (
