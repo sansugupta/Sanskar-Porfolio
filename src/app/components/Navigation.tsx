@@ -56,6 +56,11 @@ export default function Navigation() {
     setIsMobileMenuOpen(false)
   }
 
+  const handleExternalLink = (e: React.MouseEvent, url: string) => {
+    e.preventDefault()
+    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
+  }
+
   return (
     <>
       <motion.header
@@ -103,8 +108,7 @@ export default function Navigation() {
             <div className="hidden lg:flex items-center gap-2">
               <motion.a
                 href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleExternalLink(e, "https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-[#14a800] transition-colors"
                 title="Upwork"
@@ -113,8 +117,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a
                 href="https://github.com/sansugupta"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleExternalLink(e, "https://github.com/sansugupta")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-white transition-colors"
                 title="GitHub"
@@ -123,8 +126,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/sanskargupta9/"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleExternalLink(e, "https://www.linkedin.com/in/sanskargupta9/")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 title="LinkedIn"
@@ -133,8 +135,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a
                 href="https://wa.me/919713492857"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleExternalLink(e, "https://wa.me/919713492857")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-green-400 transition-colors"
                 title="WhatsApp"
@@ -143,8 +144,7 @@ export default function Navigation() {
               </motion.a>
               <motion.a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleExternalLink(e, "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-pink-400 transition-colors"
                 title="Email"
@@ -219,19 +219,19 @@ export default function Navigation() {
               </div>
               <div className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex justify-center gap-3">
-                  <a href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-[#14a800] bg-white/5 rounded-lg">
+                  <a href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9" onClick={(e) => handleExternalLink(e, "https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")} className="p-3 text-gray-400 hover:text-[#14a800] bg-white/5 rounded-lg">
                     <UpworkIcon className="w-5 h-5" />
                   </a>
-                  <a href="https://github.com/sansugupta" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-white bg-white/5 rounded-lg">
+                  <a href="https://github.com/sansugupta" onClick={(e) => handleExternalLink(e, "https://github.com/sansugupta")} className="p-3 text-gray-400 hover:text-white bg-white/5 rounded-lg">
                     <Github size={20} />
                   </a>
-                  <a href="https://www.linkedin.com/in/sanskargupta9/" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-cyan-400 bg-white/5 rounded-lg">
+                  <a href="https://www.linkedin.com/in/sanskargupta9/" onClick={(e) => handleExternalLink(e, "https://www.linkedin.com/in/sanskargupta9/")} className="p-3 text-gray-400 hover:text-cyan-400 bg-white/5 rounded-lg">
                     <Linkedin size={20} />
                   </a>
-                  <a href="https://wa.me/919713492857" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-green-400 bg-white/5 rounded-lg">
+                  <a href="https://wa.me/919713492857" onClick={(e) => handleExternalLink(e, "https://wa.me/919713492857")} className="p-3 text-gray-400 hover:text-green-400 bg-white/5 rounded-lg">
                     <MessageCircle size={20} />
                   </a>
-                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" target="_blank" rel="noopener noreferrer" className="p-3 text-gray-400 hover:text-pink-400 bg-white/5 rounded-lg">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" onClick={(e) => handleExternalLink(e, "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com")} className="p-3 text-gray-400 hover:text-pink-400 bg-white/5 rounded-lg">
                     <Mail size={20} />
                   </a>
                 </div>
