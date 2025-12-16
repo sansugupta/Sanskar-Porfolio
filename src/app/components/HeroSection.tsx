@@ -36,7 +36,7 @@ export default function HeroSection() {
         backgroundSize: "40px 40px"
       }} />
 
-      <div className="relative z-[50] max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-[50] w-full mx-auto px-8 md:px-16 lg:px-24 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
