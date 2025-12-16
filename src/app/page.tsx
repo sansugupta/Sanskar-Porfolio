@@ -5,9 +5,10 @@ import { motion, useScroll, useSpring } from "framer-motion"
 import HeroSection from "./components/HeroSection"
 import InfraBuildSection from "./components/InfraBuildSection"
 import AboutSection from "./components/AboutSection"
+import ClientStatsSection from "./components/ClientStatsSection"
+import TestimonialsSection from "./components/TestimonialsSection"
 import ExperienceSection from "./components/ExperienceSection"
 import SkillsSection from "./components/SkillsSection"
-import TestimonialsSection from "./components/TestimonialsSection"
 import ProjectsSection from "./components/ProjectsSection"
 import EducationSection from "./components/EducationSection"
 import CertificationsSection from "./components/CertificationsSection"
@@ -36,16 +37,17 @@ export default function Home() {
         <HeroSection />
         <InfraBuildSection />
         <AboutSection />
+        <ClientStatsSection />
+        <TestimonialsSection />
         <ExperienceSection />
         <SkillsSection />
-        <TestimonialsSection />
         <ProjectsSection />
         <EducationSection />
         <CertificationsSection />
         <ContactSection />
       </main>
 
-        <footer className="py-8 border-t border-white/10 bg-[#0a0a0f]">
+      <footer className="py-8 border-t border-white/10 bg-[#0a0a0f]">
         <div className="w-full mx-auto px-8 md:px-16 lg:px-24 text-center">
           <p className="text-gray-500 font-mono text-sm">
             Designed & Built by Sanskar Gupta
