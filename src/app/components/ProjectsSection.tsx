@@ -6,10 +6,10 @@ import { Github, ExternalLink, Folder } from "lucide-react"
 
 const projects = [
   {
-    title: "Enterprise Kubernetes Observability Platform",
+    title: "AI-Powered Observability Automation System",
     description: "Architected and implemented a comprehensive observability platform for Kubernetes environments, transforming reactive monitoring into proactive system intelligence. Built end-to-end monitoring ecosystem using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse that reduced MTTR by 60%.",
     technologies: ["Kubernetes", "Prometheus", "Grafana", "eBPF", "ClickHouse", "Python"],
-    github: "https://github.com/sanskargupta966/Obeservability---Portfolio",
+    github: "https://github.com/sansugupta/AI-Powered-Observability-Automation-System",
     featured: true,
     highlights: ["Reduced MTTR by 60%", "Intelligent dashboards with drill-down", "Automated alerting with Slack"]
   },
@@ -17,7 +17,7 @@ const projects = [
     title: "Three-Tier Web Application on AWS EKS",
     description: "Deployed microservices-based web app (React.js, Node.js, MongoDB) on AWS EKS with monitoring integration. Built CI/CD pipeline with Jenkins, Docker, and Terraform, using Blue/Green deployments for zero downtime.",
     technologies: ["AWS EKS", "Terraform", "Jenkins", "Docker", "React", "Node.js", "MongoDB"],
-    github: "https://github.com/sanskargupta966/3-tier-HQ",
+    github: "https://github.com/sansugupta/3-tier-HQ",
     featured: true,
     highlights: ["Zero-downtime deployments", "Prometheus & Grafana monitoring", "SonarQube & Trivy scanning"]
   },
@@ -25,7 +25,7 @@ const projects = [
     title: "Cloud-Native Full-Stack Board Game",
     description: "Architected end-to-end CI/CD pipeline on AWS, Kubernetes, Jenkins, and advanced cloud-native technologies. Implemented automated multi-stage security scanning with Trivy, SonarQube, and Kubernetes RBAC.",
     technologies: ["AWS", "Kubernetes", "Jenkins", "Docker", "SonarQube", "Trivy"],
-    github: "https://github.com/sanskargupta966/Boardgame-CI-CD-Pipeline",
+    github: "https://github.com/sansugupta/Boardgame-CI-CD-Pipeline",
     featured: false,
     highlights: ["Multi-stage security scanning", "Kubernetes RBAC", "Microservices architecture"]
   },
@@ -33,7 +33,7 @@ const projects = [
     title: "Ad Bidding System with Traefik on AWS EKS",
     description: "High-performance ad bidding system deployed on AWS EKS with Traefik for secure HTTPS traffic routing from Google AdX, featuring TLS termination and load balancing.",
     technologies: ["AWS EKS", "Traefik", "Docker", "Let's Encrypt", "NLB"],
-    github: "https://github.com/sanskargupta966/Bidder-Deployement-with-Traefik",
+    github: "https://github.com/sansugupta/Bidder-Deployement-with-Traefik",
     featured: false,
     highlights: ["TLS termination", "Load balancing", "Google AdX integration"]
   },
@@ -41,17 +41,9 @@ const projects = [
     title: "JITPS Monitoring Stack Deployment",
     description: "Comprehensive monitoring stack deployment for JITPS POC cluster including Prometheus, Loki, Grafana, OpenTelemetry, and Postgres Exporter with automated deployment scripts.",
     technologies: ["Prometheus", "Loki", "Grafana", "OpenTelemetry", "Kubernetes", "Helm"],
-    github: "https://github.com/sanskargupta966/JITPS",
+    github: "https://github.com/sansugupta/JITPS",
     featured: false,
     highlights: ["Full observability stack", "Automated deployment", "Multi-tool integration"]
-  },
-  {
-    title: "Python API Server with K8s Deployment",
-    description: "RESTful API server built with Python FastAPI, containerized with Docker, and deployed on Kubernetes with comprehensive monitoring and logging solutions.",
-    technologies: ["Python", "FastAPI", "Docker", "Kubernetes", "PostgreSQL", "Redis"],
-    github: "https://github.com/sanskargupta966/PythonAPI_Server",
-    featured: false,
-    highlights: ["FastAPI backend", "K8s deployment", "Monitoring & logging"]
   }
 ]
 
