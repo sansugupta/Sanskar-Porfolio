@@ -12,7 +12,8 @@ const testimonials = [
     rating: 5,
     project: "DevOps Infrastructure Optimization",
     icon: GitBranch,
-    gradient: "from-cyan-500 to-blue-500"
+    gradient: "from-cyan-500 to-blue-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869139738.png?width=8000&height=8000&resize=contain"
   },
   {
     name: "Muna",
@@ -21,7 +22,8 @@ const testimonials = [
     rating: 5,
     project: "Site Reliability Engineering",
     icon: Gauge,
-    gradient: "from-purple-500 to-pink-500"
+    gradient: "from-purple-500 to-pink-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869048145.png?width=8000&height=8000&resize=contain"
   },
   {
     name: "Oluwakush",
@@ -30,7 +32,8 @@ const testimonials = [
     rating: 5,
     project: "Cloud Infrastructure & Monitoring",
     icon: Cloud,
-    gradient: "from-green-500 to-emerald-500"
+    gradient: "from-green-500 to-emerald-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869098686.png?width=8000&height=8000&resize=contain"
   },
   {
     name: "Sean",
@@ -39,7 +42,8 @@ const testimonials = [
     rating: 5,
     project: "DevOps Automation & Security",
     icon: Shield,
-    gradient: "from-orange-500 to-red-500"
+    gradient: "from-orange-500 to-red-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869121723.png?width=8000&height=8000&resize=contain"
   },
   {
     name: "Jason",
@@ -48,7 +52,8 @@ const testimonials = [
     rating: 5,
     project: "Traefik Setup & Application Deployment",
     icon: Container,
-    gradient: "from-indigo-500 to-violet-500"
+    gradient: "from-indigo-500 to-violet-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869013510.png?width=8000&height=8000&resize=contain"
   }
 ]
 
@@ -177,10 +182,6 @@ export default function TestimonialsSection() {
               
               <div className="relative h-full bg-gradient-to-br from-[#12121a] to-[#1a1a2e] border border-white/10 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-500 backdrop-blur-sm">
                 <motion.div
-                  className="absolute -top-6 -right-6 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl"
-                  style={{
-                    background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-                  }}
                   className={`absolute -top-6 -right-6 w-16 h-16 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center shadow-2xl border-4 border-[#0a0a0f]`}
                   whileHover={{ 
                     rotate: 360,
@@ -225,17 +226,26 @@ export default function TestimonialsSection() {
                   "{testimonial.message}"
                 </p>
 
-                <div className="pt-4 border-t border-white/10">
-                  <motion.h4 
-                    className="text-white font-semibold mb-1"
-                    whileHover={{ x: 5, color: "#22d3ee" }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {testimonial.name}
-                  </motion.h4>
-                  <p className="text-cyan-400 text-sm font-medium mb-2">{testimonial.role}</p>
-                  <p className="text-gray-500 text-xs font-mono">{testimonial.project}</p>
-                </div>
+                  <div className="pt-4 border-t border-white/10 flex items-center gap-4">
+                    <motion.img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-cyan-500/40"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <div className="flex-1">
+                      <motion.h4 
+                        className="text-white font-semibold mb-1"
+                        whileHover={{ x: 5, color: "#22d3ee" }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {testimonial.name}
+                      </motion.h4>
+                      <p className="text-cyan-400 text-sm font-medium mb-1">{testimonial.role}</p>
+                      <p className="text-gray-500 text-xs font-mono">{testimonial.project}</p>
+                    </div>
+                  </div>
 
                 <motion.div 
                   className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -275,40 +285,40 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <motion.div 
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex -space-x-3">
-              {testimonials.map((testimonial, i) => (
-                <motion.div
-                  key={i}
-                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} border-4 border-[#0a0a0f] flex items-center justify-center text-sm font-bold text-white shadow-lg`}
-                  initial={{ scale: 0, x: -20 }}
-                  whileInView={{ scale: 1, x: 0 }}
-                  transition={{ delay: i * 0.1, type: "spring" }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.3, 
-                    zIndex: 10,
-                    transition: { duration: 0.2 }
-                  }}
+            <motion.div 
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex -space-x-3">
+                {testimonials.map((testimonial, i) => (
+                  <motion.img
+                    key={i}
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-10 h-10 rounded-full border-4 border-[#0a0a0f] object-cover shadow-lg"
+                    initial={{ scale: 0, x: -20 }}
+                    whileInView={{ scale: 1, x: 0 }}
+                    transition={{ delay: i * 0.1, type: "spring" }}
+                    viewport={{ once: true }}
+                    whileHover={{ 
+                      scale: 1.3, 
+                      zIndex: 10,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+                ))}
+              </div>
+              <p className="text-sm text-gray-400">
+                Trusted by <motion.span 
+                  className="text-cyan-400 font-semibold"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
-                  {testimonial.name[0]}
-                </motion.div>
-              ))}
-            </div>
-            <p className="text-sm text-gray-400">
-              Trusted by <motion.span 
-                className="text-cyan-400 font-semibold"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                50+
-              </motion.span> clients worldwide
-            </p>
-          </motion.div>
+                  50+
+                </motion.span> clients worldwide
+              </p>
+            </motion.div>
         </motion.div>
       </motion.div>
     </section>
