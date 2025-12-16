@@ -384,6 +384,75 @@ export default function TestimonialsSection() {
                 </motion.button>
               )}
           </motion.div>
+
+          {testimonials.length > 6 && (
+            <div id="testimonials-all" className="mt-24">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  More Client Testimonials
+                </h3>
+                <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto" />
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {testimonials.slice(6).map((testimonial, index) => (
+                  <motion.div
+                    key={index + 6}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.1,
+                    }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -8, scale: 1.01 }}
+                    className="group relative"
+                  >
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+                    
+                    <div className="relative bg-gradient-to-br from-[#12121a] to-[#1a1a2e] border border-white/10 rounded-xl p-6 hover:border-cyan-500/40 transition-all duration-500">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-4">
+                          <motion.img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-16 h-16 rounded-full object-cover border-2 border-cyan-500/40"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                          <div>
+                            <h4 className="text-white font-semibold text-lg">{testimonial.name}</h4>
+                            <p className="text-cyan-400 text-sm">{testimonial.role}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex gap-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                        "{testimonial.message}"
+                      </p>
+
+                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r ${testimonial.gradient} bg-opacity-10`}>
+                        <testimonial.icon className="w-4 h-4 text-white" />
+                        <p className="text-xs font-mono text-gray-400">{testimonial.project}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
       </motion.div>
     </section>
   )
