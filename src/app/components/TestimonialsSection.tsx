@@ -118,6 +118,7 @@ const floatingIcons = [
 
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -126,27 +127,34 @@ export default function TestimonialsSection() {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100])
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <section ref={sectionRef} id="testimonials" className="relative py-32 overflow-hidden bg-[#0a0a0f]">
       <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-purple-500/5 to-transparent" />
       
-        {floatingIcons.map((item, index) => {
-          const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200
-          const randomX = () => Math.random() * viewportWidth
-          const randomY = () => Math.random() * 800 - 400
+        {mounted && floatingIcons.map((item, index) => {
+          const viewportWidth = window.innerWidth
+          const positions = [
+            { x: Math.random() * viewportWidth, y: Math.random() * 800 - 400 },
+            { x: Math.random() * viewportWidth, y: Math.random() * 800 - 400 },
+            { x: Math.random() * viewportWidth, y: Math.random() * 800 - 400 }
+          ]
 
           return (
             <motion.div
               key={index}
               className="absolute pointer-events-none"
               initial={{ 
-                x: randomX(),
-                y: randomY(),
+                x: positions[0].x,
+                y: positions[0].y,
                 opacity: 0
               }}
               animate={{
-                x: [randomX(), randomX(), randomX()],
-                y: [randomY(), randomY(), randomY()],
+                x: positions.map(p => p.x),
+                y: positions.map(p => p.y),
                 opacity: [0, 0.15, 0.15, 0],
                 rotate: [0, 360],
                 scale: [0.8, 1.2, 0.8]
