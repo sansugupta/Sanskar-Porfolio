@@ -22,6 +22,14 @@ const projects = [
     highlights: ["Zero-downtime deployments", "Prometheus & Grafana monitoring", "SonarQube & Trivy scanning"]
   },
   {
+    title: "React Task Management Dashboard",
+    description: "Full-stack task management app with React, Node.js, and MongoDB. Features real-time updates, drag-and-drop interface, user authentication with JWT, and comprehensive task analytics dashboard.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "Socket.io"],
+    github: "https://github.com/sansugupta/react-task-dashboard",
+    featured: true,
+    highlights: ["Real-time updates", "Drag-and-drop UI", "JWT authentication"]
+  },
+  {
     title: "Cloud-Native Full-Stack Board Game",
     description: "Architected end-to-end CI/CD pipeline on AWS, Kubernetes, Jenkins, and advanced cloud-native technologies. Implemented automated multi-stage security scanning with Trivy, SonarQube, and Kubernetes RBAC.",
     technologies: ["AWS", "Kubernetes", "Jenkins", "Docker", "SonarQube", "Trivy"],
@@ -30,12 +38,60 @@ const projects = [
     highlights: ["Multi-stage security scanning", "Kubernetes RBAC", "Microservices architecture"]
   },
   {
+    title: "Node.js API Security Gateway",
+    description: "Built enterprise-grade API gateway with Node.js featuring rate limiting, OAuth2 authentication, request validation, and comprehensive security headers. Includes API key management and audit logging.",
+    technologies: ["Node.js", "Express", "Redis", "OAuth2", "Helmet", "Rate-Limiter"],
+    github: "https://github.com/sansugupta/nodejs-api-gateway",
+    featured: false,
+    highlights: ["OAuth2 integration", "Rate limiting", "Audit logging"]
+  },
+  {
+    title: "ML Customer Churn Prediction",
+    description: "Data science project using Python and scikit-learn to predict customer churn. Features exploratory data analysis, feature engineering, model comparison (RandomForest, XGBoost, SVM), and interactive visualization dashboard.",
+    technologies: ["Python", "Scikit-learn", "Pandas", "XGBoost", "Matplotlib", "Seaborn"],
+    github: "https://github.com/sansugupta/churn-prediction-ml",
+    featured: false,
+    highlights: ["92% accuracy", "Feature importance analysis", "Interactive dashboard"]
+  },
+  {
+    title: "React E-Commerce Platform",
+    description: "Modern e-commerce platform with React frontend, Node.js backend, Stripe payment integration, and product recommendation system. Features shopping cart, order tracking, and admin dashboard.",
+    technologies: ["React", "Node.js", "Stripe", "PostgreSQL", "Redux", "Express"],
+    github: "https://github.com/sansugupta/react-ecommerce",
+    featured: false,
+    highlights: ["Stripe payments", "Product recommendations", "Admin dashboard"]
+  },
+  {
+    title: "DevSecOps Pipeline Automation",
+    description: "Comprehensive DevSecOps pipeline with automated security scanning (SAST, DAST, SCA), vulnerability management, and compliance reporting. Integrated with Jenkins, GitLab, and Kubernetes.",
+    technologies: ["Jenkins", "GitLab CI", "Trivy", "OWASP ZAP", "SonarQube", "Kubernetes"],
+    github: "https://github.com/sansugupta/devsecops-automation",
+    featured: false,
+    highlights: ["SAST/DAST integration", "Compliance reporting", "Vulnerability tracking"]
+  },
+  {
     title: "Ad Bidding System with Traefik on AWS EKS",
     description: "High-performance ad bidding system deployed on AWS EKS with Traefik for secure HTTPS traffic routing from Google AdX, featuring TLS termination and load balancing.",
     technologies: ["AWS EKS", "Traefik", "Docker", "Let's Encrypt", "NLB"],
     github: "https://github.com/sansugupta/Bidder-Deployement-with-Traefik",
     featured: false,
     highlights: ["TLS termination", "Load balancing", "Google AdX integration"]
+  },
+  {
+    title: "Python Data Analysis Toolkit",
+    description: "Advanced data analysis toolkit for business intelligence with automated reporting, statistical analysis, time-series forecasting, and data visualization. Supports CSV, Excel, and SQL data sources.",
+    technologies: ["Python", "Pandas", "NumPy", "Plotly", "Statsmodels", "SQLAlchemy"],
+    github: "https://github.com/sansugupta/python-data-toolkit",
+    featured: false,
+    highlights: ["Automated reporting", "Time-series forecasting", "Multi-source support"]
+  },
+  {
+    title: "Node.js Microservices Architecture",
+    description: "Scalable microservices platform with Node.js, featuring service discovery, API gateway, event-driven communication with RabbitMQ, distributed tracing, and centralized logging.",
+    technologies: ["Node.js", "Docker", "RabbitMQ", "Consul", "Elasticsearch", "Jaeger"],
+    github: "https://github.com/sansugupta/nodejs-microservices",
+    featured: false,
+    highlights: ["Service discovery", "Event-driven", "Distributed tracing"]
   },
   {
     title: "JITPS Monitoring Stack Deployment",
