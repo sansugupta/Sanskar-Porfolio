@@ -44,13 +44,6 @@ export default function InfraBuildSection() {
     },
   ]
 
-  const stats = [
-    { icon: Users, value: "5-6", label: "Team Members" },
-    { icon: Clock, value: "24/7", label: "SRE Support" },
-    { icon: Activity, value: "99.9%", label: "Uptime SLA" },
-    { icon: Zap, value: "60%", label: "Faster MTTR" },
-  ]
-
   return (
     <section id="infrabuild" className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d14] via-[#0a0a0f] to-[#0d0d14]" />
