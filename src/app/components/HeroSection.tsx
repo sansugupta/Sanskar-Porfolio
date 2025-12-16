@@ -127,34 +127,7 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12"
-        >
-          {[
-            { value: "3+", label: "Years Experience" },
-            { value: "99.9%", label: "Uptime Achieved" },
-            { value: "1M+", label: "Daily Users Served" },
-            { value: "24/7", label: "Enterprise Support" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-              className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
-            >
-              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
+          <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
