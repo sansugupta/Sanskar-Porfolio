@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Server, Shield, Activity, Code, Cloud, Clock, Users, Zap, CheckCircle2 } from "lucide-react"
+import { Server, Shield, Code, Cloud, CheckCircle2 } from "lucide-react"
 
 export default function InfraBuildSection() {
   const ref = useRef(null)
