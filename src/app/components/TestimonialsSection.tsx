@@ -75,40 +75,39 @@ export default function TestimonialsSection() {
     <section ref={sectionRef} id="testimonials" className="relative py-32 overflow-hidden bg-[#0a0a0f]">
       <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-purple-500/5 to-transparent" />
       
-      {floatingIcons.map((item, index) => (
-        <motion.div
-          key={index}
-          className="absolute pointer-events-none"
-          initial={{ 
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * 800 - 400,
-            opacity: 0
-          }}
-          animate={{
-            x: [
-              Math.random() * window.innerWidth,
-              Math.random() * window.innerWidth,
-              Math.random() * window.innerWidth,
-            ],
-            y: [
-              Math.random() * 800 - 400,
-              Math.random() * 800 - 400,
-              Math.random() * 800 - 400,
-            ],
-            opacity: [0, 0.15, 0.15, 0],
-            rotate: [0, 360],
-            scale: [0.8, 1.2, 0.8]
-          }}
-          transition={{
-            duration: item.duration,
-            delay: item.delay,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <item.Icon className="w-8 h-8 text-cyan-400/30" />
-        </motion.div>
-      ))}
+        {floatingIcons.map((item, index) => {
+          const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200
+          const randomX = () => Math.random() * viewportWidth
+          const randomY = () => Math.random() * 800 - 400
+
+          return (
+            <motion.div
+              key={index}
+              className="absolute pointer-events-none"
+              initial={{ 
+                x: randomX(),
+                y: randomY(),
+                opacity: 0
+              }}
+              animate={{
+                x: [randomX(), randomX(), randomX()],
+                y: [randomY(), randomY(), randomY()],
+                opacity: [0, 0.15, 0.15, 0],
+                rotate: [0, 360],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <item.Icon className="w-8 h-8 text-cyan-400/30" />
+            </motion.div>
+          )
+        })}
+
 
       <motion.div style={{ opacity }} className="relative w-full mx-auto px-8 md:px-16 lg:px-24">
         <motion.div
