@@ -66,7 +66,7 @@ export default function ProjectsSection() {
     <section id="projects" className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0d14] to-[#0a0a0f]" />
       
-      <div className="relative z-10 max-w-6xl mx-auto px-6" ref={ref}>
+      <div className="relative z-10 w-full mx-auto px-8 md:px-16 lg:px-24" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

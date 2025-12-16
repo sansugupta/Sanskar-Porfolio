@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
     <section id="testimonials" className="relative py-32 overflow-hidden bg-[#0a0a0f]">
       <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-purple-500/5 to-transparent" />
       
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative w-full mx-auto px-8 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
