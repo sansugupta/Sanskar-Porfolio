@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Star, Quote, Server, Container, GitBranch, Cloud, Gauge, Shield, Database, Terminal, Cpu, Workflow } from "lucide-react"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 const testimonials = [
   {
