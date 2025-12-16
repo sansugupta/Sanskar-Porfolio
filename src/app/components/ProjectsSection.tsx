@@ -79,16 +79,15 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="group relative p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all"
             >
-              <div className="absolute top-4 right-4 flex gap-3">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              </div>
+                <div className="absolute top-4 right-4 flex gap-3">
+                  <a
+                    href={project.github}
+                    onClick={(e) => handleExternalLink(e, project.github)}
+                    className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                </div>
 
               <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
                 Featured Project
