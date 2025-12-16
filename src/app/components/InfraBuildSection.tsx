@@ -117,17 +117,17 @@ export default function InfraBuildSection() {
               Your product is not only <span className="text-cyan-400 font-semibold">brilliant but also unbreakable</span>.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
-              <a
-                href="https://wa.me/919713492857"
-                onClick={(e) => {
-                  e.preventDefault()
-                  window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://wa.me/919713492857" } }, "*")
-                }}
-                className="px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-colors flex items-center gap-2"
-              >
-                <Server className="w-5 h-5" />
-                Start Your Project
-              </a>
+                <a
+                  href="https://wa.me/919669439887"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://wa.me/919669439887" } }, "*")
+                  }}
+                  className="px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-colors flex items-center gap-2"
+                >
+                  <Server className="w-5 h-5" />
+                  Start Your Project
+                </a>
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="px-6 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition-colors"
