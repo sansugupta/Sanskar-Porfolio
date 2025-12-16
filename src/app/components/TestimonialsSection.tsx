@@ -328,48 +328,62 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-            <motion.div 
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="flex -space-x-3">
-                {testimonials.map((testimonial, i) => (
-                  <motion.img
-                    key={i}
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full border-4 border-[#0a0a0f] object-cover shadow-lg"
-                    initial={{ scale: 0, x: -20 }}
-                    whileInView={{ scale: 1, x: 0 }}
-                    transition={{ delay: i * 0.1, type: "spring" }}
-                    viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.3, 
-                      zIndex: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-gray-400">
-                Trusted by <motion.span 
-                  className="text-cyan-400 font-semibold"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center flex flex-col gap-6"
+          >
+              <motion.div 
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 mx-auto"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex -space-x-3">
+                  {testimonials.map((testimonial, i) => (
+                    <motion.img
+                      key={i}
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-10 h-10 rounded-full border-4 border-[#0a0a0f] object-cover shadow-lg"
+                      initial={{ scale: 0, x: -20 }}
+                      whileInView={{ scale: 1, x: 0 }}
+                      transition={{ delay: i * 0.1, type: "spring" }}
+                      viewport={{ once: true }}
+                      whileHover={{ 
+                        scale: 1.3, 
+                        zIndex: 10,
+                        transition: { duration: 0.2 }
+                      }}
+                    />
+                  ))}
+                </div>
+                <p className="text-sm text-gray-400">
+                  Trusted by <motion.span 
+                    className="text-cyan-400 font-semibold"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    50+
+                  </motion.span> clients worldwide
+                </p>
+              </motion.div>
+
+              {testimonials.length > 6 && (
+                <motion.button
+                  onClick={() => {
+                    const section = document.getElementById('testimonials-all')
+                    section?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-white/20 transition-all mx-auto"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  50+
-                </motion.span> clients worldwide
-              </p>
-            </motion.div>
-        </motion.div>
+                  View More Testimonials
+                </motion.button>
+              )}
+          </motion.div>
       </motion.div>
     </section>
   )
