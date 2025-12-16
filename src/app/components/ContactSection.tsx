@@ -45,7 +45,7 @@ export default function ContactSection() {
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+91 9669439887", href: "tel:+919669439887" },
+    { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
     { icon: MessageCircle, label: "WhatsApp", value: "+91 9669439887", href: "https://wa.me/919669439887" },
     { icon: MapPin, label: "Location", value: "Noida, India", href: null },
   ]
