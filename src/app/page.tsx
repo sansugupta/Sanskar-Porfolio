@@ -45,8 +45,8 @@ export default function Home() {
         <ContactSection />
       </main>
 
-      <footer className="py-8 border-t border-white/10 bg-[#0a0a0f]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <footer className="py-8 border-t border-white/10 bg-[#0a0a0f]">
+        <div className="w-full mx-auto px-8 md:px-16 lg:px-24 text-center">
           <p className="text-gray-500 font-mono text-sm">
             Designed & Built by Sanskar Gupta
           </p>
