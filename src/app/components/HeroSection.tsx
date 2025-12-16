@@ -133,14 +133,13 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="flex flex-wrap justify-center gap-4"
         >
-          <a
-            href="https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9"
-            onClick={(e) => handleExternalLink(e, "https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")}
-            className="px-6 py-3 rounded-lg bg-[#14a800] text-white font-medium flex items-center gap-2 hover:bg-[#14a800]/90 transition-colors"
-          >
-            <UpworkIcon className="w-5 h-5" />
-            View Upwork Profile
-          </a>
+            <button
+              onClick={() => handleExternalLink("https://www.upwork.com/freelancers/~01573b18bcb0f2c7c9")}
+              className="px-6 py-3 rounded-lg bg-[#14a800] text-white font-medium flex items-center gap-2 hover:bg-[#14a800]/90 transition-colors cursor-pointer"
+            >
+              <UpworkIcon className="w-5 h-5" />
+              View Upwork Profile
+            </button>
           <button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             className="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:opacity-90 transition-opacity"
