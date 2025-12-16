@@ -54,6 +54,56 @@ const testimonials = [
     icon: Container,
     gradient: "from-indigo-500 to-violet-500",
     image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869013510.png?width=8000&height=8000&resize=contain"
+  },
+  {
+    name: "Rajesh",
+    role: "Full-Stack Development",
+    message: "Sanskar's expertise in React and Node.js transformed our web application. The performance improvements and clean code architecture exceeded our expectations. A true professional!",
+    rating: 5,
+    project: "React & Node.js Web App",
+    icon: Terminal,
+    gradient: "from-blue-500 to-cyan-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869919712.png?width=8000&height=8000&resize=contain"
+  },
+  {
+    name: "Amit",
+    role: "Data Science Project",
+    message: "Incredible data analysis work! Sanskar's machine learning models provided actionable insights that directly improved our business metrics. His visualization dashboards are exceptional.",
+    rating: 5,
+    project: "ML Analytics & Forecasting",
+    icon: Database,
+    gradient: "from-emerald-500 to-green-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869944801.png?width=8000&height=8000&resize=contain"
+  },
+  {
+    name: "Priya",
+    role: "Security Architecture",
+    message: "Outstanding security implementation! Sanskar built a robust DevSecOps pipeline that automated our security scanning and significantly reduced vulnerabilities. Highly recommended for security projects!",
+    rating: 5,
+    project: "DevSecOps Security Pipeline",
+    icon: Shield,
+    gradient: "from-red-500 to-orange-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869989828.png?width=8000&height=8000&resize=contain"
+  },
+  {
+    name: "Vikram",
+    role: "Backend Development",
+    message: "Sanskar's Node.js microservices architecture is exceptional! Clean code, scalable design, and comprehensive documentation. He delivered ahead of schedule with zero issues.",
+    rating: 5,
+    project: "Node.js Microservices Platform",
+    icon: Workflow,
+    gradient: "from-violet-500 to-purple-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765870027011.png?width=8000&height=8000&resize=contain"
+  },
+  {
+    name: "Dr. Kumar",
+    role: "Data Analytics",
+    message: "Fantastic Python data toolkit! Sanskar's automated reporting system and statistical analysis tools have transformed how we handle business intelligence. Top-tier data science expertise!",
+    rating: 5,
+    project: "Python Data Analysis Suite",
+    icon: Cpu,
+    gradient: "from-pink-500 to-rose-500",
+    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765870081159.png?width=8000&height=8000&resize=contain"
   }
 ]
 
