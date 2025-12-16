@@ -76,34 +76,9 @@ export default function InfraBuildSection() {
             We are a dedicated team of senior SRE, DevOps specialists, and Full-Stack Developers. 
             We don't just build software; we build <span className="text-cyan-400 font-semibold">resilient, scalable, and future-proof</span> digital businesses.
           </p>
-        </motion.div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.3 + index * 0.1 }}
-              className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm text-center group hover:border-cyan-500/30 transition-all"
-            >
-              <div className="inline-flex p-3 rounded-lg bg-cyan-500/10 text-cyan-400 mb-3 group-hover:scale-110 transition-transform">
-                <stat.icon className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="space-y-8">
+          <div className="space-y-8 mt-12">
           {services.map((service, index) => (
             <motion.div
               key={index}
