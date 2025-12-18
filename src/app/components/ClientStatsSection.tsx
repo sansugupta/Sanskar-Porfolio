@@ -185,12 +185,8 @@ export default function ClientStatsSection() {
                 </div>
 
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, var(--tw-gradient-stops))`
-                  }}
-                  className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                />
+                    className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  />
               </motion.div>
             </motion.div>
           ))}
