@@ -125,12 +125,8 @@ export default function ClientStatsSection() {
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
-                style={{
-                  background: `linear-gradient(135deg, var(--tw-gradient-stops))`
-                }}
-                className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500`}
-              />
+                  className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500`}
+                />
               
               <motion.div
                 className="relative h-full bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-2xl p-8 border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500"
