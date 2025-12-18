@@ -140,53 +140,66 @@ export default function ProjectsSection() {
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mt-4" />
         </motion.div>
 
-        <div className="space-y-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group relative p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all"
-            >
-                <div className="absolute top-4 right-4 flex gap-3">
-                  <a
-                    href={project.github}
-                    onClick={(e) => handleExternalLink(e, project.github)}
-                    className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
+<div className="space-y-8 mb-16">
+            {featuredProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="group relative rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all overflow-hidden"
+              >
+                {project.image && (
+                  <div className="relative w-full h-64 md:h-80">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent" />
+                  </div>
+                )}
+                
+                <div className={`p-8 ${project.image ? '-mt-20 relative z-10' : ''}`}>
+                  <div className="absolute top-4 right-4 flex gap-3 z-20">
+                    <a
+                      href={project.github}
+                      onClick={(e) => handleExternalLink(e, project.github)}
+                      className="p-2 text-gray-400 hover:text-cyan-400 transition-colors bg-black/50 rounded-lg backdrop-blur-sm"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  </div>
+
+                  <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
+                    Featured Project
+                  </span>
+
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-gray-400 leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.highlights.map((highlight, i) => (
+                      <span key={i} className="px-3 py-1 rounded-lg bg-green-500/10 text-green-400 text-xs border border-green-500/20">
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-3 py-1 rounded text-xs font-mono bg-white/5 text-gray-300 border border-white/10">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-              <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
-                Featured Project
-              </span>
-
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
-                {project.title}
-              </h3>
-
-              <p className="text-gray-400 leading-relaxed mb-6">
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.highlights.map((highlight, i) => (
-                  <span key={i} className="px-3 py-1 rounded-lg bg-green-500/10 text-green-400 text-xs border border-green-500/20">
-                    {highlight}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, i) => (
-                  <span key={i} className="px-3 py-1 rounded text-xs font-mono bg-white/5 text-gray-300 border border-white/10">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+              </motion.div>
           ))}
         </div>
 
