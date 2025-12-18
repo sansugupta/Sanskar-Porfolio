@@ -6,6 +6,15 @@ import { Github, ExternalLink, Folder } from "lucide-react"
 
 const projects = [
   {
+    title: "Enterprise AWS Bedrock Agent Terraform Module",
+    description: "Production-ready, reusable Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents. Treats GenAI Infrastructure as Code, enabling DevOps engineers to spin up standardized AI Agents across Dev/Test/Prod environments. Features Anthropic Claude 3.5 Sonnet, S3 context storage, Lambda orchestration, and strict Guardrails for security.",
+    technologies: ["Terraform", "AWS Bedrock", "Python", "Lambda", "S3", "KMS", "IAM"],
+    github: "https://github.com/sansugupta/Enterprise-AWS-Bedrock-Agent-Terraform-Module",
+    featured: true,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    highlights: ["RAG Architecture", "Multi-Agent Supervisor System", "Serverless Lambda Integration", "PII Guardrails"]
+  },
+  {
     title: "AI-Powered Observability Automation System",
     description: "Architected and implemented a comprehensive observability platform for Kubernetes environments, transforming reactive monitoring into proactive system intelligence. Built end-to-end monitoring ecosystem using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse that reduced MTTR by 60%.",
     technologies: ["Kubernetes", "Prometheus", "Grafana", "eBPF", "ClickHouse", "Python"],
