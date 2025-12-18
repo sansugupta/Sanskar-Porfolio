@@ -168,12 +168,8 @@ export default function ClientStatsSection() {
 
                 <div className="text-center">
                   <motion.div
-                    className="text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-br bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))`
-                    }}
-                    className={`text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}
-                  >
+                      className={`text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}
+                    >
                     <AnimatedCounter value={stat.value} />
                     <span>{stat.suffix}</span>
                   </motion.div>
