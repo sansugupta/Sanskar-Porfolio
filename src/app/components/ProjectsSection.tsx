@@ -149,7 +149,17 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="group relative rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all overflow-hidden"
               >
-                {project.image && (
+                <div className="absolute top-4 right-4 flex gap-3 z-30">
+                  <a
+                    href={project.github}
+                    onClick={(e) => handleExternalLink(e, project.github)}
+                    className="p-2 text-gray-400 hover:text-cyan-400 transition-colors bg-black/50 rounded-lg backdrop-blur-sm"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                </div>
+
+                {'image' in project && project.image && (
                   <div className="relative w-full h-64 md:h-80">
                     <img
                       src={project.image}
@@ -160,17 +170,7 @@ export default function ProjectsSection() {
                   </div>
                 )}
                 
-                <div className={`p-8 ${project.image ? '-mt-20 relative z-10' : ''}`}>
-                  <div className="absolute top-4 right-4 flex gap-3 z-20">
-                    <a
-                      href={project.github}
-                      onClick={(e) => handleExternalLink(e, project.github)}
-                      className="p-2 text-gray-400 hover:text-cyan-400 transition-colors bg-black/50 rounded-lg backdrop-blur-sm"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  </div>
-
+                <div className={`p-8 ${'image' in project && project.image ? '-mt-20 relative z-10' : ''}`}>
                   <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-4">
                     Featured Project
                   </span>
