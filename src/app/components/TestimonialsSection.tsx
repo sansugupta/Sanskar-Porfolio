@@ -45,16 +45,16 @@ const testimonials = [
     gradient: "from-orange-500 to-red-500",
     image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869121723.png?width=8000&height=8000&resize=contain"
   },
-  {
-    name: "Jason",
-    role: "DevOps Project",
-    message: "Excellent work on Traefik setup and bidder application deployment! Sanskar's expertise in container orchestration and load balancing was exactly what we needed. Flawless execution!",
-    rating: 5,
-    project: "Traefik Setup & Application Deployment",
-    icon: Container,
-    gradient: "from-indigo-500 to-violet-500",
-    image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869013510.png?width=8000&height=8000&resize=contain"
-  },
+    {
+      name: "Prem",
+      role: "DevOps Project",
+      message: "Excellent work on Traefik setup and bidder application deployment! Sanskar's expertise in container orchestration and load balancing was exactly what we needed. Flawless execution!",
+      rating: 5,
+      project: "Traefik Setup & Application Deployment",
+      icon: Container,
+      gradient: "from-indigo-500 to-violet-500",
+      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1766151272876.png?width=8000&height=8000&resize=contain"
+    },
   {
     name: "Rohit Sahu",
     role: "Full-Stack Development",
