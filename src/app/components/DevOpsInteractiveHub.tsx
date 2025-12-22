@@ -96,9 +96,9 @@ export default function DevOpsInteractiveHub() {
   ]
 
   return (
-    <section className="relative h-[800px] w-full bg-[#0a0a0f] overflow-hidden">
+    <section id="visualizer" className="relative h-[800px] w-full bg-[#0a0a0f] overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Canvas>
+        <Canvas shadows gl={{ antialias: true }}>
           <PerspectiveCamera makeDefault position={[0, 0, 12]} />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} intensity={1} />
