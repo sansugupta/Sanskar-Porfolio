@@ -3,7 +3,13 @@
 import { useEffect, useRef } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import HeroSection from "./components/HeroSection"
-import DevOpsInteractiveHub from "./components/DevOpsInteractiveHub"
+import dynamic from "next/dynamic"
+
+const DevOpsInteractiveHub = dynamic(() => import("./components/DevOpsInteractiveHub"), {
+  ssr: false,
+  loading: () => <div className="h-[800px] w-full bg-[#0a0a0f] flex items-center justify-center text-gray-500">Loading Visualizer...</div>
+})
+
 import InfraBuildSection from "./components/InfraBuildSection"
 import AboutSection from "./components/AboutSection"
 import ClientStatsSection from "./components/ClientStatsSection"
