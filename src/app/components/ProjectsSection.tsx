@@ -22,8 +22,8 @@ const projects = [
       technologies: ["Terraform", "AWS Bedrock", "Python", "Lambda", "S3", "KMS", "IAM"],
       github: "https://github.com/sansugupta/Enterprise-AWS-Bedrock-Agent-Terraform-Module",
       featured: true,
-      slug: "aws-bedrock-module",
-      image: "https://images.unsplash.com/photo-1664382953518-4a664ab8a8c9?w=1200&q=80",
+      slug: "aws-bedrock",
+      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/WhatsApp-Image-2025-12-19-at-01.08.49-resized-1766420425913.jpeg",
       highlights: ["RAG Architecture", "Multi-Agent Supervisor System", "Serverless Lambda Integration", "PII Guardrails"]
     },
     {
