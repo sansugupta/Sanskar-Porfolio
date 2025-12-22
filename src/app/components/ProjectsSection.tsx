@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Github, ExternalLink, Folder } from "lucide-react"
+import Link from "next/link"
 
 const projects = [
     {
