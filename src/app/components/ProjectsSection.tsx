@@ -6,30 +6,43 @@ import { Github, ExternalLink, Folder } from "lucide-react"
 
 const projects = [
     {
+      title: "Enterprise Java Microservices Stack: Automated K8s Infrastructure & Cross-Region DR",
+      description: "Consolidated Multi-Tenant Cluster Architecture paired with a Cold-Standby Disaster Recovery (DR) Site. Reduced infra costs by 65% while maintaining 99.9% availability for Java Spring Boot and Odoo ERP ecosystems.",
+      technologies: ["Kubernetes", "Terraform", "GitHub Actions", "WireGuard", "PostgreSQL", "NGINX Ingress"],
+      github: "https://github.com/sansugupta/JITPS",
+      featured: true,
+      slug: "enterprise-java-stack",
+      image: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1766419833284.png",
+      highlights: ["65% Cost Reduction", "DR RTO < 5 Minutes", "Cross-Region Live Sync", "Zero-Trust Security"]
+    },
+    {
       title: "Enterprise AWS Bedrock Agent Terraform Module",
-      description: "Production-ready, reusable Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents. Treats GenAI Infrastructure as Code, enabling DevOps engineers to spin up standardized AI Agents across Dev/Test/Prod environments. Features Anthropic Claude 3.5 Sonnet, S3 context storage, Lambda orchestration, and strict Guardrails for security.",
+      description: "Production-ready, reusable Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents. Treats GenAI Infrastructure as Code, enabling DevOps engineers to spin up standardized AI Agents across Dev/Test/Prod environments.",
       technologies: ["Terraform", "AWS Bedrock", "Python", "Lambda", "S3", "KMS", "IAM"],
       github: "https://github.com/sansugupta/Enterprise-AWS-Bedrock-Agent-Terraform-Module",
       featured: true,
+      slug: "aws-bedrock-module",
       image: "https://images.unsplash.com/photo-1664382953518-4a664ab8a8c9?w=1200&q=80",
       highlights: ["RAG Architecture", "Multi-Agent Supervisor System", "Serverless Lambda Integration", "PII Guardrails"]
     },
-  {
-    title: "AI-Powered Observability Automation System",
-    description: "Architected and implemented a comprehensive observability platform for Kubernetes environments, transforming reactive monitoring into proactive system intelligence. Built end-to-end monitoring ecosystem using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse that reduced MTTR by 60%.",
-    technologies: ["Kubernetes", "Prometheus", "Grafana", "eBPF", "ClickHouse", "Python"],
-    github: "https://github.com/sansugupta/AI-Powered-Observability-Automation-System",
-    featured: true,
-    highlights: ["Reduced MTTR by 60%", "Intelligent dashboards with drill-down", "Automated alerting with Slack"]
-  },
-  {
-    title: "Three-Tier Web Application on AWS EKS",
-    description: "Deployed microservices-based web app (React.js, Node.js, MongoDB) on AWS EKS with monitoring integration. Built CI/CD pipeline with Jenkins, Docker, and Terraform, using Blue/Green deployments for zero downtime.",
-    technologies: ["AWS EKS", "Terraform", "Jenkins", "Docker", "React", "Node.js", "MongoDB"],
-    github: "https://github.com/sansugupta/3-tier-HQ",
-    featured: true,
-    highlights: ["Zero-downtime deployments", "Prometheus & Grafana monitoring", "SonarQube & Trivy scanning"]
-  },
+    {
+      title: "AI-Powered Observability Automation System",
+      description: "Architected and implemented a comprehensive observability platform for Kubernetes environments, transforming reactive monitoring into proactive system intelligence. Built end-to-end monitoring ecosystem using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse.",
+      technologies: ["Kubernetes", "Prometheus", "Grafana", "eBPF", "ClickHouse", "Python"],
+      github: "https://github.com/sansugupta/AI-Powered-Observability-Automation-System",
+      featured: true,
+      slug: "ai-observability",
+      highlights: ["Reduced MTTR by 60%", "Intelligent dashboards with drill-down", "Automated alerting with Slack"]
+    },
+    {
+      title: "Three-Tier Web Application on AWS EKS",
+      description: "Deployed microservices-based web app (React.js, Node.js, MongoDB) on AWS EKS with monitoring integration. Built CI/CD pipeline with Jenkins, Docker, and Terraform, using Blue/Green deployments for zero downtime.",
+      technologies: ["AWS EKS", "Terraform", "Jenkins", "Docker", "React", "Node.js", "MongoDB"],
+      github: "https://github.com/sansugupta/3-tier-HQ",
+      featured: true,
+      slug: "three-tier-eks",
+      highlights: ["Zero-downtime deployments", "Prometheus & Grafana monitoring", "SonarQube & Trivy scanning"]
+    },
   {
     title: "React Task Management Dashboard",
     description: "Full-stack task management app with React, Node.js, and MongoDB. Features real-time updates, drag-and-drop interface, user authentication with JWT, and comprehensive task analytics dashboard.",
