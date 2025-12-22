@@ -233,44 +233,51 @@ export default function ProjectsSection() {
           Other Noteworthy Projects
         </motion.h3>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-              className="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all hover:-translate-y-1"
-            >
-                <div className="flex items-start justify-between mb-4">
-                  <Folder className="w-10 h-10 text-purple-400" />
-                  <a
-                    href={project.github}
-                    onClick={(e) => handleExternalLink(e, project.github)}
-                    className="p-1 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                className="group relative"
+              >
+                <Link
+                  href={project.slug ? `/projects/${project.slug}` : project.github}
+                  className="block h-full p-6 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all hover:-translate-y-1"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <Folder className="w-10 h-10 text-purple-400" />
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleExternalLink(e, project.github);
+                      }}
+                      className="p-1 text-gray-400 hover:text-white transition-colors"
+                    >
+                      <Github className="w-5 h-5" />
+                    </button>
+                  </div>
 
-              <h4 className="text-lg font-semibold text-white mb-3 group-hover:text-purple-400 transition-colors">
-                {project.title}
-              </h4>
+                  <h4 className="text-lg font-semibold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                    {project.title}
+                  </h4>
 
-              <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
-                {project.description}
-              </p>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
 
-              <div className="flex flex-wrap gap-1.5">
-                {project.technologies.slice(0, 4).map((tech, i) => (
-                  <span key={i} className="text-xs font-mono text-gray-500">
-                    {tech}{i < Math.min(project.technologies.length - 1, 3) ? " ·" : ""}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.slice(0, 4).map((tech, i) => (
+                      <span key={i} className="text-xs font-mono text-gray-500">
+                        {tech}{i < Math.min(project.technologies.length - 1, 3) ? " ·" : ""}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
