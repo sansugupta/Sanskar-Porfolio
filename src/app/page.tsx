@@ -38,13 +38,12 @@ export default function Home() {
         style={{ scaleX }}
       />
       
-      <Navigation />
-      
-      <main className="relative">
-        <HeroSection />
-        <DevOpsInteractiveHub />
-        <InfraBuildSection />
-        <AboutSection />
+        <Navigation />
+        
+        <main className="relative">
+          <HeroSection />
+          <InfraBuildSection />
+          <AboutSection />
         <ClientStatsSection />
         <TestimonialsSection />
         <ExperienceSection />
