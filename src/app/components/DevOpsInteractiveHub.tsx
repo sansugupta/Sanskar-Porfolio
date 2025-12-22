@@ -40,7 +40,6 @@ function InfrastructureNode({ position, color, label, icon }: any) {
         position={[0, 1.2, 0]}
         fontSize={0.2}
         color="white"
-        font="/fonts/font.woff"
         anchorX="center"
         anchorY="middle"
       >
