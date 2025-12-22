@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls, PerspectiveCamera, Float, MeshDistortMaterial, Sphere, Text, Sparkles, Bloom, EffectComposer } from "@react-three/drei"
+import { OrbitControls, PerspectiveCamera, Float, MeshDistortMaterial, Text, Sparkles } from "@react-three/drei"
 import * as THREE from "three"
 import { motion, AnimatePresence } from "framer-motion"
 
