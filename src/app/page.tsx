@@ -36,6 +36,7 @@ export default function Home() {
       
       <main className="relative">
         <HeroSection />
+        <DevOpsInteractiveHub />
         <InfraBuildSection />
         <AboutSection />
         <ClientStatsSection />
