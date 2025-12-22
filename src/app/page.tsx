@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import HeroSection from "./components/HeroSection"
+import DevOpsInteractiveHub from "./components/DevOpsInteractiveHub"
 import InfraBuildSection from "./components/InfraBuildSection"
 import AboutSection from "./components/AboutSection"
 import ClientStatsSection from "./components/ClientStatsSection"
