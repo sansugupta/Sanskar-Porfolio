@@ -34,39 +34,31 @@ function InfrastructureNode({ position, color, label }: any) {
 
   return (
     <group position={position}>
-      <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-        <mesh
-          ref={meshRef}
-          onPointerOver={() => setHovered(true)}
-          onPointerOut={() => setHovered(false)}
-        >
-          <boxGeometry args={[1, 1, 1]} />
-          <MeshDistortMaterial
-            color={hovered ? "#00ffff" : color}
-            speed={2}
-            distort={0.4}
-            radius={1}
-            emissive={color}
-            emissiveIntensity={hovered ? 2 : 0.5}
-          />
-        </mesh>
-      </Float>
-      
-      <Text
-        position={[0, 1.2, 0]}
-        fontSize={0.2}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {label}
-      </Text>
+        <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+          <mesh
+            ref={meshRef}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
+          >
+            <boxGeometry args={[1, 1, 1]} />
+            <MeshDistortMaterial
+              color={hovered ? "#00ffff" : color}
+              speed={2}
+              distort={0.4}
+              radius={1}
+              emissive={color}
+              emissiveIntensity={hovered ? 2 : 0.5}
+            />
+          </mesh>
+        </Float>
+        
+        <NodeLabel label={label} position={[0, 1.2, 0]} />
 
-      {hovered && (
-        <Sparkles count={50} scale={2} size={2} speed={0.4} color={color} />
-      )}
-    </group>
-  )
+        {hovered && (
+          <Sparkles count={50} scale={2} size={2} speed={0.4} color={color} />
+        )}
+      </group>
+    )
 }
 
 function ConnectionLines() {
