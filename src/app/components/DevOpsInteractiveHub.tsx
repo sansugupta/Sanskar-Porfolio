@@ -1,12 +1,28 @@
 "use client"
 
-import React, { useRef, useState, useMemo } from "react"
+import React, { useRef, useState, useMemo, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, PerspectiveCamera, Float, MeshDistortMaterial, Text, Sparkles } from "@react-three/drei"
 import * as THREE from "three"
 import { motion, AnimatePresence } from "framer-motion"
 
-function InfrastructureNode({ position, color, label, icon }: any) {
+// Create a safer Text component or remove if it's the issue
+function NodeLabel({ label, position }: { label: string, position: [number, number, number] }) {
+  return (
+    <Text
+      position={position}
+      fontSize={0.2}
+      color="white"
+      font="https://fonts.gstatic.com/s/robotomono/v22/L0tkDFwv09SIn9m5H0619S2lyTmf.woff" // Explicit font URL to avoid loading issues
+      anchorX="center"
+      anchorY="middle"
+    >
+      {label}
+    </Text>
+  )
+}
+
+function InfrastructureNode({ position, color, label }: any) {
   const [hovered, setHovered] = useState(false)
   const meshRef = useRef<THREE.Mesh>(null)
 
