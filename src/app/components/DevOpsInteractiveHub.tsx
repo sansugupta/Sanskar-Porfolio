@@ -107,22 +107,24 @@ export default function DevOpsInteractiveHub() {
     <section id="visualizer" className="relative h-[800px] w-full bg-[#0a0a0f] overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Canvas shadows gl={{ antialias: true }}>
-          <PerspectiveCamera makeDefault position={[0, 0, 12]} />
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
-          <pointLight position={[-10, -10, -10]} color="#aa00ff" intensity={0.5} />
-          
-          <InfrastructureNode position={[0, 0, 0]} color="#00ffff" label="Core API" />
-          <InfrastructureNode position={[4, 2, -2]} color="#ff00ff" label="K8s Nodes" />
-          <InfrastructureNode position={[-4, 1, -3]} color="#ffff00" label="Database" />
-          <InfrastructureNode position={[2, -3, -1]} color="#00ff00" label="Auth Svc" />
-          <InfrastructureNode position={[-2, -2, 2]} color="#ff4400" label="CDN" />
-          <InfrastructureNode position={[3, 0, 3]} color="#ffffff" label="Prometheus" />
-          
-          <ConnectionLines />
-          <Sparkles count={200} scale={20} size={1} speed={0.2} opacity={0.3} />
-          
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+          <Suspense fallback={null}>
+            <PerspectiveCamera makeDefault position={[0, 0, 12]} />
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} intensity={1} />
+            <pointLight position={[-10, -10, -10]} color="#aa00ff" intensity={0.5} />
+            
+            <InfrastructureNode position={[0, 0, 0]} color="#00ffff" label="Core API" />
+            <InfrastructureNode position={[4, 2, -2]} color="#ff00ff" label="K8s Nodes" />
+            <InfrastructureNode position={[-4, 1, -3]} color="#ffff00" label="Database" />
+            <InfrastructureNode position={[2, -3, -1]} color="#00ff00" label="Auth Svc" />
+            <InfrastructureNode position={[-2, -2, 2]} color="#ff4400" label="CDN" />
+            <InfrastructureNode position={[3, 0, 3]} color="#ffffff" label="Prometheus" />
+            
+            <ConnectionLines />
+            <Sparkles count={200} scale={20} size={1} speed={0.2} opacity={0.3} />
+            
+            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+          </Suspense>
         </Canvas>
       </div>
 
