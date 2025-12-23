@@ -46,7 +46,7 @@ export default function ContactSection() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
     { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
-    { icon: MessageCircle, label: "WhatsApp", value: "+91 9713492857", href: "https://wa.me/919713492857" },
+    { icon: MessageCircle, label: "WhatsApp", value: "+91 9669439887", href: "https://wa.me/919669439887" },
     { icon: MapPin, label: "Location", value: "Noida, India", href: null },
   ]
 
@@ -54,14 +54,14 @@ export default function ContactSection() {
     { icon: Github, href: "https://github.com/sansugupta", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/sanskargupta9/", label: "LinkedIn" },
     { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com", label: "Email" },
-    { icon: MessageCircle, href: "https://wa.me/919713492857", label: "WhatsApp" },
+    { icon: MessageCircle, href: "https://wa.me/919669439887", label: "WhatsApp" },
   ]
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0d14] to-[#0a0a0f]" />
       
-      <div className="relative z-10 max-w-5xl mx-auto px-6" ref={ref}>
+      <div className="relative z-10 w-full mx-auto px-8 md:px-16 lg:px-24" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

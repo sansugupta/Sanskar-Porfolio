@@ -27,14 +27,14 @@ const htmlContent = `
 </head>
 <body>
     <h1>SANSKAR GUPTA</h1>
-    <div class="contact">
-        <a href="tel:+919713492857">9713492857 (Call)</a> | 
-        <a href="https://wa.me/919289869370">9289869370 (WA)</a> | 
-        <a href="mailto:sanskargupta966@gmail.com">sanskargupta966@gmail.com</a> | 
-        <a href="https://www.linkedin.com/in/sanskargupta9/">LinkedIn</a> | 
-        <a href="https://github.com/sansugupta">GitHub</a> | 
-        <a href="https://sanskarguptaportfolio.netlify.app/">Portfolio</a>
-    </div>
+      <div class="contact">
+          <a href="tel:+919669439887">9669439887 (Call)</a> | 
+          <a href="https://wa.me/919669439887">9669439887 (WA)</a> | 
+          <a href="mailto:sanskargupta966@gmail.com">sanskargupta966@gmail.com</a> | 
+          <a href="https://www.linkedin.com/in/sanskargupta9/">LinkedIn</a> | 
+          <a href="https://github.com/sansugupta">GitHub</a> | 
+          <a href="https://sanskarguptaportfolio.netlify.app/">Portfolio</a>
+      </div>
 
     <h2>SUMMARY</h2>
     <p style="margin-bottom: 12px;">

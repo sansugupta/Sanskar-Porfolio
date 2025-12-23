@@ -141,8 +141,8 @@ export default function Navigation() {
                 <Linkedin size={18} />
               </motion.a>
               <motion.a
-                href="https://wa.me/919713492857"
-                onClick={(e) => handleExternalLink(e, "https://wa.me/919713492857")}
+                href="https://wa.me/919669439887"
+                onClick={(e) => handleExternalLink(e, "https://wa.me/919669439887")}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 text-gray-400 hover:text-green-400 transition-colors"
                 title="WhatsApp"
@@ -235,7 +235,7 @@ export default function Navigation() {
                   <a href="https://www.linkedin.com/in/sanskargupta9/" onClick={(e) => handleExternalLink(e, "https://www.linkedin.com/in/sanskargupta9/")} className="p-3 text-gray-400 hover:text-cyan-400 bg-white/5 rounded-lg">
                     <Linkedin size={20} />
                   </a>
-                  <a href="https://wa.me/919713492857" onClick={(e) => handleExternalLink(e, "https://wa.me/919713492857")} className="p-3 text-gray-400 hover:text-green-400 bg-white/5 rounded-lg">
+                  <a href="https://wa.me/919669439887" onClick={(e) => handleExternalLink(e, "https://wa.me/919669439887")} className="p-3 text-gray-400 hover:text-green-400 bg-white/5 rounded-lg">
                     <MessageCircle size={20} />
                   </a>
                   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" onClick={(e) => handleExternalLink(e, "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com")} className="p-3 text-gray-400 hover:text-pink-400 bg-white/5 rounded-lg">

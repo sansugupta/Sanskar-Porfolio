@@ -3,11 +3,13 @@
 import { useEffect, useRef } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import HeroSection from "./components/HeroSection"
+import DevOpsInteractiveHub from "./components/DevOpsInteractiveHub"
 import InfraBuildSection from "./components/InfraBuildSection"
 import AboutSection from "./components/AboutSection"
+import ClientStatsSection from "./components/ClientStatsSection"
+import TestimonialsSection from "./components/TestimonialsSection"
 import ExperienceSection from "./components/ExperienceSection"
 import SkillsSection from "./components/SkillsSection"
-import TestimonialsSection from "./components/TestimonialsSection"
 import ProjectsSection from "./components/ProjectsSection"
 import EducationSection from "./components/EducationSection"
 import CertificationsSection from "./components/CertificationsSection"
@@ -34,11 +36,13 @@ export default function Home() {
       
       <main className="relative">
         <HeroSection />
+        <DevOpsInteractiveHub />
         <InfraBuildSection />
         <AboutSection />
+        <ClientStatsSection />
+        <TestimonialsSection />
         <ExperienceSection />
         <SkillsSection />
-        <TestimonialsSection />
         <ProjectsSection />
         <EducationSection />
         <CertificationsSection />
@@ -46,7 +50,7 @@ export default function Home() {
       </main>
 
       <footer className="py-8 border-t border-white/10 bg-[#0a0a0f]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="w-full mx-auto px-8 md:px-16 lg:px-24 text-center">
           <p className="text-gray-500 font-mono text-sm">
             Designed & Built by Sanskar Gupta
           </p>
