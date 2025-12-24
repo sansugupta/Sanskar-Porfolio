@@ -41,20 +41,20 @@ export default function AboutSection() {
           >
             <p className="text-gray-300 text-lg leading-relaxed">
               Site Reliability / DevOps Engineer with <span className="text-cyan-400 font-semibold">3+ years</span> architecting 
-              AWS cloud infrastructure, Kubernetes orchestration, and CI/CD pipelines. Currently leading 24x7 SRE support teams 
-              of 5-6 members across multi-national enterprise projects.
+              AWS cloud infrastructure, Kubernetes orchestration, and GenAI modules. Specialized in high-availability 
+              migrations, cross-region Disaster Recovery, and DevSecOps.
             </p>
             
             <p className="text-gray-400 leading-relaxed">
               Expert in observability solutions using eBPF, Prometheus, and Grafana achieving <span className="text-green-400 font-semibold">99.9% uptime</span>. 
-              Specialized in DevSecOps, Infrastructure as Code, and automated incident response systems with proven track record 
-              managing zero-downtime operations for mission-critical applications serving <span className="text-purple-400 font-semibold">1M+ daily users</span>.
+              Lead SRE support teams for multi-national enterprise projects, implementing automated CI/CD and 
+              mission-critical cloud solutions serving <span className="text-purple-400 font-semibold">1M+ daily users</span>.
             </p>
 
             <p className="text-gray-400 leading-relaxed">
-              At Alyssum Global Services, I manage zero-downtime operations for JITPS (French e-commerce) across multi-region 
-              Kubernetes infrastructure. I've architected eBPF-powered observability stacks, transitioned multi-cluster 
-              architectures into consolidated setups, and implemented Real User Monitoring with ClickHouse.
+              As a <span className="text-cyan-400 font-semibold">Top-Rated Plus Freelancer</span> on Upwork, I've architected 
+              Universal AWS Bedrock Terraform Modules for RAG architectures and led DevOps training for 45+ students. 
+              I specialize in bridging the gap between academic standards and industry production environments.
             </p>
 
             <div className="pt-6">
