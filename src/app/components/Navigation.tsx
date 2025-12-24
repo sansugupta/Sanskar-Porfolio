@@ -140,15 +140,15 @@ export default function Navigation() {
               >
                 <Linkedin size={18} />
               </motion.a>
-              <motion.a
-                href="https://wa.me/919669439887"
-                onClick={(e) => handleExternalLink(e, "https://wa.me/919669439887")}
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="p-2 text-gray-400 hover:text-green-400 transition-colors"
-                title="WhatsApp"
-              >
-                <MessageCircle size={18} />
-              </motion.a>
+                <motion.a
+                  href="https://wa.me/919289869370"
+                  onClick={(e) => handleExternalLink(e, "https://wa.me/919289869370")}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="p-2 text-gray-400 hover:text-green-400 transition-colors"
+                  title="WhatsApp"
+                >
+                  <MessageCircle size={18} />
+                </motion.a>
               <motion.a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com"
                 onClick={(e) => handleExternalLink(e, "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com")}
