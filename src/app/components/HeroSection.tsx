@@ -93,14 +93,14 @@ export default function HeroSection() {
           </p>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
-        >
-          3+ years architecting AWS cloud infrastructure, Kubernetes orchestration, and CI/CD pipelines. Supporting big projects with 24x7 SRE support, achieving 99.9% uptime for mission-critical applications.
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
+          >
+            Site Reliability / DevOps Engineer with 3+ years architecting AWS cloud infrastructure, Kubernetes orchestration, and GenAI modules. Specialized in high-availability migrations and cross-region Disaster Recovery.
+          </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
