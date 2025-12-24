@@ -86,7 +86,7 @@ export default function Projects() {
       featured: false,
     },
     {
-      title: "JITPS Monitoring Stack Deployment",
+      title: "Java Application Monitoring Stack Deployment",
       description:
         "Comprehensive monitoring stack deployment for JITPS POC cluster including Prometheus, Loki, Grafana, OpenTelemetry, and Postgres Exporter with automated deployment scripts.",
       image: "/placeholder.svg?height=200&width=400",
