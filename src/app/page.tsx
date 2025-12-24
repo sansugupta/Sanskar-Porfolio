@@ -14,6 +14,7 @@ import EducationSection from "./components/EducationSection"
 import CertificationsSection from "./components/CertificationsSection"
 import ContactSection from "./components/ContactSection"
 import Navigation from "./components/Navigation"
+import RoamingAgent from "./components/RoamingAgent"
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
