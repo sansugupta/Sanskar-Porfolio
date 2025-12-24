@@ -43,19 +43,19 @@ export default function ContactSection() {
     window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
   }
 
-  const contactInfo = [
-    { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
-    { icon: MessageCircle, label: "WhatsApp", value: "+91 9669439887", href: "https://wa.me/919669439887" },
-    { icon: MapPin, label: "Location", value: "Noida, India", href: null },
-  ]
+    const contactInfo = [
+      { icon: Mail, label: "Email", value: "sanskargupta966@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com" },
+      { icon: Phone, label: "Phone", value: "+91 9713492857", href: "tel:+919713492857" },
+      { icon: MessageCircle, label: "WhatsApp", value: "+91 9289869370", href: "https://wa.me/919289869370" },
+      { icon: MapPin, label: "Location", value: "Noida, India", href: null },
+    ]
 
-  const socialLinks = [
-    { icon: Github, href: "https://github.com/sansugupta", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/sanskargupta9/", label: "LinkedIn" },
-    { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com", label: "Email" },
-    { icon: MessageCircle, href: "https://wa.me/919669439887", label: "WhatsApp" },
-  ]
+    const socialLinks = [
+      { icon: Github, href: "https://github.com/sansugupta", label: "GitHub" },
+      { icon: Linkedin, href: "https://www.linkedin.com/in/sanskargupta9/", label: "LinkedIn" },
+      { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=sanskargupta966@gmail.com", label: "Email" },
+      { icon: MessageCircle, href: "https://wa.me/919289869370", label: "WhatsApp" },
+    ]
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
