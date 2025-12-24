@@ -26,102 +26,101 @@ const htmlContent = `
     </style>
 </head>
 <body>
-    <h1>SANSKAR GUPTA</h1>
-      <div class="contact">
-          <a href="tel:+919669439887">9669439887 (Call)</a> | 
-          <a href="https://wa.me/919669439887">9669439887 (WA)</a> | 
-          <a href="mailto:sanskargupta966@gmail.com">sanskargupta966@gmail.com</a> | 
-          <a href="https://www.linkedin.com/in/sanskargupta9/">LinkedIn</a> | 
-          <a href="https://github.com/sansugupta">GitHub</a> | 
-          <a href="https://sanskarguptaportfolio.netlify.app/">Portfolio</a>
-      </div>
+<h1>SANSKAR GUPTA</h1>
+<div class="contact">
+<a href="tel:+919713492857">9713492857 (Call)</a> | 
+<a href="https://wa.me/919289869370">9289869370 (WA)</a> | 
+<a href="mailto:sanskargupta966@gmail.com">sanskargupta966@gmail.com</a> | 
+<a href="https://www.linkedin.com/in/sanskargupta9/">LinkedIn</a> | 
+<a href="https://github.com/sansugupta">GitHub</a> | 
+<a href="https://sanskarguptaportfolio.netlify.app/">Portfolio</a>
+</div>
 
-    <h2>SUMMARY</h2>
-    <p style="margin-bottom: 12px;">
-        Site Reliability / DevOps Engineer with 3+ years architecting AWS cloud infrastructure, Kubernetes orchestration, and CI/CD pipelines. Lead 24x7 SRE support teams of 5-6 members across multi-national enterprise projects. Expert in observability solutions using eBPF, Prometheus, and Grafana achieving 99.9% uptime. Specialized in DevSecOps, Infrastructure as Code, and automated incident response systems with proven track record managing zero-downtime operations for mission-critical applications.
-    </p>
+<h2>SUMMARY</h2>
+<p style="margin-bottom: 12px;">
+Site Reliability / DevOps Engineer with 3+ years architecting AWS cloud infrastructure, Kubernetes orchestration, and GenAI modules. Specialized in high-availability migrations, cross-region Disaster Recovery, and DevSecOps. Lead SRE support teams for multi-national enterprise projects, achieving 99.9% uptime through eBPF observability and automated CI/CD. Top-Rated Freelancer with a track record of delivering mission-critical cloud solutions for global clients.
+</p>
 
-    <h2>TECHNICAL SKILLS</h2>
-    <div style="margin-bottom: 12px;">
-        <div class="skill-category"><strong>Languages:</strong> Python, Bash, SQL, Go, YAML, PromQL</div>
-        <div class="skill-category"><strong>AWS Cloud:</strong> VPC, EC2, S3, ELB, RDS, ECS/EKS, IAM, CloudFront, CloudWatch, SQS/SNS, Lambda, Auto Scaling</div>
-        <div class="skill-category"><strong>IaC & Automation:</strong> Terraform, Terragrunt, Ansible, Helm, GitHub Actions, Jenkins, GitOps</div>
-        <div class="skill-category"><strong>Containers & Orchestration:</strong> Docker, Kubernetes, EKS, Helm, Istio, Service Mesh, Datadog and Databricks</div>
-        <div class="skill-category"><strong>Monitoring & Observability:</strong> Prometheus, Grafana, CloudWatch, New Relic, Splunk, Groundcover (eBPF), ELK Stack, ClickHouse</div>
-        <div class="skill-category"><strong>Security:</strong> AWS Security Best Practices, IAM Policies, DevSecOps, Vulnerability Scanning, RBAC</div>
-    </div>
+<h2>TECHNICAL SKILLS</h2>
+<div style="margin-bottom: 12px;">
+<div class="skill-category"><strong>Languages/AI:</strong> Python, Bash, SQL, Go, YAML, PromQL, AWS Bedrock (Claude 3.5), RAG Architecture</div>
+<div class="skill-category"><strong>AWS Cloud:</strong> VPC, EC2, S3, RDS, ECS/EKS, IAM, CloudFront, CloudWatch, Lambda, Bedrock, Guardrails</div>
+<div class="skill-category"><strong>IaC & Automation:</strong> Terraform, Terragrunt, Ansible, Helm, GitHub Actions, Jenkins, GitOps (ArgoCD)</div>
+<div class="skill-category"><strong>Networking & Security:</strong> WireGuard VPN, Cloudflare Zero Trust/WARP, Nginx Ingress, eBPF, IAM Policies</div>
+<div class="skill-category"><strong>Monitoring & Observability:</strong> Prometheus, Grafana, ClickHouse, Groundcover, ELK Stack, Loki, Tempo</div>
+</div>
 
-    <h2>WORK EXPERIENCE</h2>
-    
-    <div class="job-header">
-        <div>
-            <div class="job-title">Site Reliability Engineer</div>
-            <div class="company">Alyssum Global Services, Noida · Hybrid</div>
-        </div>
-        <div class="job-date">Feb. 2025 -- Present</div>
-    </div>
-    <ul>
-        <li>Lead 24x7 SRE support team of 5-6 members managing zero-downtime operations for JITPS (French e-commerce) across multi-region Kubernetes infrastructure serving 1M+ daily users.</li>
-        <li>Architected kube-prometheus-stack containing Prometheus, Grafana and other monitoring tools. Created highly advanced end-to-end pipeline to create complete infrastructure from scratch and deploy all services with monitoring stack using helm charts and GitHub actions. Transitioned Multi-Cluster Architecture into Consolidated Architecture over Scaleway and diverted traffic through Cloudflare. Setup DR's as Cold for Preprod and Hot Standby for Prod with automated rerouting.</li>
-        <li>Managed end-to-end monitoring for GigaSpaces (Israeli AI eRAG platform), implementing Real User Monitoring with ClickHouse over Groundcover. Setup Production Daily Report for all stakeholders through Python scripting.</li>
-    </ul>
+<h2>WORK EXPERIENCE</h2>
 
-    <div class="job-header">
-        <div>
-            <div class="job-title">DevOps Engineer & Technical Trainer (Freelance)</div>
-            <div class="company">CETPA Infotech Pvt. Ltd., Noida, India</div>
-        </div>
-        <div class="job-date">Sep. 2024 -- Jan. 2025</div>
-    </div>
-    <ul>
-        <li>Managed production infrastructure and deployment pipelines implementing CI/CD workflows with GitHub Actions and AWS services.</li>
-        <li>Led DevOps training programs for 45+ students, delivering comprehensive curriculum covering Docker, Kubernetes, Jenkins, AWS, Terraform, and GitOps practices with 95% student satisfaction rating.</li>
-    </ul>
+<div class="job-header">
+<div>
+<div class="job-title">Site Reliability Engineer</div>
+<div class="company">Alyssum Global Services, Noida · Hybrid</div>
+</div>
+<div class="job-date">Feb. 2025 – Present</div>
+</div>
+<ul>
+<li>Lead SRE for E-Commerce Application client of Alyssum (Java Based), managing end-to-end AWS + Kubernetes production deployment serving 1M+ daily users with zero-downtime CI/CD and eBPF-based monitoring.</li>
+<li>Achieved Fully Private Cross-Region DR Migration (Paris to Amsterdam) for PostgreSQL 14 using WireGuard site-to-site tunnels and policy routing to handle overlapping CIDRs without public internet exposure.</li>
+<li>Consolidated 15 legacy Kubernetes clusters into a single multi-tenant architecture per environment, reducing infrastructure costs by 60% while simplifying operational overhead.</li>
+<li>Implemented an automated monitoring stack (Prometheus, Grafana, ClickHouse) via advanced GitHub Action pipelines for multi-region Scaleway and Cloudflare infrastructures.</li>
+<li>Managed end-to-end monitoring for GigaSpaces (Israeli AI eRAG platform), implementing Real User Monitoring with ClickHouse over the Groundcover. Setup Production Daily Report for all the stakeholders through python scripting.</li>
+</ul>
 
-    <div class="job-header">
-        <div>
-            <div class="job-title">DevOps Engineer</div>
-            <div class="company">Karix Mobile Pvt. Ltd., Mumbai, India</div>
-        </div>
-        <div class="job-date">Jan. 2023 -- Aug. 2024</div>
-    </div>
-    <ul>
-        <li>Managed AWS infrastructure using Terraform/Terragrunt for IaC, implementing VPC, EC2, S3, ELB, RDS with monitoring via Prometheus, CloudWatch, and Splunk.</li>
-        <li>Established CI/CD workflows with GitHub Actions and Jenkins, implementing Blue/Green deployments with AWS Load Balancer for zero-downtime releases.</li>
-    </ul>
+<div class="job-header">
+<div>
+<div class="job-title">DevOps Engineer & Technical Trainer (Freelance)</div>
+<div class="company">Upwork & CETPA Infotech, Remote / Noida</div>
+</div>
+<div class="job-date">Sep. 2024 – Jan. 2025</div>
+</div>
+<ul>
+<li>Top-Rated Plus Freelancer on Upwork with $11k+ earnings; handled international enterprise clients for high-traffic projects involving AWS Bedrock, Terraform IaC, and Kubernetes scaling.</li>
+<li>Architected a Universal AWS Bedrock Terraform Module for standardized RAG (Retrieval-Augmented Generation) deployment, integrating Claude 3.5, S3 context, and Lambda orchestration.</li>
+<li>Led DevOps training for 45+ students, delivering a 95% satisfaction-rated curriculum on Docker, Kubernetes, Jenkins, and GitOps, bridging the gap between academia and industry production standards.</li>
+</ul>
 
-    <h2>PERSONAL PROJECTS</h2>
-    
-    <div class="job-header">
-        <div>
-            <div class="job-title">Three-Tier Web Application Deployment on AWS EKS</div>
-        </div>
-        <div class="job-date">Jul 2022 -- Aug 2022 | <a href="https://github.com/sansugupta/3-tier-HQ" style="font-size: 8pt;">GitHub</a></div>
-    </div>
-    <ul>
-        <li>Deployed microservices-based web app (React.js, Node.js, MongoDB) on AWS EKS with monitoring integration.</li>
-        <li>Built CI/CD pipeline with Jenkins, Docker, and Terraform, using Blue/Green deployments for zero downtime.</li>
-        <li>Implemented Kubernetes orchestration with Helm, integrating Prometheus and Grafana for observability.</li>
-        <li>Set up testing with SonarQube and Trivy, ensuring robust security and high code quality.</li>
-    </ul>
+<div class="job-header">
+<div>
+<div class="job-title">DevOps Engineer</div>
+<div class="company">Karix Mobile Pvt. Ltd., Mumbai, India</div>
+</div>
+<div class="job-date">Jan. 2023 – Aug. 2024</div>
+</div>
+<ul>
+<li>Managed AWS infrastructure using Terraform/Terragrunt, implementing secure multi-tier VPCs, RDS clusters, and auto-scaling ELB configurations with observability via Splunk and CloudWatch.</li>
+<li>Established robust CI/CD workflows for telecom-scale microservices using GitHub Actions and Jenkins, implementing Blue/Green deployment strategies for mission-critical SMS/WhatsApp gateways.</li>
+</ul>
 
-    <h2>CERTIFICATIONS</h2>
-    <div class="job-header">
-        <div>
-            <div class="job-title">AWS Certified Cloud Practitioner (Score: 755/1000)</div>
-            <div class="company">Amazon Web Services</div>
-        </div>
-        <div class="job-date">Jun. 2022</div>
-    </div>
+<h2>PERSONAL PROJECTS</h2>
 
-    <h2>EDUCATION</h2>
-    <div class="job-header">
-        <div>
-            <div class="job-title">Bachelor of Technology in Computer Science</div>
-            <div class="company">ITM College Gwalior</div>
-        </div>
-        <div class="job-date">May 2019 -- May 2023 | CGPA: 7.85</div>
-    </div>
+<div class="job-header">
+<div>
+<div class="job-title">Three-Tier Web Application Deployment on AWS EKS</div>
+</div>
+<div class="job-date">Jul 2022 | <a href="https://github.com/sansugupta/3-tier-HQ" style="font-size: 8pt;">GitHub</a></div>
+</div>
+<ul>
+<li>Deployed a full-stack React/Node.js/MongoDB application on EKS with Helm-based orchestration.</li>
+<li>Implemented DevSecOps practices including SonarQube code analysis and Trivy vulnerability scanning.</li>
+</ul>
+
+<h2>CERTIFICATIONS & EDUCATION</h2>
+<div class="job-header">
+<div>
+<div class="job-title">AWS Certified Cloud Practitioner</div>
+<div class="company">Amazon Web Services</div>
+</div>
+<div class="job-date">Jun. 2022</div>
+</div>
+
+<div class="job-header">
+<div>
+<div class="job-title">Bachelor of Technology in Computer Science</div>
+<div class="company">ITM College Gwalior</div>
+</div>
+<div class="job-date">2019 -- 2023 | CGPA: 7.85</div>
+</div>
 </body>
 </html>
 `;
