@@ -38,87 +38,130 @@ export default function RoamingAgent() {
     }
   }
 
-  return (
-    <>
-      <motion.div
-        className="fixed bottom-8 right-8 z-[9999] cursor-pointer"
-        initial={{ y: 0 }}
-        animate={{ 
-          y: isOpen ? 100 : [0, -20, 0],
-          opacity: isOpen ? 0 : 1,
-          scale: isOpen ? 0.8 : 1
-        }}
-        transition={{
-          y: {
-            repeat: Infinity,
-            duration: 2,
-            ease: "easeInOut"
-          },
-          opacity: { duration: 0.2 },
-          scale: { duration: 0.2 }
-        }}
-        onClick={() => setIsOpen(true)}
-      >
-        <div className="relative group">
-          {/* Robotic Doll Body */}
-          <div className="relative w-16 h-20 flex flex-col items-center">
-            {/* Head */}
-            <motion.div 
-              className="w-12 h-10 bg-cyan-500 rounded-xl border-2 border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.5)] flex items-center justify-center relative overflow-hidden"
-              animate={{ rotate: [-5, 5, -5] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-            >
-              <div className="flex gap-2">
-                <motion.div 
-                  className="w-2 h-2 bg-white rounded-full shadow-[0_0_8px_white]"
-                  animate={{ scaleY: [1, 0.1, 1] }}
-                  transition={{ repeat: Infinity, duration: 3, times: [0, 0.1, 0.2] }}
-                />
-                <motion.div 
-                  className="w-2 h-2 bg-white rounded-full shadow-[0_0_8px_white]"
-                  animate={{ scaleY: [1, 0.1, 1] }}
-                  transition={{ repeat: Infinity, duration: 3, times: [0, 0.1, 0.2] }}
-                />
-              </div>
-              <div className="absolute bottom-1 w-6 h-0.5 bg-cyan-900/30 rounded-full" />
-            </motion.div>
-            
-            {/* Neck */}
-            <div className="w-4 h-2 bg-cyan-700" />
-            
-            {/* Body */}
-            <div className="w-14 h-12 bg-cyan-600 rounded-lg border-2 border-cyan-500 relative flex flex-col items-center justify-center gap-1">
-              <div className="w-8 h-1 bg-cyan-400/50 rounded-full" />
-              <div className="w-6 h-1 bg-cyan-400/50 rounded-full" />
-              
-              {/* Arms */}
-              <motion.div 
-                className="absolute -right-4 top-2 w-4 h-8 bg-cyan-500 rounded-full origin-top"
-                animate={{ rotate: [20, 60, 20] }}
-                transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
-              />
-              <motion.div 
-                className="absolute -left-4 top-2 w-4 h-8 bg-cyan-500 rounded-full origin-top"
-                animate={{ rotate: [-20, -40, -20] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              />
-            </div>
-
-            {/* Jumping "Hi" Bubble */}
+    return (
+      <>
+        <motion.div
+          className="fixed bottom-0 right-8 z-[9999] cursor-pointer"
+          initial={{ y: 100 }}
+          animate={{ 
+            y: isOpen ? 200 : 0,
+            opacity: 1,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20
+          }}
+          onClick={() => setIsOpen(true)}
+        >
+          <div className="relative group flex flex-col items-center">
+            {/* Jumping Animation Wrapper */}
             <motion.div
-              className="absolute -top-10 -right-8 bg-white text-cyan-600 font-bold text-xs py-1 px-3 rounded-full shadow-lg border border-cyan-100"
-              animate={{ y: [0, -5, 0], scale: [1, 1.1, 1] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
+              animate={{ 
+                y: [0, -40, 0],
+                scaleY: [1, 0.9, 1.1, 1],
+                scaleX: [1, 1.1, 0.9, 1]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative flex flex-col items-center pb-2"
             >
-              Hi!
+              {/* Heart/Love Symbol above head */}
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.3, 1],
+                  opacity: [0.6, 1, 0.6],
+                  y: [0, -10, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute -top-8 text-pink-500 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]"
+              >
+                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </motion.div>
+
+              {/* Robotic Doll Body */}
+              <div className="relative w-16 h-20 flex flex-col items-center">
+                {/* Head */}
+                <motion.div 
+                  className="w-12 h-11 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-[20px] border-2 border-white/40 shadow-[0_0_20px_rgba(34,211,238,0.4)] flex items-center justify-center relative overflow-hidden"
+                  animate={{ rotate: [-8, 8, -8] }}
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                >
+                  {/* Eyes */}
+                  <div className="flex gap-2.5">
+                    <motion.div 
+                      className="w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_10px_white] relative"
+                      animate={{ scaleY: [1, 0.1, 1] }}
+                      transition={{ repeat: Infinity, duration: 4, times: [0, 0.1, 0.2] }}
+                    >
+                      <div className="absolute top-0.5 right-0.5 w-0.5 h-0.5 bg-cyan-400 rounded-full" />
+                    </motion.div>
+                    <motion.div 
+                      className="w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_10px_white] relative"
+                      animate={{ scaleY: [1, 0.1, 1] }}
+                      transition={{ repeat: Infinity, duration: 4, times: [0, 0.1, 0.2] }}
+                    >
+                      <div className="absolute top-0.5 right-0.5 w-0.5 h-0.5 bg-cyan-400 rounded-full" />
+                    </motion.div>
+                  </div>
+                  {/* Blush */}
+                  <div className="absolute bottom-2 left-1 w-2 h-1 bg-pink-400/40 blur-[2px] rounded-full" />
+                  <div className="absolute bottom-2 right-1 w-2 h-1 bg-pink-400/40 blur-[2px] rounded-full" />
+                  {/* Mouth */}
+                  <div className="absolute bottom-2 w-4 h-1 border-b border-white/50 rounded-full" />
+                </motion.div>
+                
+                {/* Neck */}
+                <div className="w-3 h-1 bg-gray-400" />
+                
+                {/* Body */}
+                <div className="w-14 h-11 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-[15px] border-2 border-white/30 relative flex flex-col items-center justify-center gap-1">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-cyan-300 animate-pulse" />
+                  </div>
+                  
+                  {/* Arms */}
+                  <motion.div 
+                    className="absolute -right-4 top-1 w-4 h-9 bg-cyan-400 rounded-full origin-top border border-white/20"
+                    animate={{ rotate: [30, 140, 30] }}
+                    transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                  />
+                  <motion.div 
+                    className="absolute -left-4 top-1 w-4 h-9 bg-cyan-400 rounded-full origin-top border border-white/20"
+                    animate={{ rotate: [-30, -50, -30] }}
+                    transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
+                  />
+                </div>
+
+                {/* Jumping "Hi" Bubble */}
+                <motion.div
+                  className="absolute -top-12 -right-10 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-[10px] py-1.5 px-3.5 rounded-full shadow-lg border border-white/20 whitespace-nowrap"
+                  animate={{ 
+                    y: [0, -8, 0],
+                    scale: [1, 1.15, 1],
+                    rotate: [0, 10, -10, 0]
+                  }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                >
+                  Click Me! ❤️
+                </motion.div>
+              </div>
             </motion.div>
+            
+            <div className="mt-2 mb-4 bg-white/5 backdrop-blur-md text-white text-[9px] py-1 px-3 rounded-full border border-white/10 font-mono tracking-tighter shadow-xl uppercase">
+              Feedback Hub
+            </div>
           </div>
-          
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 text-white text-[10px] py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity border border-white/20 font-mono">
-            DROP A MESSAGE
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
       <AnimatePresence>
         {isOpen && (
