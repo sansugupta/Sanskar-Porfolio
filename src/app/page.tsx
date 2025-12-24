@@ -33,8 +33,9 @@ export default function Home() {
       />
       
         <Navigation />
-        
-        <main className="relative">
+      <RoamingAgent />
+      
+      <main className="relative">
           <HeroSection />
           <InfraBuildSection />
           <AboutSection />
