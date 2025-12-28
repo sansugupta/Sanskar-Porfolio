@@ -56,18 +56,18 @@ export default function RoamingAgent() {
           >
             <div className="relative group flex flex-col items-center">
               {/* Jumping Animation Wrapper */}
-              <motion.div
-                animate={{ 
-                  y: [0, -15, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatDelay: 5,
-                  ease: "easeInOut"
-                }}
-                className="relative flex flex-col items-center pb-0"
-              >
+                <motion.div
+                  animate={{ 
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatDelay: 15,
+                    ease: "easeInOut"
+                  }}
+                  className="relative flex flex-col items-center pb-0"
+                >
                 {/* Robotic Doll Body */}
                 <div className="relative w-16 h-24 flex flex-col items-center justify-end">
                   {/* Head */}
