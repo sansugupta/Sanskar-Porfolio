@@ -116,14 +116,14 @@ const projects = [
     featured: false,
     highlights: ["Service discovery", "Event-driven", "Distributed tracing"]
   },
-  {
-    title: "JITPS Monitoring Stack Deployment",
-    description: "Comprehensive monitoring stack deployment for JITPS POC cluster including Prometheus, Loki, Grafana, OpenTelemetry, and Postgres Exporter with automated deployment scripts.",
-    technologies: ["Prometheus", "Loki", "Grafana", "OpenTelemetry", "Kubernetes", "Helm"],
-    github: "https://github.com/sansugupta/JITPS",
-    featured: false,
-    highlights: ["Full observability stack", "Automated deployment", "Multi-tool integration"]
-  }
+    {
+      title: "Java Application Monitoring Stack Deployment",
+      description: "Java Application POC cluster including Prometheus, Loki, Grafana, OpenTelemetry, and Postgres Exporter with automated deployment scripts.",
+      technologies: ["Prometheus", "Loki", "Grafana", "OpenTelemetry", "Kubernetes", "Helm"],
+      github: "https://github.com/sansugupta/JITPS",
+      featured: false,
+      highlights: ["Full observability stack", "Automated deployment", "Multi-tool integration"]
+    }
 ]
 
 export default function ProjectsSection() {
