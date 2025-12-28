@@ -111,17 +111,17 @@ export default function RoamingAgent() {
                     />
                   </div>
   
-                  {/* "Hi!" Bubble */}
-                  <motion.div
-                    className="absolute -top-4 -left-10 bg-cyan-500 text-[#0a0a0f] font-black text-[10px] py-1 px-3 rounded-full rounded-br-none shadow-[0_0_15px_rgba(6,182,212,0.4)] whitespace-nowrap z-20"
-                    animate={{ 
-                      y: [0, -3, 0],
-                      scale: [1, 1.05, 1],
-                    }}
-                    transition={{ repeat: Infinity, duration: 5, repeatDelay: 1 }}
-                  >
-                    Hi! 🤖
-                  </motion.div>
+                    {/* "Hi!" Bubble */}
+                    <motion.div
+                      className="absolute -top-4 -left-10 bg-cyan-500 text-[#0a0a0f] font-black text-[10px] py-1 px-3 rounded-full rounded-br-none shadow-[0_0_15px_rgba(6,182,212,0.4)] whitespace-nowrap z-20"
+                      animate={{ 
+                        y: [0, -3, 0],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{ repeat: Infinity, duration: 5, repeatDelay: 1 }}
+                    >
+                      Click me! 🛠️
+                    </motion.div>
                 </div>
               </motion.div>
               
