@@ -53,7 +53,7 @@ export default function Header({ activeSection, setActiveSection }: HeaderProps)
   ]
 
   const handleDownloadResume = () => {
-    window.open("https://drive.google.com/file/d/1wkyv6cE8o3FWwUqvy7nZGHnP8wK_6KbX/view?usp=sharing", "_blank")
+    window.open("https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Sanskar_Gupta_DevOps___Resume_-1766926349883.pdf", "_blank")
   }
 
   return (
