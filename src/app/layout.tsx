@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
-import { VisualEditsMessenger } from "orchids-visual-edits";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 
@@ -87,7 +86,6 @@ export default function RootLayout({
           {children}
           <Toaster />
         </ThemeProvider>
-        <VisualEditsMessenger />
       </body>
     </html>
   );
