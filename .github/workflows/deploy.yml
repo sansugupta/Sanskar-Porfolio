@@ -8,12 +8,26 @@ name: "GitOps: Auto-Deploy on Push"
 on:
   push:
     branches: [main]
+    paths:
+      - '**'
+      - '!src/**'
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.ts'
+      - 'tailwind.config.ts'
+      - 'tsconfig.json'
+      - 'postcss.config.mjs'
 
 jobs:
   # ========== DEPLOY TO LIGHTSAIL ==========
   deploy-lightsail:
     name: "Deploy to AWS Lightsail"
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.modified, 'src/')"
     steps:
       - uses: actions/checkout@v4
 
@@ -24,3 +38,21 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           script: bash ~/scripts/deploy.sh
+
+  # ========== DEPLOY PORTFOLIO TO VERCEL ==========
+  deploy-vercel:
+    name: "Deploy Portfolio to Vercel"
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.modified, 'src/') || contains(github.event.head_commit.added, 'src/')"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

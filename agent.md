@@ -1,10 +1,10 @@
 # 🧠 Agent Context — InfraBuild Partners & Sanskar Portfolio
 
-> **Last Updated:** 2026-04-17T02:58:21+05:30
-> **Session Count:** 1
+> **Last Updated:** 2026-04-17T04:30:00+05:30
+> **Session Count:** 2
 > **Owner:** Sanskar Gupta
 > **Company:** InfraBuild Partners
-> **GitHub:** github.com/sanskargupta966
+> **GitHub:** github.com/sansugupta/Sanskar-Porfolio
 
 ---
 
@@ -91,11 +91,27 @@ This monorepo contains:
 - Vercel will be used exclusively for the Next.js Sanskar Portfolio.
 - Data-Driven UI: You don't need to touch HTML to change pricing. Edit `.json` files, push, and GitHub Actions automatically SSH deploys it.
 
+### Session 3 — 2026-04-17 (Vercel Portfolio Integration)
+**Topics Covered:**
+- Connected GitHub repository to Vercel using provided token.
+- Created Vercel project `sanskar-portfolio` in `sansuguptas-projects` scope.
+- Updated `.github/workflows/deploy.yml` with conditional deployments:
+  - Lightsail deployment runs only when `/src/` files are NOT modified.
+  - Vercel deployment runs only when `/src/` files are modified or added.
+- Configured `vercel.json` with build command `cd src && npm run build` for Next.js app in `/src/` directory.
+- Added `VERCEL_TOKEN` requirement to GitHub repository secrets.
+
+**Key Decisions:**
+- Portfolio deployments are now automated via GitHub Actions to Vercel.
+- Build optimization: Only deploy to Vercel when portfolio code changes, saving build minutes.
+- Maintained existing Lightsail deployment for InfraBuild Partners static site.
+
 ---
 
 ## 🔮 Future Plans / Next Steps
-- **Vercel Portfolio Deployment**: Codex needs to use the provided Vercel token (`vcp_...`) to connect the GitHub repository and auto-deploy the `/src/` Next.js Portfolio.
-- **Vercel Build Filters**: Ensure Vercel only deploys when `/src/` changes, ignoring InfraBuild static site updates.
+- **Add VERCEL_TOKEN to GitHub Secrets**: User needs to add the Vercel token to repository secrets for automated deployments.
+- **Test Vercel Deployment**: Push changes to `/src/` to trigger Vercel deployment and verify the portfolio is live.
+- **Domain Mapping**: Point portfolio domain to Vercel deployment when ready.
 - **Domain Mapping**: Point `infrabuildpartners.com` to the Lightsail IP when purchased.
 
 ---
