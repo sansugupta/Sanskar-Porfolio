@@ -128,7 +128,7 @@ function handleSubmit(e) {
     const email = document.getElementById('contact-email').value;
     const service = document.getElementById('contact-service').value;
     const message = document.getElementById('contact-message').value;
-    const mailtoLink = `mailto:contact@infrabuildpartners.com?subject=Inquiry from ${encodeURIComponent(name)} — ${encodeURIComponent(service)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`)}`;
+    const mailtoLink = `mailto:sanskargupta966@gmail.com?subject=Inquiry from ${encodeURIComponent(name)} — ${encodeURIComponent(service)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`)}`;
     window.location.href = mailtoLink;
     alert('Thank you! Your inquiry has been prepared. Your email client will open shortly.');
 }
