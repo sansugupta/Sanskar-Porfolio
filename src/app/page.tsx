@@ -15,6 +15,8 @@ import CertificationsSection from "./components/CertificationsSection"
 import ContactSection from "./components/ContactSection"
 import Navigation from "./components/Navigation"
 import RoamingAgent from "./components/RoamingAgent"
+
+// Trigger Vercel deployment check for portfolio-only changes
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
