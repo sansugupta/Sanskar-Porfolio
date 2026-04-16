@@ -1,0 +1,133 @@
+{
+  "engineering": [
+    {
+      "id": "development",
+      "title": "Development Support",
+      "icon": "fas fa-code",
+      "cardClass": "card-dev",
+      "description": "Full-stack development across Java, Python, Node.js, Angular, and React. From feature builds to complex refactors, we write production-grade code that ships.",
+      "price": 599,
+      "period": "/month",
+      "currency": "$"
+    },
+    {
+      "id": "devops",
+      "title": "DevOps Support",
+      "icon": "fas fa-infinity",
+      "cardClass": "card-devops",
+      "description": "CI/CD pipelines, containerization (Docker/ECS/K8s), IaC with Terraform, GitLab/GitHub Actions automation. We make your deployments bulletproof.",
+      "price": 549,
+      "period": "/month",
+      "currency": "$"
+    },
+    {
+      "id": "sre",
+      "title": "SRE Support",
+      "icon": "fas fa-server",
+      "cardClass": "card-sre",
+      "description": "Monitoring (Prometheus, Grafana, Datadog), incident response, SLA management, and reliability engineering. We keep your systems running at 99.99%.",
+      "price": 699,
+      "period": "/month",
+      "currency": "$"
+    },
+    {
+      "id": "data-engineering",
+      "title": "Data Engineering",
+      "icon": "fas fa-database",
+      "cardClass": "card-data",
+      "description": "ETL/ELT pipelines, data warehousing, Spark, Airflow, dbt, and cloud-native data architectures. We turn raw data into business intelligence.",
+      "price": 799,
+      "period": "/month",
+      "currency": "$"
+    },
+    {
+      "id": "data-analyst",
+      "title": "Data Analyst",
+      "icon": "fas fa-chart-line",
+      "cardClass": "card-analyst",
+      "description": "Business intelligence dashboards, SQL analytics, reporting automation, and data visualization with Tableau, Power BI, and Looker.",
+      "price": 399,
+      "period": "/month",
+      "currency": "$"
+    },
+    {
+      "id": "interview",
+      "title": "Interview Support",
+      "icon": "fas fa-user-tie",
+      "cardClass": "card-interview",
+      "description": "One-on-one mock interviews, system design reviews, coding walkthroughs, and real-time technical coaching to help you land the role.",
+      "price": 249,
+      "period": "/each",
+      "currency": "$"
+    }
+  ],
+  "career": [
+    {
+      "id": "job-applying",
+      "title": "Job Applying Support",
+      "description": "We handle the grind. Targeted applications with full tracking — applied, responded, status.",
+      "price": 399,
+      "period": "/month",
+      "currency": "$",
+      "badge": null,
+      "featured": false,
+      "features": [
+        "Targeted job applications on your behalf",
+        "Full tracking report (applied / response / status)",
+        "Weekly progress updates",
+        "Application strategy optimization"
+      ]
+    },
+    {
+      "id": "resume-linkedin",
+      "title": "Resume & LinkedIn Optimization",
+      "description": "ATS-optimized resume rewrites, LinkedIn profile overhauls, and ongoing updates.",
+      "price": 149,
+      "period": "/month",
+      "currency": "$",
+      "badge": null,
+      "featured": false,
+      "features": [
+        "ATS-optimized resume rewrite",
+        "LinkedIn profile optimization",
+        "Ongoing updates as needed",
+        "One-time service also available"
+      ]
+    },
+    {
+      "id": "full-job-search",
+      "title": "Full Job Search Management",
+      "description": "The ultimate all-in-one career package. We handle job searching, resume, LinkedIn, mock interviews, study materials, and teaching sessions.",
+      "price": 1499,
+      "period": "/month",
+      "currency": "$",
+      "badge": "🔥 High Demand",
+      "featured": true,
+      "features": [
+        "Full job search & application management",
+        "Resume & LinkedIn optimization",
+        "Interview preparation & mock sessions",
+        "Learning materials, notes & study guides",
+        "Online exam & assessment support",
+        "1-on-1 teaching sessions before interviews"
+      ]
+    },
+    {
+      "id": "placement",
+      "title": "End-to-End Placement Support",
+      "description": "From day one to your first paycheck — sourcing, preparation, interviews, negotiation, and onboarding.",
+      "price": 2499,
+      "period": "one-time",
+      "currency": "$",
+      "badge": "💎 Premium",
+      "featured": false,
+      "features": [
+        "Everything in Full Job Search Management",
+        "Dedicated placement manager",
+        "Salary & offer negotiation support",
+        "First 30-day onboarding coaching",
+        "Guaranteed interview pipeline"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraBuild Partners — Instagram Post Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; background: #0a0a0f; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Inter', sans-serif; }
+        .post { width: 1080px; height: 1080px; background: linear-gradient(160deg, #0a0a0f 0%, #12121a 50%, #0d0d18 100%); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px; }
+        .post::before { content: ''; position: absolute; top: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(79,124,255,0.12), transparent 70%); }
+        .post::after { content: ''; position: absolute; bottom: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,92,255,0.08), transparent 70%); }
+        .content { position: relative; z-index: 1; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #4f7cff, #7c5cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 48px; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 800; color: #f0f0f5; line-height: 1.15; margin-bottom: 32px; letter-spacing: -2px; }
+        h1 span { background: linear-gradient(135deg, #4f7cff, #7c5cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .services { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 48px; }
+        .services span { padding: 10px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: #8a8a9a; font-size: 16px; font-weight: 500; }
+        .cta { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #4f7cff, #7c5cff); color: white; border-radius: 50px; font-weight: 700; font-size: 18px; }
+        .top-bar { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4f7cff, #7c5cff, #00d4ff); }
+        .bottom-text { position: absolute; bottom: 40px; color: #5a5a6a; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="post">
+        <div class="top-bar"></div>
+        <div class="content">
+            <div class="logo">InfraBuild Partners</div>
+            <h1>Build. Deploy.<br><span>Scale.</span></h1>
+            <div class="services">
+                <span>DevOps</span>
+                <span>SRE</span>
+                <span>Development</span>
+                <span>Data Engineering</span>
+                <span>Career Support</span>
+            </div>
+            <div class="cta">Get Started →</div>
+        </div>
+        <div class="bottom-text">infrabuildpartners.com</div>
+    </div>
+</body>
+</html>

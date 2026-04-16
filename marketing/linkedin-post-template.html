@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraBuild Partners — LinkedIn Post Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; background: #0a0a0f; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Inter', sans-serif; }
+        .post { width: 1200px; height: 627px; background: linear-gradient(160deg, #0a0a0f 0%, #12121a 50%, #0d0d18 100%); position: relative; overflow: hidden; display: flex; align-items: center; padding: 60px 80px; }
+        .post::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(79,124,255,0.15), transparent 70%); }
+        .post::after { content: ''; position: absolute; bottom: -200px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,92,255,0.1), transparent 70%); }
+        .content { position: relative; z-index: 1; max-width: 700px; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: rgba(79,124,255,0.1); border: 1px solid rgba(79,124,255,0.25); border-radius: 50px; font-size: 14px; font-weight: 600; color: #4f7cff; margin-bottom: 32px; }
+        .badge .dot { width: 8px; height: 8px; background: #00e676; border-radius: 50%; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 800; color: #f0f0f5; line-height: 1.15; margin-bottom: 20px; letter-spacing: -2px; }
+        h1 span { background: linear-gradient(135deg, #4f7cff, #7c5cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 18px; color: #8a8a9a; line-height: 1.6; margin-bottom: 32px; }
+        .cta { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #4f7cff, #7c5cff); color: white; border-radius: 50px; font-weight: 600; font-size: 16px; text-decoration: none; }
+        .logo-area { position: absolute; bottom: 50px; right: 80px; z-index: 1; }
+        .logo-area .logo { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; background: linear-gradient(135deg, #4f7cff, #7c5cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-area .url { font-size: 14px; color: #5a5a6a; margin-top: 4px; }
+        .top-bar { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4f7cff, #7c5cff, #00d4ff); }
+    </style>
+</head>
+<body>
+    <div class="post">
+        <div class="top-bar"></div>
+        <div class="content">
+            <div class="badge"><span class="dot"></span> Now Accepting Clients</div>
+            <h1>Engineering Excellence,<br><span>Delivered On Deadline.</span></h1>
+            <p>DevOps • SRE • Full-Stack Development • Data Engineering<br>Career Support • Interview Prep • Placement Services</p>
+            <div class="cta">Learn More →</div>
+        </div>
+        <div class="logo-area">
+            <div class="logo">InfraBuild Partners</div>
+            <div class="url">infrabuildpartners.com</div>
+        </div>
+    </div>
+</body>
+</html>

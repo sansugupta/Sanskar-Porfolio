@@ -1,0 +1,99 @@
+# ======================================================
+# AWS Lightsail Full Stack Deployment
+# InfraBuild Partners + Sanskar Portfolio + Analytics
+# ======================================================
+# 
+# This runs on your AWS Lightsail instance as a single
+# docker-compose stack. All 3 services behind a Caddy
+# reverse proxy with automatic HTTPS.
+#
+# SETUP:
+#   1. SSH into your Lightsail instance
+#   2. Install Docker: curl -fsSL https://get.docker.com | sh
+#   3. Clone repo: git clone https://github.com/sanskargupta966/Sanskar-Porfolio.git
+#   4. cd Sanskar-Porfolio/deployments/lightsail
+#   5. cp .env.example .env && edit .env with your domains
+#   6. docker compose up -d --build
+#
+# ======================================================
+
+version: '3.8'
+
+services:
+  # ========== REVERSE PROXY (Caddy — auto HTTPS) ==========
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - infrabuild
+      - portfolio
+      - umami
+    restart: unless-stopped
+
+  # ========== InfraBuild Partners (Static — Nginx) ==========
+  infrabuild:
+    build:
+      context: ../../InfraBuild-Partners
+      dockerfile: Dockerfile
+    container_name: infrabuild-partners
+    expose:
+      - "80"
+    restart: unless-stopped
+
+  # ========== Sanskar Portfolio (Next.js) ==========
+  portfolio:
+    build:
+      context: ../../
+      dockerfile: deployments/sanskar-portfolio/Dockerfile
+    container_name: sanskar-portfolio
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ../../.env.local
+    restart: unless-stopped
+
+  # ========== Umami Analytics (Free, open-source) ==========
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    container_name: umami-analytics
+    expose:
+      - "3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:-umami_secret_123}@umami-db:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${UMAMI_APP_SECRET:-replace_me_with_random_string}
+    depends_on:
+      umami-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ========== Umami PostgreSQL Database ==========
+  umami-db:
+    image: postgres:15-alpine
+    container_name: umami-db
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD:-umami_secret_123}
+    volumes:
+      - umami_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
+  umami_db_data:

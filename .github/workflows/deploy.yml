@@ -1,0 +1,68 @@
+name: "GitOps: Auto-Deploy on Push"
+
+# ======================================================
+# TRUE GITOPS: Push to main → auto-deploy to production
+# Edit data/services.json → push → live in 2 minutes
+# ======================================================
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # ========== DEPLOY TO LIGHTSAIL (Docker) ==========
+  deploy-lightsail:
+    name: "Deploy to AWS Lightsail"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script: |
+            cd ~/Sanskar-Porfolio || git clone https://github.com/sanskargupta966/Sanskar-Porfolio.git ~/Sanskar-Porfolio
+            cd ~/Sanskar-Porfolio
+            git pull origin main
+            cd deployments/lightsail
+            docker compose up -d --build --force-recreate
+            echo "✅ Deployed at $(date)"
+
+  # ========== DEPLOY INFRABUILD TO VERCEL (Backup/CDN) ==========
+  deploy-vercel-infrabuild:
+    name: "Deploy InfraBuild → Vercel"
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel
+
+      - name: Deploy InfraBuild Partners
+        run: |
+          cd InfraBuild-Partners
+          vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_INFRABUILD_PROJECT_ID }}
+
+  # ========== DEPLOY PORTFOLIO TO VERCEL ==========
+  deploy-vercel-portfolio:
+    name: "Deploy Portfolio → Vercel"
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel
+
+      - name: Deploy Sanskar Portfolio
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PORTFOLIO_PROJECT_ID }}

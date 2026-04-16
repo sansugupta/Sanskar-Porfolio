@@ -1,0 +1,38 @@
+# ======================================================
+# Caddy Reverse Proxy — Automatic HTTPS
+# ======================================================
+# Replace the domain names below with your actual domains.
+# Caddy automatically provisions Let's Encrypt certificates.
+# ======================================================
+
+# InfraBuild Partners Website
+{$INFRABUILD_DOMAIN:infrabuildpartners.com} {
+    reverse_proxy infrabuild:80
+    encode gzip
+    header {
+        X-Frame-Options DENY
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}
+
+# Sanskar Portfolio Website
+{$PORTFOLIO_DOMAIN:sanskargupta.dev} {
+    reverse_proxy portfolio:3000
+    encode gzip
+    header {
+        X-Frame-Options DENY
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}
+
+# Umami Analytics Dashboard
+{$ANALYTICS_DOMAIN:analytics.infrabuildpartners.com} {
+    reverse_proxy umami:3000
+    encode gzip
+    header {
+        X-Frame-Options SAMEORIGIN
+        X-Content-Type-Options nosniff
+    }
+}

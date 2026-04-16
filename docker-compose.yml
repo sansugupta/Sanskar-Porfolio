@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # InfraBuild Partners — Static website on Nginx
+  infrabuild-partners:
+    build:
+      context: ./InfraBuild-Partners
+      dockerfile: Dockerfile
+    container_name: infrabuild-partners
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    labels:
+      - "app=infrabuild-partners"
+
+  # Sanskar Portfolio — Next.js application
+  sanskar-portfolio:
+    build:
+      context: .
+      dockerfile: deployments/sanskar-portfolio/Dockerfile
+    container_name: sanskar-portfolio
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    labels:
+      - "app=sanskar-portfolio"
