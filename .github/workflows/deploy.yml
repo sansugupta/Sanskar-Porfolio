@@ -31,9 +31,15 @@ jobs:
               - 'tailwind.config.ts'
               - 'tsconfig.json'
               - 'postcss.config.mjs'
+              - 'public/**'
             infra:
-              - '**'
-              - '!src/**'
+              - 'InfraBuild-Partners/**'
+              - 'deployments/**'
+              - 'scripts/**'
+              - 'docker-compose.yml'
+              - 'docker/**'
+              - 'public/**'
+              - '.github/workflows/**'
 
   deploy-lightsail:
     name: "Deploy to AWS Lightsail"
@@ -65,6 +71,6 @@ jobs:
           node-version: '20'
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --yes
+        run: cd src && npx vercel --prod --yes
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
