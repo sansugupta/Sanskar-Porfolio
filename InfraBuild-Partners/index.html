@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraBuild Partners | Elite Engineering & Career Solutions</title>
+    <meta name="description" content="InfraBuild Partners provides elite DevOps, SRE, Development, and Career Support services. Guaranteed deadline delivery with a world-class engineering team.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #f0f0f5;
+            --text-secondary: #8a8a9a;
+            --text-muted: #5a5a6a;
+            --accent-blue: #4f7cff;
+            --accent-purple: #7c5cff;
+            --accent-cyan: #00d4ff;
+            --accent-green: #00e676;
+            --accent-orange: #ff9100;
+            --accent-pink: #ff4081;
+            --gradient-primary: linear-gradient(135deg, #4f7cff, #7c5cff);
+            --gradient-hero: linear-gradient(135deg, #4f7cff 0%, #7c5cff 50%, #00d4ff 100%);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --shadow-glow: 0 0 60px rgba(79, 124, 255, 0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.7);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { font-weight: 400; opacity: 0.7; }
+
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .cta-btn {
+            padding: 10px 24px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(79, 124, 255, 0.4);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 32px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(79, 124, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(79, 124, 255, 0.1);
+            border: 1px solid rgba(79, 124, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-blue);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .cta-secondary {
+            padding: 10px 24px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--accent-blue);
+            background: rgba(79, 124, 255, 0.05);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar {
+            max-width: 1200px;
+            margin: -40px auto 80px;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: var(--border-color);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ========== SECTION COMMON ========== */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 32px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin-bottom: 60px;
+        }
+
+        /* ========== GUARANTEE BANNER ========== */
+        .guarantee-banner {
+            max-width: 1200px;
+            margin: 0 auto 0;
+            padding: 0 32px;
+        }
+
+        .guarantee-inner {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.08), rgba(79, 124, 255, 0.08));
+            border: 1px solid rgba(0, 230, 118, 0.15);
+            border-radius: var(--radius);
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .guarantee-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0, 230, 118, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-green);
+            flex-shrink: 0;
+        }
+
+        .guarantee-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .guarantee-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ========== SERVICES GRID ========== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 36px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent, var(--gradient-primary));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .service-price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .service-price .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .service-price .period {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Card accent colors */
+        .card-devops .service-icon { background: rgba(79, 124, 255, 0.12); color: var(--accent-blue); }
+        .card-devops { --card-accent: linear-gradient(90deg, #4f7cff, #7c5cff); }
+
+        .card-sre .service-icon { background: rgba(0, 212, 255, 0.12); color: var(--accent-cyan); }
+        .card-sre { --card-accent: linear-gradient(90deg, #00d4ff, #4f7cff); }
+
+        .card-dev .service-icon { background: rgba(124, 92, 255, 0.12); color: var(--accent-purple); }
+        .card-dev { --card-accent: linear-gradient(90deg, #7c5cff, #ff4081); }
+
+        .card-data .service-icon { background: rgba(0, 230, 118, 0.12); color: var(--accent-green); }
+        .card-data { --card-accent: linear-gradient(90deg, #00e676, #00d4ff); }
+
+        .card-analyst .service-icon { background: rgba(255, 145, 0, 0.12); color: var(--accent-orange); }
+        .card-analyst { --card-accent: linear-gradient(90deg, #ff9100, #ff4081); }
+
+        .card-interview .service-icon { background: rgba(255, 64, 129, 0.12); color: var(--accent-pink); }
+        .card-interview { --card-accent: linear-gradient(90deg, #ff4081, #7c5cff); }
+
+        /* ========== PREMIUM PLANS ========== */
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .premium-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 44px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-card.featured {
+            border-color: rgba(79, 124, 255, 0.3);
+            background: linear-gradient(160deg, rgba(79, 124, 255, 0.06) 0%, rgba(124, 92, 255, 0.04) 100%);
+        }
+
+        .premium-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-hero);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .premium-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(79, 124, 255, 0.15);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .premium-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .premium-card .desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .premium-price {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 32px;
+        }
+
+        .premium-price .dollar {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+
+        .premium-price .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .premium-price .period {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .premium-features { list-style: none; margin-bottom: 36px; }
+
+        .premium-features li {
+            padding: 8px 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .premium-features li i {
+            color: var(--accent-green);
+            font-size: 0.75rem;
+        }
+
+        .premium-cta {
+            width: 100%;
+            padding: 14px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .premium-cta.primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+        }
+
+        .premium-cta.primary:hover {
+            box-shadow: 0 8px 30px rgba(79, 124, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .premium-cta.secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .premium-cta.secondary:hover {
+            border-color: var(--accent-blue);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 60px 32px;
+            margin-top: 60px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left .logo { margin-bottom: 8px; }
+        .footer-left p { font-size: 0.85rem; color: var(--text-muted); }
+
+        .footer-right {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-right a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-right a:hover { color: var(--accent-blue); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; letter-spacing: -1px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .stat-item:not(:last-child)::after { display: none; }
+            .guarantee-inner { flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+            .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .premium-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">InfraBuild <span>Partners</span></div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#career">Career Solutions</a>
+                <a href="#premium">Premium Plans</a>
+                <a href="javascript:void(0)" onclick="generateBooklet()" class="cta-secondary" style="display:inline-flex;align-items:center;gap:8px;"><i class="fas fa-download"></i> Download Booklet</a>
+                <a href="#contact" class="cta-btn">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Currently Accepting New Clients
+            </div>
+            <h1>Engineering Excellence,<br><span class="gradient-text">Delivered On Deadline.</span></h1>
+            <p>We are a specialized team of DevOps, SRE, Development, and Data professionals. From infrastructure to interview prep — we build careers and systems that don't break.</p>
+            <div class="hero-ctas">
+                <a href="#services" class="cta-btn">Explore Services</a>
+                <a href="#contact" class="cta-secondary">Schedule a Call →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Deadline Hit Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Engineering Support</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guarantee Banner -->
+    <div class="guarantee-banner">
+        <div class="guarantee-inner">
+            <div class="guarantee-icon">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+            <div class="guarantee-text">
+                <h3>Our Ironclad Guarantee: Every Deadline, Every Time.</h3>
+                <p>We don't just promise delivery — we guarantee it. Every engagement comes with our commitment to matching all your deadlines. If we commit, we deliver. No exceptions, no excuses.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engineering Services -->
+    <section id="services">
+        <div class="section-label">Engineering Services</div>
+        <div class="section-title">Build. Deploy. Scale.</div>
+        <div class="section-desc">Enterprise-grade engineering support across the full technology stack. Plug our team directly into your workflows.</div>
+
+        <div class="services-grid">
+            <div class="service-card card-dev">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Development Support</h3>
+                <p>Full-stack development across Java, Python, Node.js, Angular, and React. From feature builds to complex refactors, we write production-grade code that ships.</p>
+                <div class="service-price">
+                    <span class="amount">$599</span>
+                    <span class="period">/month</span>
+                </div>
+            </div>
+
+            <div class="service-card card-devops">
+                <div class="service-icon"><i class="fas fa-infinity"></i></div>
+                <h3>DevOps Support</h3>
+                <p>CI/CD pipelines, containerization (Docker/ECS/K8s), IaC with Terraform, GitLab/GitHub Actions automation. We make your deployments bulletproof.</p>
+                <div class="service-price">
+                    <span class="amount">$549</span>
+                    <span class="period">/month</span>
+                </div>
+            </div>
+
+            <div class="service-card card-sre">
+                <div class="service-icon"><i class="fas fa-server"></i></div>
+                <h3>SRE Support</h3>
+                <p>Monitoring (Prometheus, Grafana, Datadog), incident response, SLA management, and reliability engineering. We keep your systems running at 99.99%.</p>
+                <div class="service-price">
+                    <span class="amount">$699</span>
+                    <span class="period">/month</span>
+                </div>
+            </div>
+
+            <div class="service-card card-data">
+                <div class="service-icon"><i class="fas fa-database"></i></div>
+                <h3>Data Engineering</h3>
+                <p>ETL/ELT pipelines, data warehousing, Spark, Airflow, dbt, and cloud-native data architectures. We turn raw data into business intelligence.</p>
+                <div class="service-price">
+                    <span class="amount">$799</span>
+                    <span class="period">/month</span>
+                </div>
+            </div>
+
+            <div class="service-card card-analyst">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Data Analyst</h3>
+                <p>Business intelligence dashboards, SQL analytics, reporting automation, and data visualization with Tableau, Power BI, and Looker.</p>
+                <div class="service-price">
+                    <span class="amount">$399</span>
+                    <span class="period">/month</span>
+                </div>
+            </div>
+
+            <div class="service-card card-interview">
+                <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                <h3>Interview Support</h3>
+                <p>One-on-one mock interviews, system design reviews, coding walkthroughs, and real-time technical coaching to help you land the role.</p>
+                <div class="service-price">
+                    <span class="amount">$249</span>
+                    <span class="period">/each</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Solutions (Premium Plans) -->
+    <section id="career">
+        <div class="section-label">Career Solutions</div>
+        <div class="section-title">Land Your Dream Role.</div>
+        <div class="section-desc">Comprehensive career acceleration packages designed to get you hired, fast.</div>
+    </section>
+
+    <section id="premium" style="padding-top: 0;">
+        <div class="premium-grid">
+            <!-- Job Applying Support -->
+            <div class="premium-card">
+                <h3>Job Applying Support</h3>
+                <div class="desc">We handle the grind. Targeted applications with a full tracking report of every role, status, and response so you always know where you stand.</div>
+                <div class="premium-price">
+                    <span class="dollar">$</span>
+                    <span class="amount">399</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="premium-features">
+                    <li><i class="fas fa-check-circle"></i> Targeted job applications on your behalf</li>
+                    <li><i class="fas fa-check-circle"></i> Full tracking report (applied / response / status)</li>
+                    <li><i class="fas fa-check-circle"></i> Weekly progress updates</li>
+                    <li><i class="fas fa-check-circle"></i> Application strategy optimization</li>
+                </ul>
+                <a href="#contact" class="premium-cta secondary">Get Started</a>
+            </div>
+
+            <!-- Resume & LinkedIn -->
+            <div class="premium-card">
+                <h3>Resume & LinkedIn Optimization</h3>
+                <div class="desc">ATS-optimized resume rewrites, LinkedIn profile overhauls, and ongoing updates whenever your experience or target role changes.</div>
+                <div class="premium-price">
+                    <span class="dollar">$</span>
+                    <span class="amount">149</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="premium-features">
+                    <li><i class="fas fa-check-circle"></i> ATS-optimized resume rewrite</li>
+                    <li><i class="fas fa-check-circle"></i> LinkedIn profile optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Ongoing updates as needed</li>
+                    <li><i class="fas fa-check-circle"></i> One-time service also available</li>
+                </ul>
+                <a href="#contact" class="premium-cta secondary">Get Started</a>
+            </div>
+
+            <!-- Full Job Search Management -->
+            <div class="premium-card featured">
+                <div class="premium-badge">🔥 High Demand</div>
+                <h3>Full Job Search Management</h3>
+                <div class="desc">The ultimate all-in-one career package. We handle everything — job searching, resume updates, LinkedIn, mock interviews, study materials, exam prep, and real-time teaching sessions.</div>
+                <div class="premium-price">
+                    <span class="dollar">$</span>
+                    <span class="amount">1,499</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="premium-features">
+                    <li><i class="fas fa-check-circle"></i> Full job search & application management</li>
+                    <li><i class="fas fa-check-circle"></i> Resume & LinkedIn optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Interview preparation & mock sessions</li>
+                    <li><i class="fas fa-check-circle"></i> Learning materials, notes & study guides</li>
+                    <li><i class="fas fa-check-circle"></i> Online exam & assessment support</li>
+                    <li><i class="fas fa-check-circle"></i> 1-on-1 teaching sessions before interviews</li>
+                </ul>
+                <a href="#contact" class="premium-cta primary">Get Started →</a>
+            </div>
+
+            <!-- End-to-End Placement -->
+            <div class="premium-card">
+                <div class="premium-badge">💎 Premium</div>
+                <h3>End-to-End Placement Support</h3>
+                <div class="desc">From day one to your first paycheck. We manage your entire placement journey — sourcing, preparation, interviews, negotiation, and onboarding support.</div>
+                <div class="premium-price">
+                    <span class="dollar">$</span>
+                    <span class="amount">2,499</span>
+                    <span class="period">one-time</span>
+                </div>
+                <ul class="premium-features">
+                    <li><i class="fas fa-check-circle"></i> Everything in Full Job Search Management</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated placement manager</li>
+                    <li><i class="fas fa-check-circle"></i> Salary & offer negotiation support</li>
+                    <li><i class="fas fa-check-circle"></i> First 30-day onboarding coaching</li>
+                    <li><i class="fas fa-check-circle"></i> Guaranteed interview pipeline</li>
+                </ul>
+                <a href="#contact" class="premium-cta secondary">Book Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact">
+        <div style="text-align: center; padding: 60px 0;">
+            <div class="section-label" style="text-align: center;">Ready to Start?</div>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px;">Let's Build Something <span class="gradient-text">Exceptional.</span></h2>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 36px; font-size: 1.05rem;">Whether you need infrastructure support or career acceleration, our team is ready to deliver.</p>
+            <a href="mailto:contact@infrabuildpartners.com" class="cta-btn" style="padding: 14px 40px; font-size: 1rem;">Schedule a Free Consultation →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="logo">InfraBuild <span>Partners</span></div>
+                <p>© 2026 InfraBuild Partners. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .premium-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+    <script>
+    function generateBooklet() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const W = 210, H = 297;
+        const margin = 20;
+        const contentW = W - margin * 2;
+
+        // Helper colors
+        const bg = [10, 10, 15];
+        const cardBg = [18, 18, 26];
+        const blue = [79, 124, 255];
+        const purple = [124, 92, 255];
+        const cyan = [0, 212, 255];
+        const green = [0, 230, 118];
+        const white = [240, 240, 245];
+        const muted = [138, 138, 154];
+
+        function drawBg() {
+            doc.setFillColor(...bg);
+            doc.rect(0, 0, W, H, 'F');
+        }
+
+        function drawGradientBar(y) {
+            doc.setFillColor(...blue);
+            doc.rect(margin, y, contentW * 0.6, 3, 'F');
+            doc.setFillColor(...purple);
+            doc.rect(margin + contentW * 0.6, y, contentW * 0.4, 3, 'F');
+        }
+
+        // ===== PAGE 1: COVER =====
+        drawBg();
+        // Top accent bar
+        doc.setFillColor(...blue);
+        doc.rect(0, 0, W, 4, 'F');
+
+        // Company Name
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(36);
+        doc.setTextColor(...white);
+        doc.text('InfraBuild', margin, 80);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(36);
+        doc.setTextColor(...muted);
+        doc.text('Partners', margin + 95, 80);
+
+        drawGradientBar(88);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.setTextColor(...white);
+        doc.text('Engineering Excellence,', margin, 110);
+        doc.text('Delivered On Deadline.', margin, 120);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(...muted);
+        const introText = 'We are a specialized team of DevOps, SRE, Development, and Data professionals. From infrastructure to interview prep \u2014 we build careers and systems that don\'t break.';
+        const introLines = doc.splitTextToSize(introText, contentW);
+        doc.text(introLines, margin, 138);
+
+        // Stats boxes
+        const stats = [
+            { num: '100%', label: 'Deadline Hit Rate' },
+            { num: '50+', label: 'Projects Delivered' },
+            { num: '24/7', label: 'Engineering Support' },
+            { num: '15+', label: 'Team Members' }
+        ];
+        const statW = (contentW - 15) / 4;
+        stats.forEach((s, i) => {
+            const x = margin + i * (statW + 5);
+            doc.setFillColor(...cardBg);
+            doc.roundedRect(x, 165, statW, 35, 3, 3, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(18);
+            doc.setTextColor(...blue);
+            doc.text(s.num, x + statW / 2, 180, { align: 'center' });
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(7);
+            doc.setTextColor(...muted);
+            doc.text(s.label, x + statW / 2, 190, { align: 'center' });
+        });
+
+        // Guarantee box
+        doc.setFillColor(0, 230, 118, 0.08);
+        doc.setDrawColor(...green);
+        doc.roundedRect(margin, 215, contentW, 30, 3, 3, 'FD');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(...green);
+        doc.text('\u2713  Our Ironclad Guarantee: Every Deadline, Every Time.', margin + 8, 228);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(...muted);
+        doc.text('We don\'t just promise delivery \u2014 we guarantee it. No exceptions, no excuses.', margin + 8, 237);
+
+        // Footer
+        doc.setFontSize(7);
+        doc.setTextColor(...muted);
+        doc.text('\u00A9 2026 InfraBuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
+
+        // ===== PAGE 2: ENGINEERING SERVICES =====
+        doc.addPage();
+        drawBg();
+        doc.setFillColor(...blue);
+        doc.rect(0, 0, W, 4, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...blue);
+        doc.text('ENGINEERING SERVICES', margin, 25);
+        doc.setFontSize(24);
+        doc.setTextColor(...white);
+        doc.text('Build. Deploy. Scale.', margin, 38);
+        drawGradientBar(43);
+
+        const services = [
+            { icon: '\u2022', name: 'Development Support', price: '$599/month', desc: 'Full-stack development across Java, Python, Node.js, Angular, and React. Production-grade code that ships.', color: purple },
+            { icon: '\u2022', name: 'DevOps Support', price: '$549/month', desc: 'CI/CD pipelines, containerization (Docker/ECS/K8s), IaC with Terraform, GitLab/GitHub Actions automation.', color: blue },
+            { icon: '\u2022', name: 'SRE Support', price: '$699/month', desc: 'Monitoring (Prometheus, Grafana, Datadog), incident response, SLA management, reliability engineering.', color: cyan },
+            { icon: '\u2022', name: 'Data Engineering', price: '$799/month', desc: 'ETL/ELT pipelines, data warehousing, Spark, Airflow, dbt, and cloud-native data architectures.', color: green },
+            { icon: '\u2022', name: 'Data Analyst', price: '$399/month', desc: 'Business intelligence dashboards, SQL analytics, reporting automation with Tableau, Power BI, Looker.', color: [255, 145, 0] },
+            { icon: '\u2022', name: 'Interview Support', price: '$249/each', desc: 'One-on-one mock interviews, system design reviews, coding walkthroughs, and real-time technical coaching.', color: [255, 64, 129] }
+        ];
+
+        let y = 55;
+        services.forEach((s, i) => {
+            doc.setFillColor(...cardBg);
+            doc.roundedRect(margin, y, contentW, 34, 3, 3, 'F');
+            // Color accent bar
+            doc.setFillColor(...s.color);
+            doc.rect(margin, y, 3, 34, 'F');
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(...white);
+            doc.text(s.name, margin + 10, y + 12);
+
+            doc.setFontSize(12);
+            doc.setTextColor(...s.color);
+            doc.text(s.price, margin + contentW - 5, y + 12, { align: 'right' });
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.setTextColor(...muted);
+            const descLines = doc.splitTextToSize(s.desc, contentW - 20);
+            doc.text(descLines, margin + 10, y + 22);
+
+            y += 40;
+        });
+
+        // ===== PAGE 3: CAREER SOLUTIONS =====
+        doc.addPage();
+        drawBg();
+        doc.setFillColor(...blue);
+        doc.rect(0, 0, W, 4, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...blue);
+        doc.text('CAREER SOLUTIONS', margin, 25);
+        doc.setFontSize(24);
+        doc.setTextColor(...white);
+        doc.text('Land Your Dream Role.', margin, 38);
+        drawGradientBar(43);
+
+        const careers = [
+            {
+                name: 'Job Applying Support', price: '$399/month', badge: '',
+                features: ['Targeted job applications on your behalf', 'Full tracking report (applied / response / status)', 'Weekly progress updates', 'Application strategy optimization']
+            },
+            {
+                name: 'Resume & LinkedIn Optimization', price: '$149/month', badge: '',
+                features: ['ATS-optimized resume rewrite', 'LinkedIn profile optimization', 'Ongoing updates as needed', 'One-time service also available']
+            },
+            {
+                name: 'Full Job Search Management', price: '$1,499/month', badge: '\uD83D\uDD25 HIGH DEMAND',
+                features: ['Full job search & application management', 'Resume & LinkedIn optimization', 'Interview preparation & mock sessions', 'Learning materials, notes & study guides', 'Online exam & assessment support', '1-on-1 teaching sessions before interviews']
+            },
+            {
+                name: 'End-to-End Placement Support', price: '$2,499 one-time', badge: '\uD83D\uDC8E PREMIUM',
+                features: ['Everything in Full Job Search Management', 'Dedicated placement manager', 'Salary & offer negotiation support', 'First 30-day onboarding coaching', 'Guaranteed interview pipeline']
+            }
+        ];
+
+        y = 55;
+        careers.forEach((c, i) => {
+            const cardH = 12 + c.features.length * 7 + (c.badge ? 8 : 0);
+            const isFeatured = c.badge.includes('HIGH DEMAND');
+
+            if (isFeatured) {
+                doc.setDrawColor(...blue);
+                doc.setFillColor(18, 18, 30);
+                doc.roundedRect(margin, y, contentW, cardH, 3, 3, 'FD');
+                doc.setFillColor(...blue);
+                doc.rect(margin, y, contentW, 3, 'F');
+            } else {
+                doc.setFillColor(...cardBg);
+                doc.roundedRect(margin, y, contentW, cardH, 3, 3, 'F');
+            }
+
+            let innerY = y + 8;
+
+            if (c.badge) {
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(6);
+                doc.setTextColor(...blue);
+                doc.text(c.badge, margin + 8, innerY);
+                innerY += 7;
+            }
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.setTextColor(...white);
+            doc.text(c.name, margin + 8, innerY);
+
+            doc.setTextColor(...blue);
+            doc.text(c.price, margin + contentW - 5, innerY, { align: 'right' });
+
+            innerY += 8;
+            c.features.forEach(f => {
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(8);
+                doc.setTextColor(...green);
+                doc.text('\u2713', margin + 8, innerY);
+                doc.setTextColor(...muted);
+                doc.text(f, margin + 16, innerY);
+                innerY += 7;
+            });
+
+            y += cardH + 6;
+        });
+
+        // Footer
+        doc.setFontSize(7);
+        doc.setTextColor(...muted);
+        doc.text('\u00A9 2026 InfraBuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
+
+        doc.save('InfraBuild_Partners_Services_Booklet.pdf');
+    }
+    </script>
+
+</body>
+</html>
