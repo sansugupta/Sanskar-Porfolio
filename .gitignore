@@ -32,3 +32,6 @@ next-env.d.ts
 # deployment secrets
 deployments/lightsail/.env
 
+
+!.vercel/project.json
+!.vercel/project.json

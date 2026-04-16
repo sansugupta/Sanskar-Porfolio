@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_SvAEqXae0uzCJa1dwEzaL6URTvPt",
+  "orgId": "team_jMwhgA9htYg9JPvAuMjjKNUh",
+  "projectName": "sanskar-portfolio",
+  "settings": {
+    "createdAt": 1776379942368,
+    "framework": "nextjs",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
