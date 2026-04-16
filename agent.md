@@ -72,40 +72,31 @@ This monorepo contains:
 
 ## 📝 Conversation Log
 
-### Session 1 — 2026-04-17
+### Session 1 — 2026-04-17 (Initial Setup)
 **Topics Covered:**
-- Full repo analysis and understanding
-- InfraBuild Partners website complete rebuild with advanced features
-- Dockerized deployment structure for both websites
-- Helm charts for LiteSpeed/Kubernetes deployment
-- Marketing materials (LinkedIn posts, Instagram templates, PDF brochure)
-- agent.md created for centralized AI context persistence
-- Deployment recommendations provided (Vercel, LiteSpeed, Docker)
-- GitHub push preparation
+- Repo analysis and understanding
+- InfraBuild Partners static website rebuild
+- agent.md created
+
+### Session 2 — 2026-04-17 (Deployments & Analytics)
+**Topics Covered:**
+- Extracted pricing/services into `data/services.json` and `data/content.json` for GitOps-style data loading.
+- Deployed InfraBuild Partners statically on AWS Lightsail Nginx (port 8080).
+- Deployed Umami Analytics dynamically in Docker on AWS Lightsail (port 3001).
+- Set up automated GitHub Actions deploy script (`.github/workflows/deploy.yml` -> `~/scripts/deploy.sh` on Lightsail).
+- Updated website contact addresses.
 
 **Key Decisions:**
-- InfraBuild Partners website: Static HTML/CSS/JS (no framework needed — fast, deployable anywhere)
-- Sanskar Portfolio: Next.js 15 (already built)
-- Deployment Strategy: Docker containers on LiteSpeed + Vercel free tier as CDN/backup
-- GitHub: Auto-push with CI/CD pipeline
-
-**Files Created/Modified:**
-- `agent.md` — This file (centralized context)
-- `InfraBuild-Partners/index.html` — Complete website rebuild
-- `deployments/infrabuild-partners/` — Docker + Helm
-- `deployments/sanskar-portfolio/` — Docker + Helm
-- `marketing/` — Templates and brochures
-- `.github/workflows/` — CI/CD pipelines
+- Lightsail serves as the primary host for InfraBuild and Umami.
+- Vercel will be used exclusively for the Next.js Sanskar Portfolio.
+- Data-Driven UI: You don't need to touch HTML to change pricing. Edit `.json` files, push, and GitHub Actions automatically SSH deploys it.
 
 ---
 
-## 🔮 Future Plans
-- LinkedIn profile posts for InfraBuild Partners services
-- Instagram post templates for social media marketing
-- PDF brochure for client distribution
-- Additional client onboarding automation
-- CRM integration possibilities
-- Analytics dashboard for tracking leads
+## 🔮 Future Plans / Next Steps
+- **Vercel Portfolio Deployment**: Codex needs to use the provided Vercel token (`vcp_...`) to connect the GitHub repository and auto-deploy the `/src/` Next.js Portfolio.
+- **Vercel Build Filters**: Ensure Vercel only deploys when `/src/` changes, ignoring InfraBuild static site updates.
+- **Domain Mapping**: Point `infrabuildpartners.com` to the Lightsail IP when purchased.
 
 ---
 
