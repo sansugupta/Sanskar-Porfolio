@@ -8,26 +8,38 @@ name: "GitOps: Auto-Deploy on Push"
 on:
   push:
     branches: [main]
-    paths:
-      - '**'
-      - '!src/**'
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'next.config.ts'
-      - 'tailwind.config.ts'
-      - 'tsconfig.json'
-      - 'postcss.config.mjs'
 
 jobs:
-  # ========== DEPLOY TO LIGHTSAIL ==========
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      src: ${{ steps.paths.outputs.src }}
+      infra: ${{ steps.paths.outputs.infra }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine changed files
+        id: paths
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            src:
+              - 'src/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'next.config.ts'
+              - 'tailwind.config.ts'
+              - 'tsconfig.json'
+              - 'postcss.config.mjs'
+            infra:
+              - '**'
+              - '!src/**'
+
   deploy-lightsail:
     name: "Deploy to AWS Lightsail"
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.infra == 'true' }}
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.modified, 'src/')"
     steps:
       - uses: actions/checkout@v4
 
@@ -39,11 +51,11 @@ jobs:
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           script: bash ~/scripts/deploy.sh
 
-  # ========== DEPLOY PORTFOLIO TO VERCEL ==========
   deploy-vercel:
     name: "Deploy Portfolio to Vercel"
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.src == 'true' }}
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.modified, 'src/') || contains(github.event.head_commit.added, 'src/')"
     steps:
       - uses: actions/checkout@v4
 
