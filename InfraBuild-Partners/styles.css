@@ -406,9 +406,15 @@ section {
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     padding: 36px;
+    display: flex;
+    flex-direction: column;
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+}
+.service-card.is-clickable,
+.premium-card.is-clickable {
+    cursor: pointer;
 }
 .service-card::before {
     content: '';
@@ -456,6 +462,13 @@ section {
     align-items: baseline;
     gap: 4px;
 }
+.service-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: auto;
+}
 .service-price .amount {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.8rem;
@@ -479,6 +492,24 @@ section {
 .card-analyst { --card-accent: linear-gradient(90deg, #ff9100, #ff4081); }
 .card-interview .service-icon { background: rgba(255, 64, 129, 0.12); color: var(--accent-pink); }
 .card-interview { --card-accent: linear-gradient(90deg, #ff4081, #7c5cff); }
+.card-bootcamp .service-icon { background: rgba(255, 193, 7, 0.14); color: #ffc107; }
+.card-bootcamp { --card-accent: linear-gradient(90deg, #ffc107, #ff9100); }
+
+.service-detail-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-cyan);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.premium-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
 
 /* ========== PROJECTS / CASE STUDIES ========== */
 .projects-grid {
@@ -712,6 +743,144 @@ section {
 }
 .premium-cta.secondary:hover { border-color: var(--accent-blue); }
 
+/* ========== SERVICE MODAL ========== */
+body.modal-open {
+    overflow: hidden;
+}
+
+.service-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 24px;
+}
+
+.service-modal.active {
+    display: flex;
+}
+
+.service-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 8, 14, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+.service-modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(820px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, rgba(10, 10, 15, 0.98), rgba(18, 18, 26, 0.98));
+    border: 1px solid rgba(79, 124, 255, 0.18);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.service-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.service-modal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-right: 48px;
+}
+
+.service-modal-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+}
+
+.service-modal-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+.service-modal-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 124, 255, 0.25);
+    background: rgba(79, 124, 255, 0.08);
+    white-space: nowrap;
+}
+
+.service-modal-subtitle {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.service-modal-body {
+    display: grid;
+    gap: 18px;
+}
+
+.service-modal-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.service-modal-section h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.service-modal-section ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.service-modal-section li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.service-modal-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+}
+
 /* ========== CONTACT FORM ========== */
 .contact-grid {
     display: grid;
@@ -864,4 +1033,10 @@ footer {
     .testimonials-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
+    .service-card-footer,
+    .service-modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .service-modal-dialog { padding: 24px 20px; }
 }
