@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowDown, Terminal, Server, Activity, Shield, Code2, Cloud, Users } from "lucide-react"
+import { ArrowDown, Terminal, Server, Activity, Shield, Code2, Cloud, Users, Download, ExternalLink } from "lucide-react"
 
 function UpworkIcon({ className }: { className?: string }) {
   return (
@@ -12,6 +12,8 @@ function UpworkIcon({ className }: { className?: string }) {
 }
 
 export default function HeroSection() {
+  const infrabuildUrl = "https://infrabuildpartners.com"
+
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
   }
@@ -19,6 +21,15 @@ export default function HeroSection() {
   const handleExternalLink = (url: string) => {
     window.parent?.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url } }, "*")
     window.open(url, "_blank", "noopener,noreferrer")
+  }
+
+  const handleDownloadInfraBuildTemplate = () => {
+    const link = document.createElement("a")
+    link.href = "/downloads/infrabuild-partners-template.zip"
+    link.download = "infrabuild-partners-template.zip"
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
   }
 
   return (
@@ -85,12 +96,38 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="flex items-center justify-center gap-2 mb-8"
+          className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
         >
-          <Users className="w-4 h-4 text-purple-400" />
-          <p className="text-purple-400 font-medium">
-            Team Lead at <span className="text-white">InfraBuild Partners</span>
-          </p>
+          <div className="flex items-center justify-center gap-2">
+            <Users className="w-4 h-4 text-purple-400" />
+            <p className="text-purple-400 font-medium">
+              Founder & CEO,{" "}
+              <button
+                onClick={() => handleExternalLink(infrabuildUrl)}
+                className="text-white underline-offset-4 transition-colors hover:text-cyan-300 hover:underline"
+              >
+                InfraBuild Partners
+              </button>
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <button
+              onClick={() => handleExternalLink(infrabuildUrl)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-cyan-500/30 hover:text-white"
+            >
+              Check out InfraBuild Partners
+              <ExternalLink className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={handleDownloadInfraBuildTemplate}
+              aria-label="Download InfraBuild Partners template"
+              title="Download InfraBuild Partners template"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-cyan-500/30 hover:text-white"
+            >
+              <Download className="w-3.5 h-3.5" />
+              Download Template
+            </button>
+          </div>
         </motion.div>
 
           <motion.p
