@@ -121,7 +121,67 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
-// ========== CONTACT FORM ==========
+// ========== CONTACT FORM + DYNAMIC DATA ==========
+const infraBuildState = {
+    services: null,
+    content: null
+};
+
+function escapeHtml(value = '') {
+    return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+}
+
+function formatPrice(item) {
+    return `${item.currency}${item.price.toLocaleString()}${item.period}`;
+}
+
+function getAllServices() {
+    if (!infraBuildState.services) return [];
+    return [...(infraBuildState.services.engineering || []), ...(infraBuildState.services.career || [])];
+}
+
+function renderDetailSections(details) {
+    if (!details?.sections?.length) return '';
+
+    return details.sections.map(section => `
+        <section class="service-modal-section">
+            <h4>${escapeHtml(section.title)}</h4>
+            <ul>
+                ${(section.items || []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}
+            </ul>
+        </section>
+    `).join('');
+}
+
+function openServiceModal(serviceId) {
+    const service = getAllServices().find(item => item.id === serviceId && item.details);
+    const modal = document.getElementById('service-modal');
+    if (!service || !modal) return;
+
+    document.getElementById('service-modal-title').textContent = service.title;
+    document.getElementById('service-modal-price').textContent = formatPrice(service);
+    document.getElementById('service-modal-subtitle').textContent = service.details.subtitle || service.description;
+    document.getElementById('service-modal-body').innerHTML = renderDetailSections(service.details);
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+}
+
+function closeServiceModal() {
+    const modal = document.getElementById('service-modal');
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+}
+
 function handleSubmit(e) {
     e.preventDefault();
     const name = document.getElementById('contact-name').value;
@@ -133,221 +193,331 @@ function handleSubmit(e) {
     alert('Thank you! Your inquiry has been prepared. Your email client will open shortly.');
 }
 
+async function getServicesData() {
+    if (infraBuildState.services) return infraBuildState.services;
+
+    const response = await fetch('data/services.json');
+    if (!response.ok) {
+        throw new Error('Unable to load service data');
+    }
+
+    infraBuildState.services = await response.json();
+    return infraBuildState.services;
+}
+
 // ========== PDF BOOKLET GENERATOR ==========
-function generateBooklet() {
+async function generateBooklet() {
+    const servicesData = await getServicesData();
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4');
     const W = 210, H = 297, margin = 20, contentW = W - margin * 2;
     const bg = [10, 10, 15], cardBg = [18, 18, 26];
     const blue = [79, 124, 255], purple = [124, 92, 255], cyan = [0, 212, 255];
     const green = [0, 230, 118], white = [240, 240, 245], muted = [138, 138, 154];
+    const colorMap = {
+        'card-dev': purple,
+        'card-devops': blue,
+        'card-bootcamp': [255, 193, 7],
+        'card-sre': cyan,
+        'card-data': green,
+        'card-analyst': [255, 145, 0],
+        'card-interview': [255, 64, 129]
+    };
 
-    function drawBg() { doc.setFillColor(...bg); doc.rect(0, 0, W, H, 'F'); }
-    function drawBar(y) {
-        doc.setFillColor(...blue); doc.rect(margin, y, contentW * 0.6, 3, 'F');
-        doc.setFillColor(...purple); doc.rect(margin + contentW * 0.6, y, contentW * 0.4, 3, 'F');
+    function drawBg() {
+        doc.setFillColor(...bg);
+        doc.rect(0, 0, W, H, 'F');
     }
 
-    // PAGE 1: COVER
+    function drawBar(y) {
+        doc.setFillColor(...blue);
+        doc.rect(margin, y, contentW * 0.6, 3, 'F');
+        doc.setFillColor(...purple);
+        doc.rect(margin + contentW * 0.6, y, contentW * 0.4, 3, 'F');
+    }
+
     drawBg();
-    doc.setFillColor(...blue); doc.rect(0, 0, W, 4, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(36); doc.setTextColor(...white);
+    doc.setFillColor(...blue);
+    doc.rect(0, 0, W, 4, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(36);
+    doc.setTextColor(...white);
     doc.text('InfraBuild', margin, 80);
-    doc.setFont('helvetica', 'normal'); doc.setTextColor(...muted);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...muted);
     doc.text('Partners', margin + 95, 80);
     drawBar(88);
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(...white);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(...white);
     doc.text('Engineering Excellence,', margin, 110);
     doc.text('Delivered On Deadline.', margin, 120);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...muted);
-    doc.text(doc.splitTextToSize('We are a specialized team of DevOps, SRE, Development, and Data professionals. From infrastructure to interview prep — we build careers and systems that don\'t break.', contentW), margin, 138);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(...muted);
+    doc.text(doc.splitTextToSize('We are a specialized team across DevOps, SRE, software delivery, boot camps, and career acceleration. Edit data/services.json to keep this booklet aligned with the website.', contentW), margin, 138);
 
-    const stats = [{ n: '100%', l: 'Deadline Hit Rate' }, { n: '50+', l: 'Projects Delivered' }, { n: '24/7', l: 'Engineering Support' }, { n: '15+', l: 'Team Members' }];
+    const stats = [
+        { n: `${servicesData.engineering.length}+`, l: 'Engineering Services' },
+        { n: `${servicesData.career.length}+`, l: 'Career Packages' },
+        { n: '24/7', l: 'Execution Mindset' },
+        { n: 'GitOps', l: 'JSON-driven updates' }
+    ];
     const statW = (contentW - 15) / 4;
-    stats.forEach((s, i) => {
-        const x = margin + i * (statW + 5);
-        doc.setFillColor(...cardBg); doc.roundedRect(x, 165, statW, 35, 3, 3, 'F');
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(...blue);
-        doc.text(s.n, x + statW / 2, 180, { align: 'center' });
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...muted);
-        doc.text(s.l, x + statW / 2, 190, { align: 'center' });
+    stats.forEach((stat, index) => {
+        const x = margin + index * (statW + 5);
+        doc.setFillColor(...cardBg);
+        doc.roundedRect(x, 165, statW, 35, 3, 3, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(18);
+        doc.setTextColor(...blue);
+        doc.text(stat.n, x + statW / 2, 180, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+        doc.setTextColor(...muted);
+        doc.text(stat.l, x + statW / 2, 190, { align: 'center' });
     });
 
-    doc.setDrawColor(...green); doc.roundedRect(margin, 215, contentW, 30, 3, 3, 'FD');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(...green);
+    doc.setDrawColor(...green);
+    doc.roundedRect(margin, 215, contentW, 30, 3, 3, 'FD');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(...green);
     doc.text('\u2713  Our Ironclad Guarantee: Every Deadline, Every Time.', margin + 8, 228);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...muted);
-    doc.text('We don\'t just promise delivery — we guarantee it. No exceptions, no excuses.', margin + 8, 237);
-    doc.setFontSize(7); doc.text('\u00A9 2026 InfraBuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...muted);
+    doc.text('We keep service data centralized so website pricing, offer details, and brochure content stay in sync.', margin + 8, 237);
+    doc.setFontSize(7);
+    doc.text('\u00A9 2026 InfraBuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
 
-    // PAGE 2: SERVICES
-    doc.addPage(); drawBg();
-    doc.setFillColor(...blue); doc.rect(0, 0, W, 4, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...blue);
+    doc.addPage();
+    drawBg();
+    doc.setFillColor(...blue);
+    doc.rect(0, 0, W, 4, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...blue);
     doc.text('ENGINEERING SERVICES', margin, 25);
-    doc.setFontSize(24); doc.setTextColor(...white); doc.text('Build. Deploy. Scale.', margin, 38);
+    doc.setFontSize(24);
+    doc.setTextColor(...white);
+    doc.text('Build. Deploy. Scale.', margin, 38);
     drawBar(43);
 
-    const services = [
-        { name: 'Development Support', price: '$599/month', desc: 'Full-stack dev across Java, Python, Node.js, Angular, React.', color: purple },
-        { name: 'DevOps Support', price: '$549/month', desc: 'CI/CD pipelines, Docker/ECS/K8s, Terraform, GitHub Actions.', color: blue },
-        { name: 'SRE Support', price: '$699/month', desc: 'Prometheus, Grafana, Datadog, incident response, SLA mgmt.', color: cyan },
-        { name: 'Data Engineering', price: '$799/month', desc: 'ETL/ELT, Spark, Airflow, dbt, cloud-native data architectures.', color: green },
-        { name: 'Data Analyst', price: '$399/month', desc: 'BI dashboards, SQL analytics, Tableau, Power BI, Looker.', color: [255, 145, 0] },
-        { name: 'Interview Support', price: '$249/each', desc: 'Mock interviews, system design, coding walkthroughs.', color: [255, 64, 129] }
-    ];
-    let y = 55;
-    services.forEach(s => {
-        doc.setFillColor(...cardBg); doc.roundedRect(margin, y, contentW, 34, 3, 3, 'F');
-        doc.setFillColor(...s.color); doc.rect(margin, y, 3, 34, 'F');
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(...white);
-        doc.text(s.name, margin + 10, y + 12);
-        doc.setTextColor(...s.color); doc.text(s.price, margin + contentW - 5, y + 12, { align: 'right' });
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...muted);
-        doc.text(doc.splitTextToSize(s.desc, contentW - 20), margin + 10, y + 22);
-        y += 40;
+    let y = 52;
+    servicesData.engineering.forEach(service => {
+        const color = colorMap[service.cardClass] || blue;
+        doc.setFillColor(...cardBg);
+        doc.roundedRect(margin, y, contentW, 30, 3, 3, 'F');
+        doc.setFillColor(...color);
+        doc.rect(margin, y, 3, 30, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(...white);
+        doc.text(service.title, margin + 10, y + 10);
+        doc.setTextColor(...color);
+        doc.text(formatPrice(service), margin + contentW - 5, y + 10, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...muted);
+        doc.text(doc.splitTextToSize(service.description, contentW - 20), margin + 10, y + 18);
+        y += 35;
     });
 
-    // PAGE 3: CAREER
-    doc.addPage(); drawBg();
-    doc.setFillColor(...blue); doc.rect(0, 0, W, 4, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...blue);
+    doc.addPage();
+    drawBg();
+    doc.setFillColor(...blue);
+    doc.rect(0, 0, W, 4, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...blue);
     doc.text('CAREER SOLUTIONS', margin, 25);
-    doc.setFontSize(24); doc.setTextColor(...white); doc.text('Land Your Dream Role.', margin, 38);
+    doc.setFontSize(24);
+    doc.setTextColor(...white);
+    doc.text('Land Your Dream Role.', margin, 38);
     drawBar(43);
 
-    const careers = [
-        { name: 'Job Applying Support', price: '$399/mo', badge: '', features: ['Targeted applications', 'Full tracking report', 'Weekly updates', 'Strategy optimization'] },
-        { name: 'Resume & LinkedIn', price: '$149/mo', badge: '', features: ['ATS-optimized resume', 'LinkedIn optimization', 'Ongoing updates', 'One-time available'] },
-        { name: 'Full Job Search Mgmt', price: '$1,499/mo', badge: 'HIGH DEMAND', features: ['Full search & applications', 'Resume & LinkedIn', 'Mock interviews', 'Study guides', 'Exam support', '1-on-1 teaching'] },
-        { name: 'End-to-End Placement', price: '$2,499', badge: 'PREMIUM', features: ['Everything above', 'Placement manager', 'Salary negotiation', 'Onboarding coaching', 'Guaranteed pipeline'] }
-    ];
     y = 55;
-    careers.forEach(c => {
-        const cardH = 12 + c.features.length * 7 + (c.badge ? 8 : 0);
-        doc.setFillColor(...cardBg); doc.roundedRect(margin, y, contentW, cardH, 3, 3, 'F');
-        if (c.badge.includes('HIGH DEMAND')) {
-            doc.setDrawColor(...blue); doc.roundedRect(margin, y, contentW, cardH, 3, 3, 'D');
-            doc.setFillColor(...blue); doc.rect(margin, y, contentW, 3, 'F');
+    servicesData.career.forEach(plan => {
+        const cardHeight = 12 + plan.features.length * 7 + (plan.badge ? 8 : 0);
+        doc.setFillColor(...cardBg);
+        doc.roundedRect(margin, y, contentW, cardHeight, 3, 3, 'F');
+        if (plan.featured) {
+            doc.setDrawColor(...blue);
+            doc.roundedRect(margin, y, contentW, cardHeight, 3, 3, 'D');
+            doc.setFillColor(...blue);
+            doc.rect(margin, y, contentW, 3, 'F');
         }
         let innerY = y + 8;
-        if (c.badge) {
-            doc.setFont('helvetica', 'bold'); doc.setFontSize(6); doc.setTextColor(...blue);
-            doc.text(c.badge, margin + 8, innerY); innerY += 7;
+        if (plan.badge) {
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(6);
+            doc.setTextColor(...blue);
+            doc.text(plan.badge, margin + 8, innerY);
+            innerY += 7;
         }
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...white);
-        doc.text(c.name, margin + 8, innerY);
-        doc.setTextColor(...blue); doc.text(c.price, margin + contentW - 5, innerY, { align: 'right' });
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(...white);
+        doc.text(plan.title, margin + 8, innerY);
+        doc.setTextColor(...blue);
+        doc.text(formatPrice(plan), margin + contentW - 5, innerY, { align: 'right' });
         innerY += 8;
-        c.features.forEach(f => {
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
-            doc.setTextColor(...green); doc.text('\u2713', margin + 8, innerY);
-            doc.setTextColor(...muted); doc.text(f, margin + 16, innerY);
+        plan.features.forEach(feature => {
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.setTextColor(...green);
+            doc.text('\u2713', margin + 8, innerY);
+            doc.setTextColor(...muted);
+            doc.text(feature, margin + 16, innerY);
             innerY += 7;
         });
-        y += cardH + 6;
+        y += cardHeight + 6;
     });
 
-    doc.setFontSize(7); doc.setTextColor(...muted);
+    doc.setFontSize(7);
+    doc.setTextColor(...muted);
     doc.text('\u00A9 2026 InfraBuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
 
     doc.save('InfraBuild_Partners_Services_Booklet.pdf');
 }
 
+function renderEngineeringCard(service) {
+    const clickable = service.details ? 'is-clickable' : '';
+    const triggerAttrs = service.details
+        ? `data-service-id="${escapeHtml(service.id)}" tabindex="0" role="button" aria-label="View ${escapeHtml(service.title)} overview"`
+        : '';
+
+    return `
+        <div class="service-card ${service.cardClass} reveal ${clickable}" ${triggerAttrs}>
+            <div class="service-icon"><i class="${escapeHtml(service.icon)}"></i></div>
+            <h3>${escapeHtml(service.title)}</h3>
+            <p>${escapeHtml(service.description)}</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">${service.currency}${service.price.toLocaleString()}</span>
+                    <span class="period">${escapeHtml(service.period)}</span>
+                </div>
+                ${service.details ? '<span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>' : ''}
+            </div>
+        </div>
+    `;
+}
+
+function renderCareerCard(plan) {
+    const clickable = plan.details ? 'is-clickable' : '';
+    const triggerAttrs = plan.details
+        ? `data-service-id="${escapeHtml(plan.id)}" tabindex="0" role="button" aria-label="View ${escapeHtml(plan.title)} overview"`
+        : '';
+
+    return `
+        <div class="premium-card ${plan.featured ? 'featured' : ''} reveal ${clickable}" ${triggerAttrs}>
+            ${plan.badge ? `<div class="premium-badge">${escapeHtml(plan.badge)}</div>` : ''}
+            <h3>${escapeHtml(plan.title)}</h3>
+            <div class="desc">${escapeHtml(plan.description)}</div>
+            <div class="premium-price">
+                <span class="dollar">${escapeHtml(plan.currency)}</span>
+                <span class="amount">${plan.price.toLocaleString()}</span>
+                <span class="period">${escapeHtml(plan.period)}</span>
+            </div>
+            <ul class="premium-features">
+                ${plan.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${escapeHtml(feature)}</li>`).join('')}
+            </ul>
+            <div class="premium-actions">
+                ${plan.details ? '<span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>' : ''}
+                <a href="#contact" class="premium-cta ${plan.featured ? 'primary' : 'secondary'}">${plan.featured ? 'Get Started →' : 'Get Started'}</a>
+            </div>
+        </div>
+    `;
+}
+
 // ========== DYNAMIC DATA LOADER (GitOps — edit JSON, push, auto-deploy) ==========
 async function loadDynamicData() {
     try {
-        const [servicesRes, contentRes] = await Promise.all([
-            fetch('data/services.json'),
-            fetch('data/content.json')
+        const [servicesData, contentData] = await Promise.all([
+            getServicesData(),
+            fetch('data/content.json').then(response => {
+                if (!response.ok) throw new Error('Unable to load content data');
+                return response.json();
+            })
         ]);
-        if (!servicesRes.ok || !contentRes.ok) return; // fallback to static HTML
-        const servicesData = await servicesRes.json();
-        const contentData = await contentRes.json();
 
-        // Render Engineering Services
+        infraBuildState.content = contentData;
+
         const servicesGrid = document.getElementById('services-grid');
         if (servicesGrid && servicesData.engineering) {
-            servicesGrid.innerHTML = servicesData.engineering.map(s => `
-                <div class="service-card ${s.cardClass} reveal">
-                    <div class="service-icon"><i class="${s.icon}"></i></div>
-                    <h3>${s.title}</h3>
-                    <p>${s.description}</p>
-                    <div class="service-price">
-                        <span class="amount">${s.currency}${s.price.toLocaleString()}</span>
-                        <span class="period">${s.period}</span>
-                    </div>
-                </div>
-            `).join('');
+            servicesGrid.innerHTML = servicesData.engineering.map(renderEngineeringCard).join('');
         }
 
-        // Render Career Plans
         const premiumGrid = document.getElementById('premium-grid');
         if (premiumGrid && servicesData.career) {
-            premiumGrid.innerHTML = servicesData.career.map(c => `
-                <div class="premium-card ${c.featured ? 'featured' : ''} reveal">
-                    ${c.badge ? `<div class="premium-badge">${c.badge}</div>` : ''}
-                    <h3>${c.title}</h3>
-                    <div class="desc">${c.description}</div>
-                    <div class="premium-price">
-                        <span class="dollar">${c.currency}</span>
-                        <span class="amount">${c.price.toLocaleString()}</span>
-                        <span class="period">${c.period}</span>
-                    </div>
-                    <ul class="premium-features">
-                        ${c.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
-                    </ul>
-                    <a href="#contact" class="premium-cta ${c.featured ? 'primary' : 'secondary'}">${c.featured ? 'Get Started →' : 'Get Started'}</a>
-                </div>
-            `).join('');
+            premiumGrid.innerHTML = servicesData.career.map(renderCareerCard).join('');
         }
 
-        // Render Contact Form Dropdown
         const serviceSelect = document.getElementById('contact-service');
         if (serviceSelect && servicesData.engineering) {
-            const allServices = [...servicesData.engineering, ...servicesData.career];
+            const allServices = getAllServices();
             serviceSelect.innerHTML = '<option value="">Select a Service...</option>' +
-                allServices.map(s => `<option value="${s.id}">${s.title} — ${s.currency}${s.price.toLocaleString()}${s.period}</option>`).join('') +
+                allServices.map(service => `<option value="${escapeHtml(service.id)}">${escapeHtml(service.title)} — ${escapeHtml(formatPrice(service))}</option>`).join('') +
                 '<option value="custom">Custom Project</option>';
         }
 
-        // Render Projects
         const projectsGrid = document.getElementById('projects-grid');
         if (projectsGrid && contentData.projects) {
-            projectsGrid.innerHTML = contentData.projects.map(p => `
+            projectsGrid.innerHTML = contentData.projects.map(project => `
                 <div class="project-card reveal">
-                    <span class="project-tag">${p.tag}</span>
-                    <h3>${p.title}</h3>
-                    <p>${p.description}</p>
+                    <span class="project-tag">${escapeHtml(project.tag)}</span>
+                    <h3>${escapeHtml(project.title)}</h3>
+                    <p>${escapeHtml(project.description)}</p>
                     <div class="project-tech">
-                        ${p.tech.map(t => `<span>${t}</span>`).join('')}
+                        ${project.tech.map(tech => `<span>${escapeHtml(tech)}</span>`).join('')}
                     </div>
                 </div>
             `).join('');
         }
 
-        // Render Testimonials
         const testimonialsGrid = document.getElementById('testimonials-grid');
         if (testimonialsGrid && contentData.testimonials) {
-            testimonialsGrid.innerHTML = contentData.testimonials.map(t => `
+            testimonialsGrid.innerHTML = contentData.testimonials.map(testimonial => `
                 <div class="testimonial-card reveal">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>"${t.message}"</blockquote>
+                    <blockquote>"${escapeHtml(testimonial.message)}"</blockquote>
                     <div class="testimonial-author">
-                        <img src="${t.image}" alt="${t.name}" loading="lazy">
-                        <div class="info"><h4>${t.name}</h4><p>${t.role}</p></div>
+                        <img src="${escapeHtml(testimonial.image)}" alt="${escapeHtml(testimonial.name)}" loading="lazy">
+                        <div class="info"><h4>${escapeHtml(testimonial.name)}</h4><p>${escapeHtml(testimonial.role)}</p></div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Re-observe new elements for scroll reveal
         document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
-
     } catch (err) {
         console.log('Using static HTML fallback (JSON not available):', err.message);
     }
 }
+
+document.addEventListener('click', (event) => {
+    const modalTrigger = event.target.closest('[data-service-id]');
+    if (modalTrigger && !event.target.closest('a')) {
+        openServiceModal(modalTrigger.dataset.serviceId);
+    }
+
+    if (event.target.closest('[data-close-service-modal]')) {
+        closeServiceModal();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    const focused = document.activeElement;
+    if (event.key === 'Escape') {
+        closeServiceModal();
+    }
+
+    if ((event.key === 'Enter' || event.key === ' ') && focused?.dataset?.serviceId) {
+        event.preventDefault();
+        openServiceModal(focused.dataset.serviceId);
+    }
+});
 
 // Load data on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', loadDynamicData);

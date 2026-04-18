@@ -1,7 +1,7 @@
 # 🧠 Agent Context — InfraBuild Partners & Sanskar Portfolio
 
-> **Last Updated:** 2026-04-17T04:30:00+05:30
-> **Session Count:** 2
+> **Last Updated:** 2026-04-18T16:18:00+05:30
+> **Session Count:** 5
 > **Owner:** Sanskar Gupta
 > **Company:** InfraBuild Partners
 > **GitHub:** github.com/sansugupta/Sanskar-Porfolio
@@ -17,7 +17,7 @@ This monorepo contains:
 | Sanskar Portfolio | `/src/` | Next.js 15, React 19, Tailwind, Framer Motion | ✅ Live |
 | InfraBuild Partners | `/InfraBuild-Partners/` | Static HTML/CSS/JS | ✅ Rebuilt |
 | Deployments | `/deployments/` | Docker, Helm, GitHub Actions | ✅ Ready |
-| Marketing | `/marketing/` | HTML templates, PDF | ✅ Created |
+| Marketing Ops | `/marketing-ops/` | Strategy memory, templates, automation notes | ✅ Created |
 
 ---
 
@@ -30,15 +30,16 @@ This monorepo contains:
 | Service | Price | Type |
 |---------|-------|------|
 | Development Support | $599/month | Engineering |
-| DevOps Support | $549/month | Engineering |
-| SRE Support | $699/month | Engineering |
-| Data Engineering | $799/month | Engineering |
-| Data Analyst | $399/month | Engineering |
-| Interview Support | $249/each | Career |
-| Job Applying Support | $399/month | Career |
+| DevOps Support | $499/month | Engineering |
+| Bootcamp Service | $499/month | Engineering |
+| SRE Support | $549/month | Engineering |
+| Data Engineering | $399/month | Engineering |
+| Data Analyst | $349/month | Engineering |
+| Interview Support | $149/each | Engineering |
+| Job Applying Support | $249/month | Career |
 | Resume & LinkedIn | $149/month | Career |
-| Full Job Search Mgmt | $1,499/month | Career |
-| End-to-End Placement | $2,499 one-time | Career |
+| Full Job Search Mgmt | $349/month | Career |
+| End-to-End Placement | $1,899 one-time | Career |
 
 ### Key Clients & Testimonials
 - **Paisley** — DevOps Infrastructure Optimization
@@ -106,13 +107,39 @@ This monorepo contains:
 - Build optimization: Only deploy to Vercel when portfolio code changes, saving build minutes.
 - Maintained existing Lightsail deployment for InfraBuild Partners static site.
 
+### Session 4 — 2026-04-18 (InfraBuild Offer System + Marketing Ops Memory)
+**Topics Covered:**
+- Added a JSON-driven service detail system for InfraBuild Partners with clickable overview tiles.
+- Introduced the Bootcamp Service offer and refreshed the pricing model across engineering and career services.
+- Added repo-level AI memory in `AGENTS.md` plus a dedicated `marketing-ops/` workspace for strategy continuity.
+- Fixed the public brochure download on the portfolio preview branch and stabilized the preview flow on `upgradation`.
+- Updated Lightsail Nginx so `infrabuildpartners.com` serves the InfraBuild site independently from Reel Studio.
+
+**Key Decisions:**
+- `InfraBuild-Partners/data/services.json` is now the primary source of truth for service copy, pricing, and overview content.
+- `marketing-ops/` is the persistent place for InfraBuild marketing strategy, platform plans, and session notes.
+- Future AI sessions should prefer `AGENTS.md` first, then `marketing-ops/`, before making marketing or pricing changes.
+
+### Session 5 — 2026-04-18 (Marketing Intelligence + Automation Blueprint)
+**Topics Covered:**
+- Renamed the loose marketing workspace into `marketing-ops/` and preserved reusable post templates there.
+- Expanded the marketing operating docs for LinkedIn, Instagram, and WhatsApp with practical automation guardrails.
+- Drafted a fuller LinkedIn company profile baseline in `marketing-ops/linkedin-company-profile.md`.
+- Interpreted the requested `pipeline support` price as the application-pipeline offer and updated Job Applying Support to `$249/month`.
+
+**Key Decisions:**
+- Future marketing sessions should treat `marketing-ops/automation-playbook.md` as the approval-aware automation baseline.
+- WhatsApp growth should use `Channel + direct business chat`, not open member-visible groups.
+- Service pricing remains Git-editable, with InfraBuild website updates flowing from `InfraBuild-Partners/data/services.json`.
+
 ---
 
 ## 🔮 Future Plans / Next Steps
 - **Add VERCEL_TOKEN to GitHub Secrets**: User needs to add the Vercel token to repository secrets for automated deployments.
 - **Test Vercel Deployment**: Push changes to `/src/` to trigger Vercel deployment and verify the portfolio is live.
 - **Domain Mapping**: Point portfolio domain to Vercel deployment when ready.
-- **Domain Mapping**: Point `infrabuildpartners.com` to the Lightsail IP when purchased.
+- **Marketing Automation Buildout**: Finalize the first publish/respond flows for LinkedIn, Instagram, and WhatsApp.
+- **LinkedIn Company Page**: Use the drafted profile copy in `marketing-ops/linkedin-company-profile.md` as the baseline.
 
 ---
 
@@ -120,7 +147,7 @@ This monorepo contains:
 
 When any AI session opens this repo, it should:
 1. **Read this file first** — It contains the complete project context
-2. **Check `/marketing/` folder** — For latest templates and assets
+2. **Check `/marketing-ops/` folder** — For latest strategy memory, templates, and assets
 3. **Check `/deployments/` folder** — For current deployment status
 4. **Check conversation log above** — For recent decisions and changes
 5. **Update this file** — After making any significant changes
