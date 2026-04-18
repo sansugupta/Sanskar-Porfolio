@@ -25,8 +25,8 @@ export default function HeroSection() {
 
   const handleDownloadInfraBuildTemplate = () => {
     const link = document.createElement("a")
-    link.href = "/downloads/infrabuild-partners-template.zip"
-    link.download = "infrabuild-partners-template.zip"
+    link.href = "/downloads/infrabuild-partners-overview.pdf"
+    link.download = "InfraBuild_Partners_Service_Overview.pdf"
     document.body.appendChild(link)
     link.click()
     link.remove()
@@ -120,12 +120,12 @@ export default function HeroSection() {
             </button>
             <button
               onClick={handleDownloadInfraBuildTemplate}
-              aria-label="Download InfraBuild Partners template"
-              title="Download InfraBuild Partners template"
+              aria-label="Download InfraBuild Partners overview"
+              title="Download InfraBuild Partners overview"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-cyan-500/30 hover:text-white"
             >
               <Download className="w-3.5 h-3.5" />
-              Download Template
+              Download Overview
             </button>
           </div>
         </motion.div>
