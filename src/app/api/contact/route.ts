@@ -2,7 +2,13 @@ import { type NextRequest, NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResendClient() {
+  if (!process.env.RESEND_API_KEY) {
+    return null
+  }
+
+  return new Resend(process.env.RESEND_API_KEY)
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,22 +42,26 @@ export async function POST(request: NextRequest) {
 
     console.log("Contact message saved:", data)
 
-    try {
-      await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: 'sanskargupta966@gmail.com',
-        subject: `New Contact Form Submission${subject ? `: ${subject}` : ''}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
-        `,
-      })
-    } catch (emailError) {
-      console.error("Email sending error:", emailError)
+    const resend = getResendClient()
+
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: 'onboarding@resend.dev',
+          to: 'sanskargupta966@gmail.com',
+          subject: `New Contact Form Submission${subject ? `: ${subject}` : ''}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+          `,
+        })
+      } catch (emailError) {
+        console.error("Email sending error:", emailError)
+      }
     }
 
     return NextResponse.json({
