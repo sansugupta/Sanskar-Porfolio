@@ -1,78 +1,18 @@
 {
   "projects": [
-    {
-      "tag": "Kubernetes / DR",
-      "title": "Enterprise Java Microservices Stack",
-      "description": "Consolidated Multi-Tenant Cluster Architecture with Cold-Standby DR. Reduced infra costs by 65% while maintaining 99.9% availability.",
-      "tech": ["Kubernetes", "Terraform", "GitHub Actions", "PostgreSQL"]
-    },
-    {
-      "tag": "AI / Terraform",
-      "title": "AWS Bedrock Agent Terraform Module",
-      "description": "Production-ready Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents for GenAI Infrastructure as Code.",
-      "tech": ["Terraform", "AWS Bedrock", "Python", "Lambda"]
-    },
-    {
-      "tag": "Observability / eBPF",
-      "title": "AI-Powered Observability Automation",
-      "description": "Comprehensive observability platform for Kubernetes using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse. Reduced MTTR by 60%.",
-      "tech": ["Kubernetes", "Prometheus", "Grafana", "eBPF"]
-    },
-    {
-      "tag": "Full-Stack / EKS",
-      "title": "Three-Tier Web App on AWS EKS",
-      "description": "Microservices-based web app (React, Node.js, MongoDB) on AWS EKS with Blue/Green deployments for zero downtime.",
-      "tech": ["AWS EKS", "Jenkins", "Docker", "React"]
-    },
-    {
-      "tag": "DevSecOps",
-      "title": "DevSecOps Pipeline Automation",
-      "description": "Comprehensive DevSecOps pipeline with automated SAST, DAST, SCA scanning, vulnerability management, and compliance reporting.",
-      "tech": ["Jenkins", "Trivy", "OWASP ZAP", "SonarQube"]
-    },
-    {
-      "tag": "Traefik / Ad Tech",
-      "title": "Ad Bidding System with Traefik",
-      "description": "High-performance ad bidding system on AWS EKS with Traefik for secure HTTPS traffic routing from Google AdX with TLS termination.",
-      "tech": ["AWS EKS", "Traefik", "Docker", "Let's Encrypt"]
-    }
+    { "tag": "Kubernetes / DR", "title": "Enterprise Java Microservices Stack", "description": "Consolidated Multi-Tenant Cluster Architecture with Cold-Standby DR. Reduced infra costs by 65% while maintaining 99.9% availability.", "tech": ["Kubernetes", "Terraform", "GitHub Actions", "PostgreSQL"] },
+    { "tag": "AI / Terraform", "title": "AWS Bedrock Agent Terraform Module", "description": "Production-ready Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents for GenAI Infrastructure as Code.", "tech": ["Terraform", "AWS Bedrock", "Python", "Lambda"] },
+    { "tag": "Observability / eBPF", "title": "AI-Powered Observability Automation", "description": "Comprehensive observability platform for Kubernetes using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse. Reduced MTTR by 60%.", "tech": ["Kubernetes", "Prometheus", "Grafana", "eBPF"] },
+    { "tag": "Full-Stack / EKS", "title": "Three-Tier Web App on AWS EKS", "description": "Microservices-based web app (React, Node.js, MongoDB) on AWS EKS with Blue/Green deployments for zero downtime.", "tech": ["AWS EKS", "Jenkins", "Docker", "React"] },
+    { "tag": "DevSecOps", "title": "DevSecOps Pipeline Automation", "description": "Comprehensive DevSecOps pipeline with automated SAST, DAST, SCA scanning, vulnerability management, and compliance reporting.", "tech": ["Jenkins", "Trivy", "OWASP ZAP", "SonarQube"] },
+    { "tag": "Traefik / Ad Tech", "title": "Ad Bidding System with Traefik", "description": "High-performance ad bidding system on AWS EKS with Traefik for secure HTTPS traffic routing from Google AdX with TLS termination.", "tech": ["AWS EKS", "Traefik", "Docker", "Let's Encrypt"] }
   ],
   "testimonials": [
-    {
-      "name": "Paisley",
-      "role": "DevOps Support",
-      "message": "Exceptional DevOps expertise! Sanskar streamlined our CI/CD pipeline and reduced deployment time by 60%. His proactive approach to infrastructure optimization was invaluable.",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869139738.png?width=100&height=100&resize=contain"
-    },
-    {
-      "name": "Ravi Raj Jha",
-      "role": "SRE Support",
-      "message": "Outstanding SRE support! Sanskar's monitoring solutions and incident response workflows have significantly improved our system reliability.",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869048145.png?width=100&height=100&resize=contain"
-    },
-    {
-      "name": "Oluwakush",
-      "role": "SRE Support",
-      "message": "Sanskar delivered excellent SRE solutions with comprehensive observability and alerting systems. His expertise in kubernetes and cloud infrastructure is top-notch.",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869098686.png?width=100&height=100&resize=contain"
-    },
-    {
-      "name": "Sean",
-      "role": "DevOps Automation & Security",
-      "message": "Professional and efficient DevOps support! Sanskar automated our entire deployment process and implemented robust security practices. Highly recommended!",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869121723.png?width=100&height=100&resize=contain"
-    },
-    {
-      "name": "Prem",
-      "role": "DevOps Project",
-      "message": "Excellent work on Traefik setup and bidder application deployment! Sanskar's expertise in container orchestration and load balancing was exactly what we needed.",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1766151272876.png?width=100&height=100&resize=contain"
-    },
-    {
-      "name": "Rohit Sahu",
-      "role": "Full-Stack Development",
-      "message": "Sanskar's expertise in React and Node.js transformed our web application. The performance improvements and clean code architecture exceeded our expectations.",
-      "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869919712.png?width=100&height=100&resize=contain"
-    }
+    { "name": "Paisley", "role": "DevOps Support", "message": "Exceptional DevOps expertise! Sanskar streamlined our CI/CD pipeline and reduced deployment time by 60%. His proactive approach to infrastructure optimization was invaluable.", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869139738.png?width=100&height=100&resize=contain" },
+    { "name": "Ravi Raj Jha", "role": "SRE Support", "message": "Outstanding SRE support! Sanskar's monitoring solutions and incident response workflows have significantly improved our system reliability.", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869048145.png?width=100&height=100&resize=contain" },
+    { "name": "Oluwakush", "role": "SRE Support", "message": "Sanskar delivered excellent SRE solutions with comprehensive observability and alerting systems. His expertise in kubernetes and cloud infrastructure is top-notch.", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869098686.png?width=100&height=100&resize=contain" },
+    { "name": "Sean", "role": "DevOps Automation & Security", "message": "Professional and efficient DevOps support! Sanskar automated our entire deployment process and implemented robust security practices. Highly recommended!", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869121723.png?width=100&height=100&resize=contain" },
+    { "name": "Prem", "role": "DevOps Project", "message": "Excellent work on Traefik setup and bidder application deployment! Sanskar's expertise in container orchestration and load balancing was exactly what we needed.", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1766151272876.png?width=100&height=100&resize=contain" },
+    { "name": "Rohit Sahu", "role": "Full-Stack Development", "message": "Sanskar's expertise in React and Node.js transformed our web application. The performance improvements and clean code architecture exceeded our expectations.", "image": "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869919712.png?width=100&height=100&resize=contain" }
   ]
 }
