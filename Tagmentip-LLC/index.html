@@ -1,0 +1,638 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagmentip LLC — Elite Engineering &amp; Career Solutions for US Clients.</title>
+    <meta name="description" content="Tagmentip LLC delivers elite DevOps, SRE, Development, and Career Solutions to US clients. Building the foundation for your growth.">
+    <meta name="keywords" content="DevOps, SRE, Site Reliability, Cloud Engineering, Kubernetes, Terraform, Career Support, Interview Prep, Infrastructure, US Tech Services">
+    <meta property="og:title" content="Tagmentip LLC — Elite Engineering &amp; Career Solutions.">
+    <meta property="og:description" content="A specialized team of DevOps, SRE, Development, and Data professionals serving US clients. We build the foundation for your growth.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://tagmentip.vercel.app">
+    <link rel="icon" type="image/png" href="assets/logo-full.png?v=20260419-themefix">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=20260419-themefix">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Ambient grain/gradient backdrop -->
+    <div class="backdrop" aria-hidden="true">
+        <div class="backdrop-grid"></div>
+        <div class="backdrop-vignette"></div>
+        <div class="backdrop-grain"></div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services" onclick="closeMobile()">Services</a>
+        <a href="#projects" onclick="closeMobile()">Case Studies</a>
+        <a href="#testimonials" onclick="closeMobile()">Testimonials</a>
+        <a href="#career" onclick="closeMobile()">Career Solutions</a>
+        <a href="#contact" onclick="closeMobile()">Contact</a>
+        <a href="javascript:void(0)" onclick="generateBooklet();closeMobile()" class="cta-secondary"><i class="fas fa-download"></i>&nbsp; Download Booklet</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="" data-cc-id="cc-1">
+        <div class="nav-inner">
+            <a href="#" class="brand" aria-label="Tagmentip LLC — home">
+                <img class="brand-mark" src="assets/logo-shield-cut.png?v=20260419-themefix" alt="" aria-hidden="true">
+                <span class="brand-word">Tagmentip<span>&nbsp;LLC</span></span>
+            </a>
+            <div class="nav-links" data-cc-id="cc-3">
+                <a href="#services" data-cc-id="cc-6">Services</a>
+                <a href="#projects" data-cc-id="cc-5">Case Studies</a>
+                <a href="#testimonials" data-cc-id="cc-4">Testimonials</a>
+                <a href="#career" data-cc-id="cc-2">Career</a>
+                <a href="javascript:void(0)" onclick="generateBooklet()" class="cta-secondary" data-cc-id="cc-11"><i class="fas fa-download"></i>&nbsp; Booklet</a>
+                <a href="#contact" class="cta-btn">Get Started</a>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" data-cc-id="cc-10">
+        <div class="hero-shield" aria-hidden="true">
+            <img src="assets/logo-shield-cut.png?v=20260419-themefix" alt="">
+        </div>
+        <!-- Orbiting DevOps tech icons -->
+        <div class="tech-orbit" aria-hidden="true">
+            <div class="orbit orbit-1">
+                <span class="tech-chip" style="--c:#f7df1e"><i class="fab fa-js"></i></span>
+                <span class="tech-chip" style="--c:#61dafb"><i class="fab fa-react"></i></span>
+                <span class="tech-chip" style="--c:#68a063"><i class="fab fa-node-js"></i></span>
+                <span class="tech-chip" style="--c:#3776ab"><i class="fab fa-python"></i></span>
+            </div>
+            <div class="orbit orbit-2">
+                <span class="tech-chip" style="--c:#2496ed"><i class="fab fa-docker"></i></span>
+                <span class="tech-chip" style="--c:#ff9900"><i class="fab fa-aws"></i></span>
+                <span class="tech-chip" style="--c:#f05032"><i class="fab fa-git-alt"></i></span>
+                <span class="tech-chip" style="--c:#ffffff"><i class="fab fa-github"></i></span>
+            </div>
+        </div>
+        <div class="hero-content" data-cc-id="cc-7">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Now serving US clients · Remote-first, delivery-focused
+            </div>
+            <h1 data-cc-id="cc-8">
+                Elite tech solutions<br>
+                <span class="hero-accent" data-cc-id="cc-9">delivered for US clients.</span>
+            </h1>
+            <p class="hero-sub">A specialized team of DevOps, SRE, Development, and Data professionals partnered with InfraBuild Partners. From infrastructure to career acceleration — built for the US market.</p>
+            <div class="hero-ctas">
+                <a href="#services" class="cta-btn">Explore services</a>
+                <a href="#contact" class="cta-secondary">Schedule a call &nbsp;→</a>
+            </div>
+            <div class="hero-tagline">TAGMENTIP &nbsp;·&nbsp; LLC &nbsp;·&nbsp; ELITE &nbsp;·&nbsp; ENGINEERING &nbsp;·&nbsp; US &nbsp;·&nbsp; CLIENTS</div>
+        </div>
+
+        <!-- Trust marquee -->
+        <div class="trust-marquee">
+            <div class="trust-track">
+                <span>AWS</span><span>·</span>
+                <span>Kubernetes</span><span>·</span>
+                <span>Terraform</span><span>·</span>
+                <span>GitHub Actions</span><span>·</span>
+                <span>Prometheus</span><span>·</span>
+                <span>Grafana</span><span>·</span>
+                <span>Datadog</span><span>·</span>
+                <span>Docker</span><span>·</span>
+                <span>Jenkins</span><span>·</span>
+                <span>GitLab CI</span><span>·</span>
+                <span>Airflow</span><span>·</span>
+                <span>dbt</span><span>·</span>
+                <span>Spark</span><span>·</span>
+                <span>Python</span><span>·</span>
+                <span>React</span><span>·</span>
+                <span>Node.js</span><span>·</span>
+                <!-- duplicated for seamless loop -->
+                <span>AWS</span><span>·</span>
+                <span>Kubernetes</span><span>·</span>
+                <span>Terraform</span><span>·</span>
+                <span>GitHub Actions</span><span>·</span>
+                <span>Prometheus</span><span>·</span>
+                <span>Grafana</span><span>·</span>
+                <span>Datadog</span><span>·</span>
+                <span>Docker</span><span>·</span>
+                <span>Jenkins</span><span>·</span>
+                <span>GitLab CI</span><span>·</span>
+                <span>Airflow</span><span>·</span>
+                <span>dbt</span><span>·</span>
+                <span>Spark</span><span>·</span>
+                <span>Python</span><span>·</span>
+                <span>React</span><span>·</span>
+                <span>Node.js</span><span>·</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item reveal visible">
+                <div class="stat-number" data-count="100" data-animated="true">100%</div>
+                <div class="stat-label">Deadline hit rate</div>
+            </div>
+            <div class="stat-item reveal visible">
+                <div class="stat-number" data-count="50" data-animated="true">50+</div>
+                <div class="stat-label">Projects delivered</div>
+            </div>
+            <div class="stat-item reveal visible">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Engineering support</div>
+            </div>
+            <div class="stat-item reveal visible">
+                <div class="stat-number" data-count="15" data-animated="true">15+</div>
+                <div class="stat-label">Team members</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guarantee Banner -->
+    <div class="guarantee-banner">
+        <div class="guarantee-inner reveal visible">
+            <div class="guarantee-icon">
+                <img src="assets/logo-shield-cut.png?v=20260419-themefix" alt="">
+            </div>
+            <div class="guarantee-text">
+                <div class="eyebrow">The Tagmentip guarantee</div>
+                <h3>Every deadline, every time.</h3>
+                <p>We don't just promise delivery — we guarantee it. Every engagement with US clients comes with our commitment to matching all your deadlines. If we commit, we deliver. No exceptions, no excuses.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engineering Services -->
+    <section id="services">
+        <div class="section-head">
+            <div class="section-label">01 · Engineering services</div>
+            <h2 class="section-title">Build. Deploy. Scale.</h2>
+            <p class="section-desc">Enterprise-grade engineering support across the full technology stack. Plug our team directly into your workflows.</p>
+        </div>
+
+        <div class="services-grid" id="services-grid">
+        <div class="service-card card-dev reveal is-clickable visible" data-service-id="development" tabindex="0" role="button" aria-label="View Development Support overview" style="--mx: 128.0864197530864%; --my: 93.1028948582663%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <span class="service-index">/ 01</span>
+            </div>
+            <h3>Development Support</h3>
+            <p>Full-stack development across Java, Python, Node.js, Angular, and React. From feature builds to complex refactors, we write production-grade code that ships.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$799</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-devops reveal is-clickable visible" data-service-id="devops" tabindex="0" role="button" aria-label="View DevOps Support overview" style="--mx: 113.58024691358024%; --my: 120.3221858888198%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-infinity"></i></div>
+                <span class="service-index">/ 02</span>
+            </div>
+            <h3>DevOps Support</h3>
+            <p>CI/CD pipelines, containerization (Docker/ECS/K8s), IaC with Terraform, GitLab/GitHub Actions automation. We make your deployments bulletproof.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$699</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-bootcamp reveal is-clickable visible" data-service-id="bootcamp" tabindex="0" role="button" aria-label="View Bootcamp Service overview" style="--mx: 13.271604938271606%; --my: 120.3221858888198%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                <span class="service-index">/ 03</span>
+            </div>
+            <h3>Bootcamp Service</h3>
+            <p>Hands-on monthly boot camp with guided learning, practical implementation, job support, and real-world engineering workflows.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$1,000</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-sre reveal is-clickable visible" data-service-id="sre" tabindex="0" role="button" aria-label="View SRE Support overview" style="--mx: 128.0864197530864%; --my: -7.153890906172888%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-server"></i></div>
+                <span class="service-index">/ 04</span>
+            </div>
+            <h3>SRE Support</h3>
+            <p>Monitoring (Prometheus, Grafana, Datadog), incident response, SLA management, and reliability engineering. We keep your systems running at 99.99%.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$749</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-data reveal is-clickable visible" data-service-id="data-engineering" tabindex="0" role="button" aria-label="View Data Engineering overview" style="--mx: 95.37037037037037%; --my: 56.27219291030553%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-database"></i></div>
+                <span class="service-index">/ 05</span>
+            </div>
+            <h3>Data Engineering</h3>
+            <p>ETL/ELT pipelines, data warehousing, Spark, Airflow, dbt, and cloud-native data architectures. We turn raw data into business intelligence.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$599</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-analyst reveal is-clickable visible" data-service-id="data-analyst" tabindex="0" role="button" aria-label="View Data Analyst overview" style="--mx: -4.938271604938271%; --my: 56.27219291030553%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <span class="service-index">/ 06</span>
+            </div>
+            <h3>Data Analyst</h3>
+            <p>Business intelligence dashboards, SQL analytics, reporting automation, and data visualization with Tableau, Power BI, and Looker.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$549</span>
+                    <span class="period">/month</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+        <div class="service-card card-interview reveal is-clickable visible" data-service-id="interview" tabindex="0" role="button" aria-label="View Interview Support overview" style="--mx: 17.28395061728395%; --my: -24.369389539222585%;">
+            <div class="service-head">
+                <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                <span class="service-index">/ 07</span>
+            </div>
+            <h3>Interview Support</h3>
+            <p>One-on-one mock interviews, system design reviews, coding walkthroughs, and real-time technical coaching to help you land the role.</p>
+            <div class="service-card-footer">
+                <div class="service-price">
+                    <span class="amount">$349</span>
+                    <span class="period">/each</span>
+                </div>
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div></div>
+    </section>
+
+    <!-- Case Studies / Projects -->
+    <section id="projects">
+        <div class="section-head">
+            <div class="section-label">02 · Case studies</div>
+            <h2 class="section-title">Our work speaks.</h2>
+            <p class="section-desc">Real projects. Real impact. A showcase of what we've built for clients across the globe.</p>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+                <div class="project-card reveal visible">
+                    <span class="project-tag">Kubernetes / DR</span>
+                    <h3>Enterprise Java Microservices Stack</h3>
+                    <p>Consolidated Multi-Tenant Cluster Architecture with Cold-Standby DR. Reduced infra costs by 65% while maintaining 99.9% availability.</p>
+                    <div class="project-tech">
+                        <span>Kubernetes</span><span>Terraform</span><span>GitHub Actions</span><span>PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project-card reveal visible">
+                    <span class="project-tag">AI / Terraform</span>
+                    <h3>AWS Bedrock Agent Terraform Module</h3>
+                    <p>Production-ready Terraform Module for deploying secure, scalable RAG architecture using AWS Bedrock Agents for GenAI Infrastructure as Code.</p>
+                    <div class="project-tech">
+                        <span>Terraform</span><span>AWS Bedrock</span><span>Python</span><span>Lambda</span>
+                    </div>
+                </div>
+                <div class="project-card reveal visible">
+                    <span class="project-tag">Observability / eBPF</span>
+                    <h3>AI-Powered Observability Automation</h3>
+                    <p>Comprehensive observability platform for Kubernetes using Groundcover (eBPF), Prometheus, Grafana, and ClickHouse. Reduced MTTR by 60%.</p>
+                    <div class="project-tech">
+                        <span>Kubernetes</span><span>Prometheus</span><span>Grafana</span><span>eBPF</span>
+                    </div>
+                </div>
+                <div class="project-card reveal visible">
+                    <span class="project-tag">Full-Stack / EKS</span>
+                    <h3>Three-Tier Web App on AWS EKS</h3>
+                    <p>Microservices-based web app (React, Node.js, MongoDB) on AWS EKS with Blue/Green deployments for zero downtime.</p>
+                    <div class="project-tech">
+                        <span>AWS EKS</span><span>Jenkins</span><span>Docker</span><span>React</span>
+                    </div>
+                </div>
+                <div class="project-card reveal visible">
+                    <span class="project-tag">DevSecOps</span>
+                    <h3>DevSecOps Pipeline Automation</h3>
+                    <p>Comprehensive DevSecOps pipeline with automated SAST, DAST, SCA scanning, vulnerability management, and compliance reporting.</p>
+                    <div class="project-tech">
+                        <span>Jenkins</span><span>Trivy</span><span>OWASP ZAP</span><span>SonarQube</span>
+                    </div>
+                </div>
+                <div class="project-card reveal visible">
+                    <span class="project-tag">Traefik / Ad Tech</span>
+                    <h3>Ad Bidding System with Traefik</h3>
+                    <p>High-performance ad bidding system on AWS EKS with Traefik for secure HTTPS traffic routing from Google AdX with TLS termination.</p>
+                    <div class="project-tech">
+                        <span>AWS EKS</span><span>Traefik</span><span>Docker</span><span>Let's Encrypt</span>
+                    </div>
+                </div></div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="section-head">
+            <div class="section-label">03 · Client testimonials</div>
+            <h2 class="section-title">What our clients say.</h2>
+            <p class="section-desc">Real feedback from clients we've had the privilege to work with across the globe.</p>
+        </div>
+
+        <div class="testimonials-grid" id="testimonials-grid">
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Exceptional DevOps expertise! Sanskar streamlined our CI/CD pipeline and reduced deployment time by 60%. His proactive approach to infrastructure optimization was invaluable."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869139738.png?width=100&amp;height=100&amp;resize=contain" alt="Paisley" loading="lazy">
+                        <div class="info"><h4>Paisley</h4><p>DevOps Support</p></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Outstanding SRE support! Sanskar's monitoring solutions and incident response workflows have significantly improved our system reliability."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869048145.png?width=100&amp;height=100&amp;resize=contain" alt="Ravi Raj Jha" loading="lazy">
+                        <div class="info"><h4>Ravi Raj Jha</h4><p>SRE Support</p></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Sanskar delivered excellent SRE solutions with comprehensive observability and alerting systems. His expertise in kubernetes and cloud infrastructure is top-notch."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869098686.png?width=100&amp;height=100&amp;resize=contain" alt="Oluwakush" loading="lazy">
+                        <div class="info"><h4>Oluwakush</h4><p>SRE Support</p></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Professional and efficient DevOps support! Sanskar automated our entire deployment process and implemented robust security practices. Highly recommended!"</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869121723.png?width=100&amp;height=100&amp;resize=contain" alt="Sean" loading="lazy">
+                        <div class="info"><h4>Sean</h4><p>DevOps Automation &amp; Security</p></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Excellent work on Traefik setup and bidder application deployment! Sanskar's expertise in container orchestration and load balancing was exactly what we needed."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1766151272876.png?width=100&amp;height=100&amp;resize=contain" alt="Prem" loading="lazy">
+                        <div class="info"><h4>Prem</h4><p>DevOps Project</p></div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal visible">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Sanskar's expertise in React and Node.js transformed our web application. The performance improvements and clean code architecture exceeded our expectations."</blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765869919712.png?width=100&amp;height=100&amp;resize=contain" alt="Rohit Sahu" loading="lazy">
+                        <div class="info"><h4>Rohit Sahu</h4><p>Full-Stack Development</p></div>
+                    </div>
+                </div></div>
+    </section>
+
+    <!-- Career Solutions -->
+    <section id="career">
+        <div class="section-head">
+            <div class="section-label">04 · Career solutions</div>
+            <h2 class="section-title">Land your dream role.</h2>
+            <p class="section-desc">Comprehensive career acceleration packages designed to get you hired, fast.</p>
+        </div>
+    </section>
+
+    <section id="premium">
+        <div class="premium-grid" id="premium-grid">
+        <div class="premium-card reveal is-clickable visible" data-service-id="job-applying" tabindex="0" role="button" aria-label="View Job Applying Support overview">
+            
+            <h3>Job Applying Support</h3>
+            <div class="desc">We handle the job pipeline. Targeted applications with full tracking across applied, responded, and status updates.</div>
+            <div class="premium-price">
+                <span class="dollar">$</span>
+                <span class="amount">800</span>
+                <span class="period">/month</span>
+            </div>
+            <ul class="premium-features">
+                <li><i class="fas fa-check"></i> Targeted job applications on your behalf</li><li><i class="fas fa-check"></i> Full tracking report (applied / response / status)</li><li><i class="fas fa-check"></i> Weekly progress updates</li><li><i class="fas fa-check"></i> Application strategy optimization</li>
+            </ul>
+            <div class="premium-actions">
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+                <a href="#contact" class="premium-cta secondary">Get started</a>
+            </div>
+        </div>
+        <div class="premium-card reveal is-clickable visible" data-service-id="resume-linkedin" tabindex="0" role="button" aria-label="View Resume &amp; LinkedIn Optimization overview">
+            
+            <h3>Resume &amp; LinkedIn Optimization</h3>
+            <div class="desc">ATS-optimized resume rewrites, LinkedIn profile overhauls, and ongoing updates.</div>
+            <div class="premium-price">
+                <span class="dollar">$</span>
+                <span class="amount">349</span>
+                <span class="period">/month</span>
+            </div>
+            <ul class="premium-features">
+                <li><i class="fas fa-check"></i> ATS-optimized resume rewrite</li><li><i class="fas fa-check"></i> LinkedIn profile optimization</li><li><i class="fas fa-check"></i> Ongoing updates as needed</li><li><i class="fas fa-check"></i> One-time service also available</li>
+            </ul>
+            <div class="premium-actions">
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+                <a href="#contact" class="premium-cta secondary">Get started</a>
+            </div>
+        </div>
+        <div class="premium-card featured reveal is-clickable visible" data-service-id="full-job-search" tabindex="0" role="button" aria-label="View Full Job Search Management overview">
+            <div class="premium-badge">High demand</div>
+            <h3>Full Job Search Management</h3>
+            <div class="desc">An all-in-one job support package covering learning support, interview preparation, selected job applications, and profile upgrades.</div>
+            <div class="premium-price">
+                <span class="dollar">$</span>
+                <span class="amount">549</span>
+                <span class="period">/month</span>
+            </div>
+            <ul class="premium-features">
+                <li><i class="fas fa-check"></i> Structured job search and selected application support</li><li><i class="fas fa-check"></i> Resume &amp; LinkedIn optimization</li><li><i class="fas fa-check"></i> Interview preparation &amp; mock sessions</li><li><i class="fas fa-check"></i> Learning materials, notes, and study guides</li><li><i class="fas fa-check"></i> 1-on-1 teaching support before interviews</li>
+            </ul>
+            <div class="premium-actions">
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+                <a href="#contact" class="premium-cta primary">Get started →</a>
+            </div>
+        </div>
+        <div class="premium-card reveal is-clickable visible" data-service-id="placement" tabindex="0" role="button" aria-label="View End-to-End Placement Support overview">
+            <div class="premium-badge">Premium</div>
+            <h3>End-to-End Placement Support</h3>
+            <div class="desc">The premium outcome package covering skills, learning, resume upgrades, LinkedIn optimization, applications, and placement support with a partial refund promise.</div>
+            <div class="premium-price">
+                <span class="dollar">$</span>
+                <span class="amount">2,099</span>
+                <span class="period">one-time</span>
+            </div>
+            <ul class="premium-features">
+                <li><i class="fas fa-check"></i> Everything in Full Job Search Management</li><li><i class="fas fa-check"></i> Learning roadmap and accountability for the full month</li><li><i class="fas fa-check"></i> Resume, LinkedIn, and application support</li><li><i class="fas fa-check"></i> Job opportunity sourcing and guided submissions</li><li><i class="fas fa-check"></i> 50% refundable if placement does not occur</li>
+            </ul>
+            <div class="premium-actions">
+                <span class="service-detail-pill">View overview <i class="fas fa-arrow-right"></i></span>
+                <a href="#contact" class="premium-cta secondary">Get started</a>
+            </div>
+        </div></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <div class="contact-left">
+                <div class="section-label">05 · Get in touch</div>
+                <h2 class="section-title">Let's build something <span class="hero-accent">exceptional.</span></h2>
+                <p class="section-desc">Whether you need infrastructure support or career acceleration, our team is ready to deliver.</p>
+
+                <div class="contact-info-list">
+                    <div class="contact-info-item">
+                        <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+                        <div class="info"><h4>Email</h4><p>hello@tagmentip.com</p></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon-wrap"><i class="fab fa-whatsapp"></i></div>
+                        <div class="info"><h4>WhatsApp</h4><p>+1 (888) TAGMENT</p></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                        <div class="info"><h4>Response time</h4><p>Usually within 2 hours</p></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon-wrap"><i class="fas fa-globe"></i></div>
+                        <div class="info"><h4>US Market Focus</h4><p>Serving US clients — Remote first</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <label>
+                    <span>Your name</span>
+                    <input type="text" id="contact-name" placeholder="Jane Doe" required="">
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" id="contact-email" placeholder="jane@company.com" required="">
+                </label>
+                <label>
+                    <span>Service</span>
+                    <select id="contact-service"><option value="">Select a service…</option><option value="development">Development Support — $599/month</option><option value="devops">DevOps Support — $499/month</option><option value="bootcamp">Bootcamp Service — $499/month</option><option value="sre">SRE Support — $549/month</option><option value="data-engineering">Data Engineering — $399/month</option><option value="data-analyst">Data Analyst — $349/month</option><option value="interview">Interview Support — $149/each</option><option value="job-applying">Job Applying Support — $249/month</option><option value="resume-linkedin">Resume &amp; LinkedIn Optimization — $149/month</option><option value="full-job-search">Full Job Search Management — $349/month</option><option value="placement">End-to-End Placement Support — $1,899one-time</option><option value="custom">Custom Project</option></select>
+                </label>
+                <label>
+                    <span>Message</span>
+                    <textarea id="contact-message" placeholder="Tell us about your project or needs…"></textarea>
+                </label>
+                <button type="submit" class="cta-btn full">Send message &nbsp;→</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="service-modal" id="service-modal" aria-hidden="true">
+        <div class="service-modal-backdrop" data-close-service-modal=""></div>
+        <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+            <button class="service-modal-close" type="button" aria-label="Close service overview" data-close-service-modal="">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="service-modal-header">
+                <div>
+                    <p class="service-modal-label">Service overview</p>
+                    <h3 id="service-modal-title">SRE Support</h3>
+                </div>
+                <span class="service-modal-price" id="service-modal-price">$549/month</span>
+            </div>
+            <p class="service-modal-subtitle" id="service-modal-subtitle">Reliability engineering support for teams that are scaling fast and need stronger visibility, incident response, and operational discipline.</p>
+            <div class="service-modal-body" id="service-modal-body">
+        <section class="service-modal-section">
+            <h4>Included</h4>
+            <ul><li>Observability design with Prometheus, Grafana, and Datadog</li><li>Incident response workflows and alert tuning</li><li>SLA-minded reliability reviews and system hardening</li></ul>
+        </section>
+        <section class="service-modal-section">
+            <h4>Ideal For</h4>
+            <ul><li>Production services with uptime pressure</li><li>Teams suffering from noisy alerts or weak visibility</li><li>Companies that want more disciplined ops before scaling further</li></ul>
+        </section></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="brand">
+                    <img class="brand-mark" src="assets/logo-shield-cut.png?v=20260419-themefix" alt="" aria-hidden="true">
+                    <span class="brand-word">Tagmentip<span>&nbsp;LLC</span></span>
+                </a>
+                <p class="footer-tag">ELITE TECH SOLUTIONS FOR US CLIENTS.</p>
+                <p class="footer-copy">© 2026 Tagmentip LLC. All rights reserved.</p>
+            </div>
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <a href="#services">DevOps</a>
+                    <a href="#services">SRE</a>
+                    <a href="#services">Development</a>
+                    <a href="#services">Data</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Career</h5>
+                    <a href="#career">Job search</a>
+                    <a href="#career">Resume &amp; LinkedIn</a>
+                    <a href="#career">Interview prep</a>
+                    <a href="#career">Placement</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="#"><i class="fab fa-linkedin-in"></i>&nbsp; LinkedIn</a>
+                    <a href="mailto:hello@tagmentip.com"><i class="fas fa-envelope"></i>&nbsp; Email</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i>&nbsp; WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Assistant -->
+    <div class="ai-chat" id="aiChat">
+        <button class="ai-launcher" id="aiLauncher" aria-label="Open assistant">
+            <span class="ai-pulse"></span>
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="ai-panel" id="aiPanel" hidden>
+            <div class="ai-head">
+                <div class="ai-avatar"><img src="assets/logo-shield-cut.png?v=20260419-themefix" alt=""></div>
+                <div class="ai-head-meta">
+                    <h5>Tagmentip AI</h5>
+                    <p><span class="ai-dot"></span> Online · pricing synced to current plans</p>
+                </div>
+                <button class="ai-close" id="aiClose" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="ai-body" id="aiBody">
+                <div class="ai-msg bot">Hi! I'm Tagmentip AI. Our pricing is synced with current service plans for US clients. Ask me about DevOps, SRE, development, data, or career support.</div>
+                <div class="ai-chips">
+                    <button class="ai-chip" data-ask="I need DevOps help">DevOps</button>
+                    <button class="ai-chip" data-ask="Tell me about SRE">SRE</button>
+                    <button class="ai-chip" data-ask="I need career / interview support">Career</button>
+                    <button class="ai-chip" data-ask="What's your current pricing for all services?">Pricing</button>
+                </div>
+            </div>
+            <form class="ai-input" id="aiForm">
+                <input type="text" id="aiText" placeholder="Ask anything…" autocomplete="off">
+                <button type="submit" aria-label="Send"><i class="fas fa-arrow-up"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js?v=20260419-themefix"></script>
+
+
+</body></html>

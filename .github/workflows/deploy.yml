@@ -15,6 +15,7 @@ jobs:
     outputs:
       src: ${{ steps.paths.outputs.src }}
       infra: ${{ steps.paths.outputs.infra }}
+      tagmentip: ${{ steps.paths.outputs.tagmentip }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +40,8 @@ jobs:
               - 'docker-compose.yml'
               - 'docker/**'
               - '.github/workflows/**'
+            tagmentip:
+              - 'Tagmentip-LLC/**'
 
   deploy-lightsail:
     name: "Deploy to AWS Lightsail"
@@ -73,3 +76,22 @@ jobs:
         run: cd src && npx vercel --prod --yes
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  deploy-tagmentip:
+    name: "Deploy Tagmentip LLC to Vercel"
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.tagmentip == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Deploy Tagmentip to Vercel
+        run: cd Tagmentip-LLC && npx vercel --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
