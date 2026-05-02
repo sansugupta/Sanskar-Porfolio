@@ -6,7 +6,7 @@
       "icon": "fas fa-code",
       "cardClass": "card-dev",
       "description": "Full-stack development across Java, Python, Node.js, Angular, and React. From feature builds to complex refactors, we write production-grade code that ships.",
-      "price": 599,
+      "price": 799,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -23,7 +23,7 @@
       "icon": "fas fa-infinity",
       "cardClass": "card-devops",
       "description": "CI/CD pipelines, containerization (Docker/ECS/K8s), IaC with Terraform, GitLab/GitHub Actions automation. We make your deployments bulletproof.",
-      "price": 499,
+      "price": 699,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -40,7 +40,7 @@
       "icon": "fas fa-graduation-cap",
       "cardClass": "card-bootcamp",
       "description": "Hands-on monthly boot camp with guided learning, practical implementation, job support, and real-world engineering workflows.",
-      "price": 499,
+      "price": 1000,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -59,7 +59,7 @@
       "icon": "fas fa-server",
       "cardClass": "card-sre",
       "description": "Monitoring (Prometheus, Grafana, Datadog), incident response, SLA management, and reliability engineering. We keep your systems running at 99.99%.",
-      "price": 549,
+      "price": 749,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -76,7 +76,7 @@
       "icon": "fas fa-database",
       "cardClass": "card-data",
       "description": "ETL/ELT pipelines, data warehousing, Spark, Airflow, dbt, and cloud-native data architectures. We turn raw data into business intelligence.",
-      "price": 399,
+      "price": 599,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -92,7 +92,7 @@
       "icon": "fas fa-chart-line",
       "cardClass": "card-analyst",
       "description": "Business intelligence dashboards, SQL analytics, reporting automation, and data visualization with Tableau, Power BI, and Looker.",
-      "price": 349,
+      "price": 549,
       "period": "/month",
       "currency": "$",
       "details": {
@@ -108,7 +108,7 @@
       "icon": "fas fa-user-tie",
       "cardClass": "card-interview",
       "description": "One-on-one mock interviews, system design reviews, coding walkthroughs, and real-time technical coaching to help you land the role.",
-      "price": 149,
+      "price": 349,
       "period": "/each",
       "currency": "$",
       "details": {
@@ -124,7 +124,7 @@
       "id": "job-applying",
       "title": "Job Applying Support",
       "description": "We handle the job pipeline. Targeted applications with full tracking across applied, responded, and status updates.",
-      "price": 249, "period": "/month", "currency": "$", "badge": null, "featured": false,
+      "price": 800, "period": "/month", "currency": "$", "badge": null, "featured": false,
       "features": ["Targeted job applications on your behalf", "Full tracking report (applied / response / status)", "Weekly progress updates", "Application strategy optimization"],
       "details": { "subtitle": "A lean support plan for candidates who already have the skills and need structured outbound application help.",
         "sections": [{ "title": "Included", "items": ["Curated role targeting and application pipeline execution", "Application status tracking and weekly updates", "Feedback loop to improve targeting quality"] }] }
@@ -133,7 +133,7 @@
       "id": "resume-linkedin",
       "title": "Resume & LinkedIn Optimization",
       "description": "ATS-optimized resume rewrites, LinkedIn profile overhauls, and ongoing updates.",
-      "price": 149, "period": "/month", "currency": "$", "badge": null, "featured": false,
+      "price": 349, "period": "/month", "currency": "$", "badge": null, "featured": false,
       "features": ["ATS-optimized resume rewrite", "LinkedIn profile optimization", "Ongoing updates as needed", "One-time service also available"],
       "details": { "subtitle": "The profile-polish lane for candidates who need stronger positioning before serious outreach begins.",
         "sections": [{ "title": "Included", "items": ["Resume rewrite aligned to target roles", "LinkedIn headline, about, and experience refresh", "Positioning updates as your profile evolves"] }] }
@@ -142,7 +142,7 @@
       "id": "full-job-search",
       "title": "Full Job Search Management",
       "description": "An all-in-one job support package covering learning support, interview preparation, selected job applications, and profile upgrades.",
-      "price": 349, "period": "/month", "currency": "$", "badge": "High demand", "featured": true,
+      "price": 549, "period": "/month", "currency": "$", "badge": "High demand", "featured": true,
       "features": ["Structured job search and selected application support", "Resume & LinkedIn optimization", "Interview preparation & mock sessions", "Learning materials, notes, and study guides", "1-on-1 teaching support before interviews"],
       "details": { "subtitle": "A more guided monthly lane for candidates who want support across profile, prep, and opportunity flow without going all the way to placement guarantee.",
         "sections": [{ "title": "Best For", "items": ["Candidates switching roles or domains", "People who need both profile improvement and interview support", "Professionals who want guided momentum every week"] }] }
@@ -151,12 +151,12 @@
       "id": "placement",
       "title": "End-to-End Placement Support",
       "description": "The premium outcome package covering skills, learning, resume upgrades, LinkedIn optimization, applications, and placement support with a partial refund promise.",
-      "price": 1899, "period": "one-time", "currency": "$", "badge": "Premium", "featured": false,
+      "price": 2099, "period": "one-time", "currency": "$", "badge": "Premium", "featured": false,
       "features": ["Everything in Full Job Search Management", "Learning roadmap and accountability for the full month", "Resume, LinkedIn, and application support", "Job opportunity sourcing and guided submissions", "50% refundable if placement does not occur"],
       "details": { "subtitle": "A higher-touch placement-oriented service for candidates who want full-spectrum execution and accountability.",
         "sections": [
           { "title": "What This Covers", "items": ["Skill-upgrade guidance, interview prep, and job application help", "Resume and LinkedIn upgrades aligned to the target market", "Hands-on placement support through the engagement"] },
-          { "title": "Commercial Note", "items": ["Priced at $1,899 one-time", "If placement does not occur, 50% of the amount is refundable"] }
+          { "title": "Commercial Note", "items": ["Priced at $2,099 one-time", "If placement does not occur, 50% of the amount is refundable"] }
         ] }
     }
   ]
