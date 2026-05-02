@@ -1,6 +1,6 @@
 # ======================================================
 # AWS Lightsail Full Stack Deployment
-# InfraBuild Partners + Sanskar Portfolio + Analytics
+# InfraBuild Partners + Techventive LLC + Sanskar Portfolio + Analytics
 # ======================================================
 # 
 # This runs on your AWS Lightsail instance as a single
@@ -33,6 +33,7 @@ services:
       - caddy_config:/config
     depends_on:
       - infrabuild
+      - techventive
       - portfolio
       - umami
     restart: unless-stopped
@@ -43,6 +44,16 @@ services:
       context: ../../InfraBuild-Partners
       dockerfile: Dockerfile
     container_name: infrabuild-partners
+    expose:
+      - "80"
+    restart: unless-stopped
+
+  # ========== Techventive LLC (Static — Nginx) ==========
+  techventive:
+    build:
+      context: ../../Techventive LLC copy 2
+      dockerfile: Dockerfile
+    container_name: techventive-llc
     expose:
       - "80"
     restart: unless-stopped

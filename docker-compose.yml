@@ -13,6 +13,18 @@ services:
     labels:
       - "app=infrabuild-partners"
 
+  # Techventive LLC — Static website on Nginx
+  techventive-llc:
+    build:
+      context: ./Techventive LLC copy 2
+      dockerfile: Dockerfile
+    container_name: techventive-llc
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    labels:
+      - "app=techventive-llc"
+
   # Sanskar Portfolio — Next.js application
   sanskar-portfolio:
     build:

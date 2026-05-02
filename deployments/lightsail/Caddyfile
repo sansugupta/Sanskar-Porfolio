@@ -16,6 +16,17 @@
     }
 }
 
+# Techventive LLC Website
+{$TECHVENTIVE_DOMAIN:techventive.io} {
+    reverse_proxy techventive:80
+    encode gzip
+    header {
+        X-Frame-Options DENY
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}
+
 # Sanskar Portfolio Website
 {$PORTFOLIO_DOMAIN:sanskargupta.dev} {
     reverse_proxy portfolio:3000
