@@ -1,0 +1,132 @@
+{
+  "devodus": [
+    {
+      "title": "Landing Page Development",
+      "price": "$300",
+      "summary": "Focused one-page website for campaigns, local businesses, and service launches.",
+      "features": ["1 page website", "2 stock images", "Sliding banner", "Custom design", "2 revisions", "WordPress CMS", "After-sales support"]
+    },
+    {
+      "title": "Basic Website",
+      "price": "$850",
+      "summary": "A complete business website with room for service pages, credibility, and lead capture.",
+      "features": ["10 page website", "5 stock images", "Sliding banner", "Custom design", "Unlimited revisions", "WordPress CMS", "After-sales support"]
+    },
+    {
+      "title": "Ecommerce Website",
+      "price": "$1499",
+      "summary": "A conversion-ready online store for product catalogs, checkout, and digital sales.",
+      "features": ["Up to 20 pages", "10 stock images", "Custom design", "Unlimited revisions", "WooCommerce or Shopify", "After-sales support"]
+    },
+    {
+      "title": "NFT Arts",
+      "price": "$3500",
+      "summary": "Digital art packages for NFT artwork, collection generation, and minting support.",
+      "features": ["NFT artwork", "NFT generation", "NFT minting", "Collection-ready creative direction"]
+    },
+    {
+      "title": "Lead Generation",
+      "price": "$1999",
+      "summary": "Campaign setup and lead capture for businesses that want measurable outbound demand.",
+      "features": ["Facebook campaign", "2 ad copies", "Lead forms", "Messenger leads", "Campaign management", "$1000 one-platform ad budget", "Estimated 25 leads"]
+    },
+    {
+      "title": "Content Writing",
+      "price": "$50 / Page",
+      "summary": "Marketing-focused copy built for services, landing pages, and SEO support.",
+      "features": ["Product-focused content", "72 hour turnaround", "Plagiarism-free writing", "Unlimited revisions", "Keyword-focused copy", "Proofing and editing"]
+    },
+    {
+      "title": "Logo Design",
+      "price": "$120 / month",
+      "summary": "Brand identity support for businesses that need clean, memorable visuals.",
+      "features": ["3 original concepts", "5 revisions", "100% ownership rights", "JPEG and PSD files", "24 to 48 hour turnaround", "Monthly reporting"]
+    },
+    {
+      "title": "Digital Marketing",
+      "price": "$300 / month",
+      "summary": "Social and brand management for businesses that need a steady online presence.",
+      "features": ["6 social media posts", "2 platform management", "Cover and page UI", "1 animation", "Audience engagement", "Monthly reporting"]
+    },
+    {
+      "title": "Video Animation",
+      "price": "$800 / 30 Seconds",
+      "summary": "Animated explainers and promotional videos for brand storytelling.",
+      "features": ["Concept and script writing", "Up to 5 revisions", "Themes", "Storyboard", "Animation", "Voice-over and VFX add-on"]
+    },
+    {
+      "title": "App Development",
+      "price": "$20-30 / hour",
+      "summary": "Mobile app development support for Android and iOS projects.",
+      "features": ["Android development", "iOS development", "Hourly build support", "Feature implementation"]
+    }
+  ],
+  "poweredDelivery": [
+    {
+      "title": "Development Support",
+      "price": "$599/month",
+      "summary": "Full-stack delivery support across Java, Python, Node.js, Angular, and React.",
+      "features": ["Feature delivery", "Refactors and modernization", "Backend APIs", "Admin portals", "Production-grade documentation"]
+    },
+    {
+      "title": "DevOps Support",
+      "price": "$499/month",
+      "summary": "CI/CD, containers, cloud automation, and infrastructure support for reliable releases.",
+      "features": ["GitHub Actions and GitLab CI", "Docker and deployment workflows", "Terraform and IaC", "Environment automation"]
+    },
+    {
+      "title": "Bootcamp Service",
+      "price": "$499/month",
+      "summary": "Hands-on training for DevOps, AWS, Docker, pipelines, and practical engineering workflows.",
+      "features": ["DevOps track", "AWS cloud practitioner track", "Docker curriculum", "Pipeline implementation", "Assignments and reviews"]
+    },
+    {
+      "title": "SRE Support",
+      "price": "$549/month",
+      "summary": "Monitoring, incident response, reliability reviews, and production operations support.",
+      "features": ["Prometheus and Grafana", "Datadog support", "Alert tuning", "Incident workflows", "Reliability hardening"]
+    },
+    {
+      "title": "Data Engineering",
+      "price": "$399/month",
+      "summary": "ETL, warehousing, Airflow, dbt, Spark, and reporting-ready data foundations.",
+      "features": ["Data pipelines", "Warehousing support", "Cloud-native architecture", "Reporting readiness"]
+    },
+    {
+      "title": "Data Analyst",
+      "price": "$349/month",
+      "summary": "Dashboards, SQL analytics, reporting automation, and business intelligence.",
+      "features": ["SQL reports", "Power BI", "Tableau", "Looker", "Recurring insight packs"]
+    },
+    {
+      "title": "Interview Support",
+      "price": "$149/each",
+      "summary": "Mock interviews, system design reviews, and role-specific technical coaching.",
+      "features": ["Mock interviews", "System design guidance", "Coding walkthroughs", "Targeted feedback"]
+    },
+    {
+      "title": "Job Applying Support",
+      "price": "$249/month",
+      "summary": "Structured job application support with targeting, tracking, and weekly updates.",
+      "features": ["Targeted applications", "Tracking report", "Weekly progress updates", "Application strategy"]
+    },
+    {
+      "title": "Resume & LinkedIn Optimization",
+      "price": "$149/month",
+      "summary": "ATS-ready resume rewrite and LinkedIn positioning for better job search conversion.",
+      "features": ["Resume rewrite", "LinkedIn headline and about refresh", "Experience positioning", "Ongoing updates"]
+    },
+    {
+      "title": "Full Job Search Management",
+      "price": "$349/month",
+      "summary": "Profile, prep, learning support, and selected application management in one package.",
+      "features": ["Job search structure", "Resume and LinkedIn", "Interview prep", "Study guides", "1-on-1 teaching"]
+    },
+    {
+      "title": "End-to-End Placement Support",
+      "price": "$1,899 one-time",
+      "summary": "Premium placement-oriented support with skills, profile, applications, and accountability.",
+      "features": ["Full job search support", "Learning roadmap", "Opportunity sourcing", "Guided submissions", "50% refundable if placement does not occur"]
+    }
+  ]
+}

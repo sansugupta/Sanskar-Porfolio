@@ -64,13 +64,18 @@ document.addEventListener('mousemove', (e) => {
 
 // ========== CONTACT FORM + DYNAMIC DATA ==========
 const infraBuildState = { services: null, content: null };
+const assetDataUrlCache = new Map();
 
 function escapeHtml(value = '') {
     return String(value)
         .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 }
-function formatPrice(item) { return `${item.currency}${item.price.toLocaleString()}${item.period}`; }
+function formatPeriod(period = '') {
+    if (!period) return '';
+    return period.startsWith('/') ? period : ` ${period}`;
+}
+function formatPrice(item) { return `${item.currency}${item.price.toLocaleString()}${formatPeriod(item.period)}`; }
 function getAllServices() {
     if (!infraBuildState.services) return [];
     return [...(infraBuildState.services.engineering || []), ...(infraBuildState.services.career || [])];
@@ -119,113 +124,262 @@ async function getServicesData() {
     infraBuildState.services = await response.json();
     return infraBuildState.services;
 }
+async function getContentData() {
+    if (infraBuildState.content) return infraBuildState.content;
+    const response = await fetch('data/content.json');
+    if (!response.ok) throw new Error('Unable to load content data');
+    infraBuildState.content = await response.json();
+    return infraBuildState.content;
+}
+async function loadAssetDataUrl(path) {
+    if (assetDataUrlCache.has(path)) return assetDataUrlCache.get(path);
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`Unable to load asset: ${path}`);
+    const blob = await response.blob();
+    const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+    assetDataUrlCache.set(path, dataUrl);
+    return dataUrl;
+}
 
-// ========== PDF BOOKLET — MONOCHROME ==========
+// ========== PDF BOOKLET ==========
 async function generateBooklet() {
-    const servicesData = await getServicesData();
+    const [servicesData, contentData, logoFull, shieldLogo] = await Promise.all([
+        getServicesData(),
+        getContentData().catch(() => null),
+        loadAssetDataUrl('assets/logo-full.png').catch(() => null),
+        loadAssetDataUrl('assets/logo-shield-cut.png').catch(() => null)
+    ]);
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4');
-    const W = 210, H = 297, margin = 20, contentW = W - margin * 2;
-    const bg = [10, 10, 12], cardBg = [22, 22, 26], line = [60, 60, 66];
-    const white = [250, 250, 250], muted = [140, 140, 148], dim = [90, 90, 98];
+    const W = 210;
+    const H = 297;
+    const margin = 16;
+    const contentW = W - margin * 2;
+    const bg = [8, 10, 14];
+    const panel = [18, 22, 30];
+    const panelHi = [24, 31, 42];
+    const line = [52, 73, 94];
+    const accent = [113, 225, 255];
+    const accentWarm = [255, 186, 94];
+    const white = [247, 249, 252];
+    const muted = [177, 186, 198];
+    const dim = [107, 117, 130];
 
-    function drawBg() { doc.setFillColor(...bg); doc.rect(0, 0, W, H, 'F'); }
-    function drawRule(y) { doc.setDrawColor(...line); doc.setLineWidth(0.2); doc.line(margin, y, W - margin, y); }
+    function drawBackground() {
+        doc.setFillColor(...bg);
+        doc.rect(0, 0, W, H, 'F');
+        doc.setFillColor(11, 16, 24);
+        doc.roundedRect(9, 9, W - 18, H - 18, 7, 7, 'F');
+        doc.setDrawColor(...line);
+        doc.setLineWidth(0.45);
+        doc.roundedRect(9, 9, W - 18, H - 18, 7, 7, 'S');
+        doc.setFillColor(...accent);
+        doc.rect(9, 9, W - 18, 2.2, 'F');
+    }
 
-    drawBg();
-    doc.setFillColor(...white); doc.rect(0, 0, W, 3, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(32); doc.setTextColor(...white);
-    doc.text('Infrabuild', margin, 70);
-    doc.setFont('helvetica', 'normal'); doc.setTextColor(...muted);
-    doc.text('Partners', margin + 82, 70);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...dim);
-    doc.text('BUILDING  THE  FOUNDATION  FOR  YOUR  GROWTH.', margin, 78);
-    drawRule(90);
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(...white);
-    doc.text('Engineering excellence,', margin, 110);
-    doc.text('delivered on deadline.', margin, 120);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...muted);
-    doc.text(doc.splitTextToSize('A specialized team across DevOps, SRE, software delivery, boot camps, and career acceleration.', contentW), margin, 138);
+    function drawFooter(pageLabel) {
+        doc.setDrawColor(...line);
+        doc.setLineWidth(0.2);
+        doc.line(margin, H - 16, W - margin, H - 16);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+        doc.setTextColor(...dim);
+        doc.text(pageLabel, margin, H - 10);
+        doc.text('© 2026 Infrabuild Partners', W - margin, H - 10, { align: 'right' });
+    }
 
-    const stats = [
-        { n: `${servicesData.engineering.length}+`, l: 'ENGINEERING SERVICES' },
-        { n: `${servicesData.career.length}+`, l: 'CAREER PACKAGES' },
-        { n: '24/7', l: 'EXECUTION MINDSET' },
-        { n: '100%', l: 'DEADLINE HIT RATE' }
-    ];
-    const statW = (contentW - 15) / 4;
-    stats.forEach((stat, index) => {
+    function drawPageHeader(label, title, subtitle) {
+        drawBackground();
+        if (logoFull) doc.addImage(logoFull, 'PNG', margin, 14, 42, 27.5);
+        else {
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(16);
+            doc.setTextColor(...white);
+            doc.text('Infrabuild Partners', margin, 24);
+        }
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8);
+        doc.setTextColor(...accent);
+        doc.text(label.toUpperCase(), margin, 52);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(23);
+        doc.setTextColor(...white);
+        doc.text(title, margin, 67);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(...muted);
+        doc.text(doc.splitTextToSize(subtitle, contentW), margin, 76);
+        doc.setDrawColor(...line);
+        doc.setLineWidth(0.25);
+        doc.line(margin, 86, W - margin, 86);
+    }
+
+    function drawServiceRow(item, y, options = {}) {
+        const cardHeight = options.cardHeight || 28;
+        doc.setFillColor(...(options.featured ? panelHi : panel));
+        doc.roundedRect(margin, y, contentW, cardHeight, 4, 4, 'F');
+        doc.setFillColor(...(options.featured ? accentWarm : accent));
+        doc.roundedRect(margin, y, 4, cardHeight, 4, 4, 'F');
+        if (options.badge) {
+            doc.setFillColor(...accentWarm);
+            doc.roundedRect(W - margin - 38, y + 5, 32, 7, 3, 3, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(6.5);
+            doc.setTextColor(15, 18, 24);
+            doc.text(options.badge.toUpperCase(), W - margin - 22, y + 9.7, { align: 'center' });
+        }
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(...white);
+        doc.text(item.title, margin + 8, y + 9.5);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...accent);
+        doc.text(formatPrice(item), W - margin - 8, y + 9.5, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.6);
+        doc.setTextColor(...muted);
+        const copy = options.copy || item.description;
+        doc.text(doc.splitTextToSize(copy, contentW - 18), margin + 8, y + 17.5);
+    }
+
+    function drawListBlock(title, items, x, y, w, h) {
+        doc.setFillColor(...panel);
+        doc.roundedRect(x, y, w, h, 4, 4, 'F');
+        doc.setDrawColor(...line);
+        doc.setLineWidth(0.2);
+        doc.roundedRect(x, y, w, h, 4, 4, 'S');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...white);
+        doc.text(title, x + 7, y + 10);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.6);
+        let lineY = y + 19;
+        items.forEach(item => {
+            doc.setTextColor(...accent);
+            doc.text('•', x + 7, lineY);
+            doc.setTextColor(...muted);
+            doc.text(doc.splitTextToSize(item, w - 16), x + 11, lineY);
+            lineY += 8.5;
+        });
+    }
+
+    drawBackground();
+    if (shieldLogo) doc.addImage(shieldLogo, 'PNG', W - 62, 18, 36, 29.4);
+    if (logoFull) doc.addImage(logoFull, 'PNG', 44, 28, 122, 79.8);
+    else {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(28);
+        doc.setTextColor(...white);
+        doc.text('Infrabuild Partners', W / 2, 58, { align: 'center' });
+    }
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...accent);
+    doc.text('REMOTE-FIRST ENGINEERING DELIVERY + CAREER SUPPORT', W / 2, 122, { align: 'center' });
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.setTextColor(...white);
+    doc.text('Services, training, and execution', W / 2, 142, { align: 'center' });
+    doc.text('that ship on time.', W / 2, 154, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(...muted);
+    doc.text(doc.splitTextToSize('Infrastructure, software delivery, data support, interview prep, and job-search execution delivered under one brand system.', 122), W / 2, 167, { align: 'center' });
+
+    const highlightY = 188;
+    const statW = (contentW - 10) / 3;
+    [
+        { title: `${servicesData.engineering.length} engineering offers`, value: 'Delivery retainers and scoped support' },
+        { title: `${servicesData.career.length} career packages`, value: 'From resume polish to placement help' },
+        { title: '100% deadline focus', value: 'Execution-first with direct founder contact' }
+    ].forEach((item, index) => {
         const x = margin + index * (statW + 5);
-        doc.setFillColor(...cardBg); doc.roundedRect(x, 165, statW, 32, 2, 2, 'F');
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(...white);
-        doc.text(stat.n, x + statW / 2, 180, { align: 'center' });
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(6); doc.setTextColor(...dim);
-        doc.text(stat.l, x + statW / 2, 190, { align: 'center' });
+        doc.setFillColor(...panel);
+        doc.roundedRect(x, highlightY, statW, 31, 4, 4, 'F');
+        doc.setDrawColor(...line);
+        doc.setLineWidth(0.2);
+        doc.roundedRect(x, highlightY, statW, 31, 4, 4, 'S');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8.4);
+        doc.setTextColor(...white);
+        doc.text(doc.splitTextToSize(item.title, statW - 10), x + 6, highlightY + 10);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.2);
+        doc.setTextColor(...muted);
+        doc.text(doc.splitTextToSize(item.value, statW - 10), x + 6, highlightY + 20);
     });
 
-    doc.setDrawColor(...white); doc.setLineWidth(0.3);
-    doc.roundedRect(margin, 215, contentW, 28, 2, 2, 'D');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...white);
-    doc.text('The Infrabuild guarantee — every deadline, every time.', margin + 8, 228);
-    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...muted);
-    doc.text('If we commit, we deliver. No exceptions, no excuses.', margin + 8, 236);
-    doc.setFontSize(7); doc.setTextColor(...dim);
-    doc.text('© 2026 Infrabuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
+    doc.setFillColor(...panelHi);
+    doc.roundedRect(margin, 232, contentW, 38, 5, 5, 'F');
+    doc.setFillColor(...accentWarm);
+    doc.roundedRect(margin, 232, 5, 38, 5, 5, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11.5);
+    doc.setTextColor(...white);
+    doc.text('The Infrabuild guarantee', margin + 10, 245);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.4);
+    doc.setTextColor(...muted);
+    doc.text(doc.splitTextToSize('Every deadline, every time. If we commit, we deliver. Pricing in this booklet matches the current website plans.', contentW - 24), margin + 10, 254);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...accent);
+    doc.text('sanskargupta966@gmail.com  ·  +91 9289869370', margin + 10, 266);
+    drawFooter('Booklet cover');
 
-    doc.addPage(); drawBg();
-    doc.setFillColor(...white); doc.rect(0, 0, W, 3, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...muted);
-    doc.text('01  ·  ENGINEERING SERVICES', margin, 25);
-    doc.setFontSize(22); doc.setTextColor(...white);
-    doc.text('Build. Deploy. Scale.', margin, 40);
-    drawRule(46);
-
-    let y = 55;
+    doc.addPage();
+    drawPageHeader(
+        '01 · Engineering services',
+        'Build. Deploy. Scale.',
+        'Direct engineering support across software, cloud, reliability, data, and interview execution.'
+    );
+    let y = 95;
     servicesData.engineering.forEach(service => {
-        doc.setFillColor(...cardBg); doc.roundedRect(margin, y, contentW, 28, 2, 2, 'F');
-        doc.setFillColor(...white); doc.rect(margin, y, 2, 28, 'F');
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...white);
-        doc.text(service.title, margin + 8, y + 10);
-        doc.text(formatPrice(service), margin + contentW - 5, y + 10, { align: 'right' });
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...muted);
-        doc.text(doc.splitTextToSize(service.description, contentW - 16), margin + 8, y + 18);
+        const serviceCopy = service.details?.subtitle || service.description;
+        drawServiceRow(service, y, { copy: serviceCopy });
         y += 32;
     });
+    drawFooter('Engineering services');
 
-    doc.addPage(); drawBg();
-    doc.setFillColor(...white); doc.rect(0, 0, W, 3, 'F');
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...muted);
-    doc.text('02  ·  CAREER SOLUTIONS', margin, 25);
-    doc.setFontSize(22); doc.setTextColor(...white);
-    doc.text('Land your dream role.', margin, 40);
-    drawRule(46);
-
-    y = 58;
+    doc.addPage();
+    drawPageHeader(
+        '02 · Career solutions',
+        'Land your dream role.',
+        'Guided career support packages for candidates who need better positioning, sharper interviews, and structured job-search execution.'
+    );
+    y = 96;
     servicesData.career.forEach(plan => {
-        const cardHeight = 12 + plan.features.length * 6 + (plan.badge ? 7 : 0);
-        doc.setFillColor(...cardBg); doc.roundedRect(margin, y, contentW, cardHeight, 2, 2, 'F');
-        if (plan.featured) { doc.setDrawColor(...white); doc.setLineWidth(0.3); doc.roundedRect(margin, y, contentW, cardHeight, 2, 2, 'D'); }
-        let innerY = y + 8;
-        if (plan.badge) {
-            doc.setFont('helvetica', 'bold'); doc.setFontSize(6); doc.setTextColor(...muted);
-            doc.text(plan.badge.toUpperCase(), margin + 8, innerY); innerY += 6;
-        }
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...white);
-        doc.text(plan.title, margin + 8, innerY);
-        doc.text(formatPrice(plan), margin + contentW - 5, innerY, { align: 'right' });
-        innerY += 7;
-        plan.features.forEach(feature => {
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...white);
-            doc.text('—', margin + 8, innerY);
-            doc.setTextColor(...muted);
-            doc.text(feature, margin + 14, innerY);
-            innerY += 6;
-        });
-        y += cardHeight + 5;
+        const summary = plan.details?.subtitle || plan.description;
+        drawServiceRow(plan, y, { copy: summary, featured: plan.featured, badge: plan.badge, cardHeight: 30 });
+        y += 34;
     });
 
-    doc.setFontSize(7); doc.setTextColor(...dim);
-    doc.text('© 2026 Infrabuild Partners. All rights reserved.', W / 2, H - 15, { align: 'center' });
+    const spotlightProjects = (contentData?.projects || []).slice(0, 2).map(project => project.title);
+    drawListBlock(
+        'Why teams buy',
+        ['Delivery-focused support with direct execution', 'Pricing clearly listed and easy to scope', 'Brand spans both services and career acceleration'],
+        margin,
+        236,
+        84,
+        40
+    );
+    drawListBlock(
+        'Recent proof points',
+        spotlightProjects.length ? spotlightProjects : ['Enterprise Java Microservices Stack', 'AWS Bedrock Agent Terraform Module', 'AI-Powered Observability Automation'],
+        margin + 88,
+        236,
+        contentW - 88,
+        40
+    );
+    drawFooter('Career solutions');
+
     doc.save('Infrabuild_Partners_Booklet.pdf');
 }
 
@@ -280,10 +434,7 @@ async function loadDynamicData() {
     try {
         const [servicesData, contentData] = await Promise.all([
             getServicesData(),
-            fetch('data/content.json').then(response => {
-                if (!response.ok) throw new Error('Unable to load content data');
-                return response.json();
-            })
+            getContentData()
         ]);
         infraBuildState.content = contentData;
 
@@ -419,22 +570,20 @@ document.addEventListener('DOMContentLoaded', loadDynamicData);
         }
     }, 4000);
 
-    const KB = `You are Infrabuild AI, a friendly concierge for Infrabuild Partners — a remote-first consultancy
-run by Sanskar Gupta. Reply in 2-4 short sentences, warm and helpful, never salesy.
-
-SERVICES (with starting prices in USD):
-• DevOps Engineering — CI/CD, IaC (Terraform), Kubernetes, Docker. From $1,500/project.
-• Site Reliability Engineering (SRE) — monitoring (Prometheus/Grafana/Datadog), incident response, SLOs. From $2,000/project.
-• Full-Stack Development — React, Node.js, Python, APIs. From $2,500/project.
-• Data Engineering — Airflow, dbt, Spark, warehousing. From $3,000/project.
-• Career Solutions — resume, LinkedIn optimization, mock interviews, placement support. From $99.
-
-STATS: 100% on-time delivery, 50+ clients served, 5/5 avg rating, <24h response.
-CONTACT: sanskargupta966@gmail.com · WhatsApp +91 9289869370 · GitHub sanskargupta966.
-
-If the user asks something outside this scope, gently steer them back and offer to schedule a call.`;
-
-    const history = [];
+    const SERVICE_KEYWORDS = {
+        development: ['development', 'developer', 'developers', 'full stack', 'full-stack', 'app', 'application', 'web', 'website', 'api', 'frontend', 'backend', 'react', 'node', 'python', 'java'],
+        devops: ['devops', 'ci/cd', 'cicd', 'pipeline', 'pipelines', 'terraform', 'docker', 'kubernetes', 'k8s', 'infrastructure', 'infra', 'deployment', 'github actions', 'gitlab'],
+        bootcamp: ['bootcamp', 'training', 'course', 'cohort', 'learn', 'learning', 'mentorship', 'mentor'],
+        sre: ['sre', 'site reliability', 'reliability', 'observability', 'incident', 'monitoring', 'prometheus', 'grafana', 'datadog', 'slo'],
+        'data-engineering': ['data engineering', 'data engineer', 'etl', 'elt', 'pipeline', 'warehouse', 'airflow', 'dbt', 'spark'],
+        'data-analyst': ['data analyst', 'analytics', 'dashboard', 'power bi', 'tableau', 'looker', 'reporting', 'sql'],
+        interview: ['interview', 'mock interview', 'system design', 'coding round', 'technical interview'],
+        'job-applying': ['job applying', 'applications', 'apply', 'job support', 'job pipeline'],
+        'resume-linkedin': ['resume', 'linkedin', 'cv', 'profile', 'ats'],
+        'full-job-search': ['job search', 'full job search', 'management', 'guided job search', 'high demand'],
+        placement: ['placement', 'end-to-end', 'premium', 'refund', 'placement support']
+    };
+    const CAREER_SERVICE_IDS = new Set(['job-applying', 'resume-linkedin', 'full-job-search', 'placement', 'interview', 'bootcamp']);
 
     function addMsg(text, who = 'bot') {
         // Remove any typing indicator
@@ -456,42 +605,107 @@ If the user asks something outside this scope, gently steer them back and offer 
         return el;
     }
 
+    function scoreServiceMatch(query, service) {
+        const normalized = query.toLowerCase();
+        let score = 0;
+        const keywords = SERVICE_KEYWORDS[service.id] || [];
+
+        keywords.forEach(keyword => {
+            if (normalized.includes(keyword)) score += keyword.includes(' ') ? 5 : 3;
+        });
+
+        if (normalized.includes(service.title.toLowerCase())) score += 8;
+        if (normalized.includes(service.id.toLowerCase())) score += 5;
+
+        service.title.toLowerCase().split(/[^a-z0-9]+/).forEach(token => {
+            if (token.length > 3 && normalized.includes(token)) score += 2;
+        });
+
+        if (CAREER_SERVICE_IDS.has(service.id) && /(career|job|resume|linkedin|interview|placement|hiring)/.test(normalized)) score += 1;
+        if (!CAREER_SERVICE_IDS.has(service.id) && /(engineering|project|build|software|cloud|infra|deployment|automation)/.test(normalized)) score += 1;
+
+        return score;
+    }
+
+    function findMatchedServices(query, max = 3) {
+        return getAllServices()
+            .map(service => ({ service, score: scoreServiceMatch(query, service) }))
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, max)
+            .map(item => item.service);
+    }
+
+    function describeService(service) {
+        const primarySection = service.details?.sections?.[0]?.items?.slice(0, 2) || service.features?.slice(0, 2) || [];
+        const extras = primarySection.length ? ` It usually covers ${primarySection.join(' and ')}.` : '';
+        return `${service.title} is currently ${formatPrice(service)}. ${service.details?.subtitle || service.description}${extras}`;
+    }
+
+    function buildPricingSummary(services, maxItems = services.length) {
+        return services
+            .slice(0, maxItems)
+            .map(service => `${service.title} ${formatPrice(service)}`)
+            .join(', ');
+    }
+
     function fallbackReply(q) {
-        const s = q.toLowerCase();
-        if (/price|pricing|cost|rate|how much/.test(s))
-            return "Here's the quick version — DevOps from $1,500, SRE from $2,000, Full-stack dev from $2,500, Data from $3,000, and Career support from $99. Want me to share a detailed scope? Email sanskargupta966@gmail.com.";
-        if (/devops|ci\/cd|pipeline|terraform|kubernetes|k8s|docker/.test(s))
-            return "DevOps is our most-requested service — CI/CD, Terraform-based IaC, Kubernetes, containerization, the whole stack. Projects start at $1,500. What part of your pipeline needs work?";
-        if (/\bsre\b|reliability|monitoring|observability|incident|prometheus|grafana/.test(s))
-            return "SRE work covers monitoring (Prometheus/Grafana/Datadog), incident response, SLOs, and on-call setup. Starts at $2,000. Are you looking at green-field setup or hardening an existing stack?";
-        if (/data|airflow|dbt|spark|warehouse|etl|pipeline/.test(s))
-            return "Data engineering — Airflow, dbt, Spark, warehousing. Projects from $3,000. What's your current data flow like?";
-        if (/dev|develop|react|node|full.?stack|web|app/.test(s))
-            return "Full-stack development with React, Node, Python and modern APIs — from $2,500/project. Want to tell me a bit about the app?";
-        if (/career|resume|linkedin|interview|job|placement/.test(s))
-            return "Career support includes resume rewrites, LinkedIn optimization, mock interviews, and placement help — from $99. What stage are you at?";
-        if (/contact|reach|email|whatsapp|call/.test(s))
-            return "Easiest ways to reach us — email sanskargupta966@gmail.com, WhatsApp +91 9289869370, or use the contact form on this page. Usually reply within 24h.";
-        if (/hi|hello|hey|yo\b/.test(s))
-            return "Hey! 👋 I'm Infrabuild AI. Tell me what you're building and I'll point you at the right service.";
-        return "Happy to help — could you tell me a bit more? I can walk you through our DevOps, SRE, development, data or career services.";
+        const s = q.toLowerCase().trim();
+        const allServices = getAllServices();
+        if (!allServices.length) {
+            return 'I can help with pricing and package guidance, but the live service list has not loaded yet. Please try again in a moment.';
+        }
+
+        if (/hi|hello|hey|yo\b/.test(s)) {
+            return "Hi! I'm Infrabuild AI. Pricing here stays synced with our current service plans, so ask me about DevOps, SRE, development, data, or career support.";
+        }
+
+        if (/contact|reach|email|whatsapp|call|talk/.test(s)) {
+            return 'You can reach us at sanskargupta966@gmail.com or WhatsApp +91 9289869370. If you want, I can also point you to the closest package before you contact us.';
+        }
+
+        if (/cheapest|lowest|minimum budget/.test(s)) {
+            const cheapest = [...allServices].sort((a, b) => a.price - b.price)[0];
+            return `${cheapest.title} is the lowest-priced option right now at ${formatPrice(cheapest)}. If you tell me your goal, I can show the nearest higher-value option too.`;
+        }
+
+        if (/highest|premium|most expensive|top package/.test(s)) {
+            const priciest = [...allServices].sort((a, b) => b.price - a.price)[0];
+            return `${priciest.title} is the highest-ticket package right now at ${formatPrice(priciest)}. It's the most hands-on option for clients who want broad execution support.`;
+        }
+
+        const pricingIntent = /(price|pricing|cost|rate|budget|quote|how much|charges|fee)/.test(s);
+        const detailIntent = /(details|detail|tell me about|what is|what do you do|included|include|covers|overview)/.test(s);
+        const matchedServices = findMatchedServices(s);
+
+        if (pricingIntent && (!matchedServices.length || /all|everything|list|services|plans/.test(s))) {
+            const engineeringSummary = buildPricingSummary(infraBuildState.services.engineering || [], 4);
+            const careerSummary = buildPricingSummary(infraBuildState.services.career || [], 4);
+            return `Current engineering pricing includes ${engineeringSummary}. Career pricing includes ${careerSummary}. Tell me which one you want and I'll break down what's included.`;
+        }
+
+        if (matchedServices.length === 1 || (matchedServices.length && (pricingIntent || detailIntent))) {
+            return describeService(matchedServices[0]);
+        }
+
+        if (matchedServices.length > 1) {
+            return `The closest matches are ${buildPricingSummary(matchedServices)}. Tell me which one fits best and I'll give you the exact scope and price.`;
+        }
+
+        if (/career|job|resume|linkedin|placement|interview/.test(s)) {
+            return `For career support, the current packages are ${buildPricingSummary(infraBuildState.services.career || [])}. Tell me your stage and I'll suggest the right one.`;
+        }
+
+        return 'I can help with live pricing for engineering services and career support. Ask something like "What is your DevOps pricing?" or "Which package fits interview prep?"';
     }
 
     async function reply(q) {
         const typing = addTyping();
         try {
-            if (window.claude && typeof window.claude.complete === 'function') {
-                history.push({ role: 'user', content: q });
-                const messages = [{ role: 'user', content: `${KB}\n\nConversation so far:\n${history.slice(-8).map(m => `${m.role}: ${m.content}`).join('\n')}\n\nReply as the assistant.` }];
-                const text = await window.claude.complete({ messages });
-                typing.remove();
-                addMsg(text.trim(), 'bot');
-                history.push({ role: 'assistant', content: text.trim() });
-            } else {
-                await new Promise(r => setTimeout(r, 650));
-                typing.remove();
-                addMsg(fallbackReply(q), 'bot');
-            }
+            await getServicesData();
+            await new Promise(r => setTimeout(r, 380));
+            typing.remove();
+            addMsg(fallbackReply(q), 'bot');
         } catch (e) {
             typing.remove();
             addMsg(fallbackReply(q), 'bot');

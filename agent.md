@@ -1,7 +1,7 @@
 # 🧠 Agent Context — InfraBuild Partners & Sanskar Portfolio
 
-> **Last Updated:** 2026-04-18T16:18:00+05:30
-> **Session Count:** 5
+> **Last Updated:** 2026-05-09T00:00:00+05:30
+> **Session Count:** 6
 > **Owner:** Sanskar Gupta
 > **Company:** InfraBuild Partners
 > **GitHub:** github.com/sansugupta/Sanskar-Porfolio
@@ -18,6 +18,7 @@ This monorepo contains:
 | InfraBuild Partners | `/InfraBuild-Partners/` | Static HTML/CSS/JS | ✅ Rebuilt |
 | Deployments | `/deployments/` | Docker, Helm, GitHub Actions | ✅ Ready |
 | Marketing Ops | `/marketing-ops/` | Strategy memory, templates, automation notes | ✅ Created |
+| Company Memory | `/company-memory/` | Repo-wide continuity, setup notes, work logs, secret references | ✅ Created |
 
 ---
 
@@ -132,6 +133,21 @@ This monorepo contains:
 - WhatsApp growth should use `Channel + direct business chat`, not open member-visible groups.
 - Service pricing remains Git-editable, with InfraBuild website updates flowing from `InfraBuild-Partners/data/services.json`.
 
+### Session 6 — 2026-05-09 (Repo Analysis + Hermes DeepSeek Setup)
+**Topics Covered:**
+- Reviewed the complete repo structure and confirmed the current product split between the Next.js portfolio, InfraBuild static site, deployment assets, and marketing workspace.
+- Created `company-memory/` as the durable company-wide AI continuity layer for technical setup, agent handoffs, repo analysis, and work logs.
+- Added a secret policy that stores only references and rotation notes in git, never plaintext credentials.
+- Installed/updated Hermes Agent locally and configured it with DeepSeek V4 Pro using the local `~/.hermes/.env` secret store.
+- Verified Hermes with `hermes doctor`; DeepSeek API connectivity passed.
+- Added `scripts/record-ai-session.sh` for consistent future work-log creation.
+
+**Key Decisions:**
+- `company-memory/` is now the repo-wide operating memory for long-term company building.
+- `marketing-ops/` remains the marketing-specific memory workspace.
+- API keys and passwords must stay outside git in local env files or managed secret stores.
+- Hermes local state lives in `~/.hermes/`, while repo handoffs only document paths and setup decisions.
+
 ---
 
 ## 🔮 Future Plans / Next Steps
@@ -149,7 +165,8 @@ When any AI session opens this repo, it should:
 1. **Read this file first** — It contains the complete project context
 2. **Check `/marketing-ops/` folder** — For latest strategy memory, templates, and assets
 3. **Check `/deployments/` folder** — For current deployment status
-4. **Check conversation log above** — For recent decisions and changes
-5. **Update this file** — After making any significant changes
+4. **Check `/company-memory/` folder** — For repo-wide work logs, setup notes, and secret references
+5. **Check conversation log above** — For recent decisions and changes
+6. **Update this file** — After making any significant changes
 
 This ensures continuity across AI tools (Cursor, Claude, Gemini, ChatGPT, etc.)

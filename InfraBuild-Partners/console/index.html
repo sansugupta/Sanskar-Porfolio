@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfraBuild Management Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg-0: #070708;
+  --bg-1: #0d0d0f;
+  --bg-2: #131316;
+  --bg-3: #1a1a1e;
+  --surface: rgba(255,255,255,0.025);
+  --surface-hi: rgba(255,255,255,0.05);
+  --surface-line: rgba(255,255,255,0.08);
+  --text-0: #fafafa;
+  --text-1: #e8e8ea;
+  --text-2: #a1a1a8;
+  --text-3: #6e6e76;
+  --accent: #71e1ff;
+  --accent-dim: #3b82f6;
+  --accent-warm: #ffba5e;
+  --accent-green: #34d399;
+  --accent-red: #f87171;
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-0);
+  color: var(--text-1);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Login screen */
+.login-screen {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; background: var(--bg-0);
+}
+.login-card {
+  background: var(--bg-2);
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 100%; max-width: 420px;
+  text-align: center;
+}
+.login-card .shield {
+  width: 56px; height: 56px;
+  margin: 0 auto 20px;
+  opacity: 0.8;
+}
+.login-card h1 {
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--text-0); margin-bottom: 8px;
+}
+.login-card p {
+  color: var(--text-2); font-size: 0.9rem; margin-bottom: 28px;
+}
+.login-card input {
+  width: 100%; padding: 14px 16px;
+  background: var(--bg-3); border: 1px solid var(--surface-line);
+  border-radius: 10px; color: var(--text-0); font-size: 1rem;
+  font-family: inherit; outline: none; margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+.login-card input:focus { border-color: var(--accent); }
+.login-card button {
+  width: 100%; padding: 14px;
+  background: var(--text-0); color: var(--bg-0);
+  border: none; border-radius: 10px;
+  font-size: 1rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+}
+.login-card button:hover { background: #fff; transform: translateY(-1px); }
+.login-error {
+  color: var(--accent-red); font-size: 0.85rem;
+  margin-top: 12px; display: none;
+}
+
+/* Dashboard layout */
+.dashboard { display: none; min-height: 100vh; }
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 240px; background: var(--bg-1);
+  border-right: 1px solid var(--surface-line);
+  padding: 24px 16px; z-index: 10;
+  display: flex; flex-direction: column;
+}
+.sidebar-brand {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 32px; padding: 0 8px;
+}
+.sidebar-brand img { width: 28px; height: 28px; }
+.sidebar-brand span { font-weight: 700; font-size: 0.95rem; color: var(--text-0); }
+.sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 8px;
+  color: var(--text-2); text-decoration: none;
+  font-size: 0.88rem; font-weight: 500;
+  transition: all 0.2s;
+}
+.sidebar-nav a:hover, .sidebar-nav a.active {
+  background: var(--surface); color: var(--text-0);
+}
+.sidebar-nav a i { width: 18px; text-align: center; }
+.sidebar-footer {
+  border-top: 1px solid var(--surface-line);
+  padding-top: 16px; margin-top: auto;
+}
+.sidebar-footer button {
+  width: 100%; padding: 10px; background: transparent;
+  border: 1px solid var(--surface-line); border-radius: 8px;
+  color: var(--text-2); cursor: pointer; font-family: inherit;
+  font-size: 0.85rem; transition: all 0.2s;
+}
+.sidebar-footer button:hover { background: var(--surface); color: var(--accent-red); }
+
+.main-area {
+  margin-left: 240px; padding: 32px 40px;
+  min-height: 100vh;
+}
+.page { display: none; }
+.page.active { display: block; }
+
+.page-header {
+  margin-bottom: 32px;
+}
+.page-header h2 { font-size: 1.8rem; font-weight: 700; color: var(--text-0); margin-bottom: 6px; }
+.page-header p { color: var(--text-2); font-size: 0.95rem; }
+
+/* Status cards */
+.status-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-bottom: 32px;
+}
+.status-card {
+  background: var(--bg-2); border: 1px solid var(--surface-line);
+  border-radius: var(--radius); padding: 24px;
+  transition: border-color 0.2s;
+}
+.status-card:hover { border-color: rgba(255,255,255,0.15); }
+.status-card .card-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px; font-size: 1.1rem;
+}
+.status-card .card-icon.blue { background: rgba(59,130,246,0.15); color: #3b82f6; }
+.status-card .card-icon.green { background: rgba(52,211,153,0.15); color: #34d399; }
+.status-card .card-icon.amber { background: rgba(255,186,94,0.15); color: #ffba5e; }
+.status-card .card-icon.purple { background: rgba(168,85,247,0.15); color: #a855f7; }
+.status-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-0); margin-bottom: 4px; }
+.status-card .card-status {
+  font-size: 0.8rem; display: flex; align-items: center; gap: 6px;
+}
+.status-card .card-status .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+}
+.status-card .card-status .dot.online { background: var(--accent-green); }
+.status-card .card-status .dot.offline { background: var(--text-3); }
+
+/* Panel cards */
+.panel {
+  background: var(--bg-2); border: 1px solid var(--surface-line);
+  border-radius: var(--radius); padding: 28px; margin-bottom: 20px;
+}
+.panel h3 {
+  font-size: 1.2rem; font-weight: 600; color: var(--text-0);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.panel h3 i { color: var(--accent); }
+
+/* Form elements */
+.form-row {
+  display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.form-group { flex: 1; min-width: 180px; }
+.form-group label {
+  display: block; font-size: 0.8rem; font-weight: 600;
+  color: var(--text-2); margin-bottom: 6px; text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.form-group select, .form-group input, .form-group textarea {
+  width: 100%; padding: 10px 14px;
+  background: var(--bg-3); border: 1px solid var(--surface-line);
+  border-radius: 8px; color: var(--text-0); font-size: 0.9rem;
+  font-family: inherit; outline: none; transition: border-color 0.2s;
+}
+.form-group select:focus, .form-group input:focus, .form-group textarea:focus {
+  border-color: var(--accent);
+}
+.form-group textarea { min-height: 120px; resize: vertical; }
+
+.btn {
+  padding: 10px 20px; border-radius: 8px; font-size: 0.9rem;
+  font-weight: 600; cursor: pointer; border: none; font-family: inherit;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--text-0); color: var(--bg-0); }
+.btn-primary:hover { background: #fff; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--text-0);
+  border: 1px solid var(--surface-line);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.3); background: var(--surface); }
+.btn-accent { background: var(--accent); color: var(--bg-0); }
+.btn-accent:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-sm { padding: 6px 14px; font-size: 0.8rem; }
+
+/* Results table */
+.results-section { margin-top: 24px; display: none; }
+.results-section.show { display: block; }
+.results-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.results-header .count { font-size: 0.85rem; color: var(--text-2); }
+.results-table-wrap {
+  overflow-x: auto; max-height: 400px; overflow-y: auto;
+  border: 1px solid var(--surface-line); border-radius: 8px;
+}
+table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem;
+}
+th {
+  background: var(--bg-3); color: var(--text-2); font-weight: 600;
+  padding: 10px 14px; text-align: left; position: sticky; top: 0;
+  border-bottom: 1px solid var(--surface-line);
+}
+td {
+  padding: 10px 14px; border-bottom: 1px solid var(--surface-line);
+  color: var(--text-1);
+}
+tr:hover td { background: var(--surface); }
+
+/* Post preview */
+.post-preview {
+  background: var(--bg-3); border: 1px solid var(--surface-line);
+  border-radius: var(--radius); padding: 24px; margin-top: 16px;
+  display: none; max-width: 500px;
+}
+.post-preview.show { display: block; }
+.post-preview .post-service {
+  font-size: 0.8rem; color: var(--accent); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+}
+.post-preview .post-caption {
+  color: var(--text-1); font-size: 0.9rem; line-height: 1.6;
+  white-space: pre-wrap;
+}
+.post-preview .post-actions {
+  margin-top: 16px; display: flex; gap: 8px;
+}
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--bg-2); border: 1px solid var(--surface-line);
+  border-radius: 10px; padding: 14px 20px;
+  color: var(--text-0); font-size: 0.9rem;
+  z-index: 100; display: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.toast.show { display: block; animation: slideUp 0.3s ease; }
+.toast.error { border-color: var(--accent-red); }
+.toast.success { border-color: var(--accent-green); }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Loading spinner */
+.spinner {
+  display: inline-block; width: 18px; height: 18px;
+  border: 2px solid var(--surface-line); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Resume upload area */
+.upload-zone {
+  border: 2px dashed var(--surface-line); border-radius: var(--radius);
+  padding: 32px; text-align: center; cursor: pointer;
+  transition: border-color 0.2s; margin-bottom: 16px;
+}
+.upload-zone:hover { border-color: var(--accent); }
+.upload-zone i { font-size: 2rem; color: var(--text-3); margin-bottom: 10px; display: block; }
+.upload-zone p { color: var(--text-2); font-size: 0.9rem; }
+.upload-zone .or { color: var(--text-3); margin: 12px 0; font-size: 0.8rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main-area { margin-left: 0; padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN SCREEN ─────────────────────────────── -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <img src="/assets/logo-shield-cut.png" class="shield" alt="InfraBuild" onerror="this.style.display='none'">
+    <h1>Management Console</h1>
+    <p>Enter your password to access the InfraBuild Partners control panel.</p>
+    <input type="password" id="loginPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()">Sign in</button>
+    <div class="login-error" id="loginError">Invalid password. Try again.</div>
+  </div>
+</div>
+
+<!-- ─── DASHBOARD ────────────────────────────────── -->
+<div class="dashboard" id="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="/assets/logo-shield-cut.png" alt="" onerror="this.style.display='none'">
+      <span>InfraBuild Console</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="#" data-page="leads"><i class="fas fa-search"></i> Lead Finder</a>
+      <a href="#" data-page="jobs"><i class="fas fa-briefcase"></i> Job Applier</a>
+      <a href="#" data-page="content"><i class="fas fa-pen"></i> Content Creator</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+      <div class="page-header">
+        <h2>Dashboard</h2>
+        <p>System overview and agent status</p>
+      </div>
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="card-icon blue"><i class="fas fa-search"></i></div>
+          <h4>Lead Finder</h4>
+          <div class="card-status"><span class="dot online"></span> Ready</div>
+        </div>
+        <div class="status-card">
+          <div class="card-icon green"><i class="fas fa-briefcase"></i></div>
+          <h4>Job Applier</h4>
+          <div class="card-status"><span class="dot online"></span> Ready</div>
+        </div>
+        <div class="status-card">
+          <div class="card-icon amber"><i class="fas fa-pen"></i></div>
+          <h4>Content Creator</h4>
+          <div class="card-status"><span class="dot online"></span> Ready</div>
+        </div>
+        <div class="status-card">
+          <div class="card-icon purple"><i class="fas fa-robot"></i></div>
+          <h4>System</h4>
+          <div class="card-status"><span class="dot online"></span> Online</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3><i class="fas fa-clock"></i> Quick Actions</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-accent" onclick="switchPage('leads')"><i class="fas fa-search"></i> Find Leads</button>
+          <button class="btn btn-accent" onclick="switchPage('jobs')"><i class="fas fa-briefcase"></i> Search Jobs</button>
+          <button class="btn btn-accent" onclick="switchPage('content')"><i class="fas fa-pen"></i> Create Post</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADS PAGE -->
+    <div class="page" id="page-leads">
+      <div class="page-header">
+        <h2><i class="fas fa-search"></i> Lead Finder</h2>
+        <p>Find business leads by category and country. Export to Excel.</p>
+      </div>
+      <div class="panel">
+        <h3>Search Parameters</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Business Category</label>
+            <select id="leadCategory">
+              <option value="restaurants">🍽️ Restaurants</option>
+              <option value="cafes">☕ Cafes & Coffee Shops</option>
+              <option value="medical_stores">💊 Medical Stores</option>
+              <option value="gyms">🏋️ Gyms & Fitness</option>
+              <option value="salons">💇 Salons & Beauty</option>
+              <option value="hotels">🏨 Hotels</option>
+              <option value="real_estate">🏠 Real Estate</option>
+              <option value="auto_repair">🔧 Auto Repair</option>
+              <option value="law_firms">⚖️ Law Firms</option>
+              <option value="accounting">📊 Accounting</option>
+              <option value="retail_stores">🛍️ Retail Stores</option>
+              <option value="construction">🏗️ Construction</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select id="leadCountry">
+              <option value="USA">🇺🇸 United States</option>
+              <option value="UK">🇬🇧 United Kingdom</option>
+              <option value="India">🇮🇳 India</option>
+              <option value="Canada">🇨🇦 Canada</option>
+              <option value="Australia">🇦🇺 Australia</option>
+              <option value="UAE">🇦🇪 UAE</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Number of Leads</label>
+            <select id="leadCount">
+              <option value="10">10 leads</option>
+              <option value="20">20 leads</option>
+              <option value="30" selected>30 leads</option>
+              <option value="50">50 leads</option>
+              <option value="100">100 leads</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-accent" onclick="findLeads()"><i class="fas fa-search"></i> Find Leads</button>
+          <button class="btn btn-secondary" id="btnDownloadLeads" onclick="downloadLeadsExcel()" disabled><i class="fas fa-download"></i> Download Excel</button>
+        </div>
+      </div>
+      <div class="results-section" id="leadsResults">
+        <div class="results-header">
+          <span class="count" id="leadsCount"></span>
+        </div>
+        <div class="results-table-wrap">
+          <table id="leadsTable">
+            <thead><tr><th>#</th><th>Business Name</th><th>Category</th><th>Phone</th><th>Email</th><th>City</th><th>Rating</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOBS PAGE -->
+    <div class="page" id="page-jobs">
+      <div class="page-header">
+        <h2><i class="fas fa-briefcase"></i> Job Applier</h2>
+        <p>Upload a resume and find matching jobs. Export to Excel.</p>
+      </div>
+      <div class="panel">
+        <h3>Resume Upload</h3>
+        <div class="upload-zone" id="resumeDrop" onclick="document.getElementById('resumeFile').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Click to upload resume (TXT, PDF, DOCX)</p>
+          <p class="or">— or paste below —</p>
+        </div>
+        <input type="file" id="resumeFile" accept=".txt,.pdf,.docx" style="display:none" onchange="handleResumeFile(this)">
+        <div class="form-group">
+          <label>Or paste resume text</label>
+          <textarea id="resumeText" placeholder="Paste your resume text here...&#10;&#10;Example:&#10;Senior Software Engineer with 5 years of experience in Python, React, and AWS..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of Jobs</label>
+            <select id="jobCount">
+              <option value="10">10 jobs</option>
+              <option value="20">20 jobs</option>
+              <option value="30" selected>30 jobs</option>
+              <option value="50">50 jobs</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-accent" onclick="searchJobs()"><i class="fas fa-search"></i> Search Jobs</button>
+          <button class="btn btn-secondary" id="btnDownloadJobs" onclick="downloadJobsExcel()" disabled><i class="fas fa-download"></i> Download Excel</button>
+        </div>
+      </div>
+      <div class="results-section" id="jobsResults">
+        <div class="results-header">
+          <span class="count" id="jobsCount"></span>
+        </div>
+        <div class="results-table-wrap">
+          <table id="jobsTable">
+            <thead><tr><th>#</th><th>Job Title</th><th>Company</th><th>Location</th><th>Salary</th><th>Type</th><th>Source</th><th>Job URL</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT PAGE -->
+    <div class="page" id="page-content">
+      <div class="page-header">
+        <h2><i class="fas fa-pen"></i> Content Creator</h2>
+        <p>Generate Instagram posts. Coming soon: auto-posting to @infrabuildpartners.</p>
+      </div>
+      <div class="panel">
+        <h3>Generate Post</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Service / Topic</label>
+            <select id="contentService">
+              <option value="">Auto-rotate (daily service)</option>
+              <option value="0">🔄 DevOps Support</option>
+              <option value="1">🛡️ SRE Support</option>
+              <option value="2">💻 Development Support</option>
+              <option value="3">🎓 Bootcamp Service</option>
+              <option value="4">📊 Data Engineering</option>
+              <option value="5">🚀 Career Support</option>
+              <option value="6">⚡ InfraBuild Brand</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Or write a custom topic</label>
+          <textarea id="customTopic" placeholder="Describe what you want the post to be about..." style="min-height:60px"></textarea>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-accent" onclick="generateContent()"><i class="fas fa-wand-magic-sparkles"></i> Generate Post</button>
+          <button class="btn btn-secondary" onclick="generateWeek()"><i class="fas fa-calendar-week"></i> Generate Week</button>
+        </div>
+        <div class="post-preview" id="postPreview">
+          <div class="post-service" id="postService"></div>
+          <div class="post-caption" id="postCaption"></div>
+          <div class="post-actions">
+            <button class="btn btn-sm btn-secondary" onclick="copyCaption()"><i class="fas fa-copy"></i> Copy</button>
+            <button class="btn btn-sm btn-accent" id="btnApprove" onclick="approvePost()"><i class="fas fa-check"></i> Approve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ─── SCRIPTS ──────────────────────────────────── -->
+<script>
+const API = '/api';
+let authToken = '';
+let lastLeads = null;
+let lastJobs = null;
+let lastPost = null;
+
+// ─── Auth ─────────────────────────────────────────
+async function doLogin() {
+  const pw = document.getElementById('loginPassword').value;
+  const err = document.getElementById('loginError');
+  err.style.display = 'none';
+
+  try {
+    const res = await fetch(API + '/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({password: pw}),
+      credentials: 'include',
+    });
+    if (!res.ok) { err.style.display = 'block'; return; }
+    const data = await res.json();
+    authToken = data.token;
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'flex';
+    showToast('Welcome back!', 'success');
+  } catch(e) {
+    err.style.display = 'block';
+  }
+}
+
+async function doLogout() {
+  document.cookie = 'console_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  authToken = '';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginPassword').value = '';
+}
+
+// Check session on load
+(async function() {
+  try {
+    const res = await fetch(API + '/auth/verify', {credentials: 'include'});
+    if (res.ok) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'flex';
+    }
+  } catch(e) {}
+})();
+
+// ─── Navigation ───────────────────────────────────
+function switchPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  document.querySelector(`[data-page="${name}"]`).classList.add('active');
+}
+
+document.querySelectorAll('.sidebar-nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchPage(link.dataset.page);
+  });
+});
+
+// ─── Toast ────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── Lead Finder ──────────────────────────────────
+async function findLeads() {
+  const cat = document.getElementById('leadCategory').value;
+  const country = document.getElementById('leadCountry').value;
+  const count = parseInt(document.getElementById('leadCount').value);
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Searching...';
+
+  try {
+    const res = await fetch(API + '/leads/find', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken},
+      body: JSON.stringify({category: cat, country, count}),
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Failed');
+    const data = await res.json();
+    lastLeads = {category: cat, country, count};
+    renderLeads(data.leads);
+    document.getElementById('btnDownloadLeads').disabled = false;
+    showToast(`Found ${data.count} leads in ${cat} (${country})`, 'success');
+  } catch(e) {
+    showToast('Error finding leads. Check your connection.', 'error');
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-search"></i> Find Leads';
+}
+
+function renderLeads(leads) {
+  document.getElementById('leadsResults').classList.add('show');
+  document.getElementById('leadsCount').textContent = `${leads.length} leads found`;
+  const tbody = document.querySelector('#leadsTable tbody');
+  tbody.innerHTML = leads.map((l, i) => `
+    <tr>
+      <td>${i+1}</td><td>${l.name}</td><td>${l.category}</td>
+      <td>${l.phone}</td><td>${l.email}</td><td>${l.city}</td>
+      <td>⭐ ${l.rating} (${l.reviews})</td>
+    </tr>`).join('');
+}
+
+async function downloadLeadsExcel() {
+  if (!lastLeads) return;
+  const res = await fetch(API + '/leads/excel', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken},
+    body: JSON.stringify(lastLeads),
+    credentials: 'include',
+  });
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `InfraBuild_Leads_${lastLeads.category}_${lastLeads.country}.xlsx`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── Job Applier ──────────────────────────────────
+function handleResumeFile(input) {
+  if (input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      document.getElementById('resumeText').value = e.target.result;
+    };
+    reader.readAsText(input.files[0]);
+  }
+}
+
+async function searchJobs() {
+  const text = document.getElementById('resumeText').value.trim();
+  const count = document.getElementById('jobCount').value;
+  if (!text) { showToast('Please upload or paste a resume first.', 'error'); return; }
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Searching...';
+
+  const formData = new FormData();
+  formData.append('resume_text', text);
+  formData.append('count', count);
+
+  try {
+    const res = await fetch(API + '/jobs/search', {
+      method: 'POST',
+      headers: {'Authorization': 'Bearer ' + authToken},
+      body: formData,
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Failed');
+    const data = await res.json();
+    lastJobs = {count: parseInt(count)};
+    renderJobs(data.jobs);
+    document.getElementById('btnDownloadJobs').disabled = false;
+    showToast(`Found ${data.count} matching jobs`, 'success');
+  } catch(e) {
+    showToast('Error searching jobs.', 'error');
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-search"></i> Search Jobs';
+}
+
+function renderJobs(jobs) {
+  document.getElementById('jobsResults').classList.add('show');
+  document.getElementById('jobsCount').textContent = `${jobs.length} jobs found`;
+  const tbody = document.querySelector('#jobsTable tbody');
+  tbody.innerHTML = jobs.map((j, i) => `
+    <tr>
+      <td>${i+1}</td><td>${j.job_title}</td><td>${j.company}</td>
+      <td>${j.location}</td><td>${j.salary_range}</td><td>${j.type}</td>
+      <td>${j.source}</td><td><a href="${j.job_url}" target="_blank" style="color:var(--accent)">View →</a></td>
+    </tr>`).join('');
+}
+
+async function downloadJobsExcel() {
+  if (!lastJobs) return;
+  const text = document.getElementById('resumeText').value.trim();
+  const formData = new FormData();
+  formData.append('resume_text', text);
+  formData.append('count', lastJobs.count.toString());
+
+  const res = await fetch(API + '/jobs/excel', {
+    method: 'POST',
+    headers: {'Authorization': 'Bearer ' + authToken},
+    body: formData,
+    credentials: 'include',
+  });
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'InfraBuild_Jobs.xlsx';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── Content Creator ──────────────────────────────
+async function generateContent() {
+  const serviceIdx = document.getElementById('contentService').value;
+  const custom = document.getElementById('customTopic').value.trim();
+
+  const body = {};
+  if (custom) body.custom_topic = custom;
+  else if (serviceIdx !== '') body.service_index = parseInt(serviceIdx);
+
+  const res = await fetch(API + '/content/generate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken},
+    body: JSON.stringify(body),
+    credentials: 'include',
+  });
+  const post = await res.json()  ;
+  lastPost = post;
+
+  document.getElementById('postService').textContent = post.service;
+  document.getElementById('postCaption').textContent = post.caption;
+  document.getElementById('postPreview').classList.add('show');
+  showToast('Post generated!', 'success');
+}
+
+async function generateWeek() {
+  const res = await fetch(API + '/content/weekly', {
+    headers: {'Authorization': 'Bearer ' + authToken},
+    credentials: 'include',
+  });
+  const data = await res.json();
+  showToast(`Generated ${data.posts.length} posts for the week. First: ${data.posts[0].service}`, 'success');
+  // Load first post
+  lastPost = data.posts[0];
+  document.getElementById('postService').textContent = lastPost.service;
+  document.getElementById('postCaption').textContent = lastPost.caption;
+  document.getElementById('postPreview').classList.add('show');
+}
+
+function copyCaption() {
+  if (!lastPost) return;
+  navigator.clipboard.writeText(lastPost.caption);
+  showToast('Caption copied to clipboard!', 'success');
+}
+
+function approvePost() {
+  showToast('Post approved! (Instagram auto-posting coming soon)', 'success');
+}
+</script>
+</body>
+</html>

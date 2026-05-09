@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1080">
+<title>InfraBuild Partners — Launch Post</title>
+<style>
+:root {
+  --bg: #070708;
+  --surface: #0d0d0f;
+  --line: rgba(255,255,255,0.06);
+  --text: #fafafa;
+  --muted: #a1a1a8;
+  --dim: #6e6e76;
+  --accent: #71e1ff;
+  --amber: #ffba5e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1080px;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  color: var(--text);
+}
+/* Grid background */
+.grid {
+  position: absolute; inset: 0; opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 0%, transparent 70%);
+}
+/* Vignette */
+.vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 40%, transparent 30%, rgba(0,0,0,0.6) 100%);
+}
+/* Shield glow */
+.glow {
+  position: absolute; width: 400px; height: 400px;
+  top: 50%; left: 50%; transform: translate(-50%, -56%);
+  background: radial-gradient(circle, rgba(113,225,255,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+/* Content */
+.content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 0;
+}
+/* Top tag */
+.tag {
+  font-size: 18px; font-weight: 600; letter-spacing: 0.32em;
+  color: var(--dim); text-transform: uppercase;
+  margin-bottom: 48px;
+}
+/* Shield logo area */
+.shield-wrap {
+  width: 220px; height: 180px;
+  position: relative; margin-bottom: 36px;
+  display: flex; align-items: center; justify-content: center;
+}
+.shield-wrap img {
+  width: 180px; height: auto;
+  filter: drop-shadow(0 0 40px rgba(113,225,255,0.15));
+  opacity: 0.92;
+}
+/* Main heading */
+h1 {
+  font-size: 64px; font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1.05; color: var(--text);
+  max-width: 700px;
+}
+h1 span { font-weight: 300; font-style: italic; color: var(--dim); }
+/* Sub line */
+.tagline-bottom {
+  font-size: 15px; font-weight: 600; letter-spacing: 0.28em;
+  color: var(--accent); text-transform: uppercase;
+  margin-top: 28px;
+}
+/* Services row */
+.services-row {
+  display: flex; gap: 28px; margin-top: 40px;
+  align-items: center;
+}
+.service-pill {
+  font-size: 15px; font-weight: 500; color: var(--muted);
+  letter-spacing: -0.01em;
+}
+.service-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--line);
+}
+/* Bottom bar */
+.bottom-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--amber), transparent);
+  opacity: 0.6;
+}
+/* URL */
+.url {
+  position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+  font-size: 17px; font-weight: 500; color: var(--dim);
+  letter-spacing: 0.05em;
+}
+/* Accent line */
+.accent-line {
+  width: 60px; height: 2px; background: var(--accent);
+  opacity: 0.5; margin-top: 18px;
+}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="vignette"></div>
+<div class="glow"></div>
+<div class="bottom-bar"></div>
+<div class="url">infrabuildpartners.com</div>
+
+<div class="content">
+  <div class="tag">Now Accepting Clients</div>
+
+  <div class="shield-wrap">
+    <!-- Inline SVG shield as fallback -->
+    <svg width="180" height="147" viewBox="0 0 180 147" fill="none">
+      <path d="M90 0L0 42V73.5C0 117 38.5 153.5 90 147C141.5 153.5 180 117 180 73.5V42L90 0Z"
+            fill="none" stroke="#71e1ff" stroke-width="2.5" opacity="0.7"/>
+      <text x="90" y="82" text-anchor="middle" fill="#fafafa" font-family="Inter" font-weight="700" font-size="44" letter-spacing="-0.02em">IB</text>
+      <path d="M90 0L0 42V73.5C0 117 38.5 153.5 90 147C141.5 153.5 180 117 180 73.5V42L90 0Z"
+            fill="url(#g)" opacity="0.08"/>
+      <defs><radialGradient id="g"><stop offset="0%" stop-color="#71e1ff"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>
+    </svg>
+  </div>
+
+  <h1>Building the foundation<br><span>for your growth.</span></h1>
+
+  <div class="accent-line"></div>
+
+  <div class="tagline-bottom">Engineering · Career · Training</div>
+
+  <div class="services-row">
+    <span class="service-pill">DevOps</span>
+    <span class="service-dot"></span>
+    <span class="service-pill">SRE</span>
+    <span class="service-dot"></span>
+    <span class="service-pill">Development</span>
+    <span class="service-dot"></span>
+    <span class="service-pill">Data</span>
+    <span class="service-dot"></span>
+    <span class="service-pill">Career</span>
+  </div>
+</div>
+</body>
+</html>

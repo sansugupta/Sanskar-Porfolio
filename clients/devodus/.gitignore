@@ -1,0 +1,8 @@
+credentials.local.md
+*.pem
+*.key
+*.p8
+*.p12
+.env
+.env.local
+secrets.local.md

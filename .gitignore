@@ -31,7 +31,21 @@ next-env.d.ts
 
 # deployment secrets
 deployments/lightsail/.env
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+*.cert
+*secret*
+*secrets*
+company-memory/secrets.local.md
+company-memory/ai-handoff.md
+company-memory/*private*
 
 
 !.vercel/project.json
 !.vercel/project.json
+
+# macOS
+.DS_Store

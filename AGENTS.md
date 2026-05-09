@@ -27,6 +27,17 @@
   - `marketing-ops/session-log.md`
 - When a marketing strategy, automation decision, campaign idea, or platform positioning changes, persist it in `marketing-ops/` so future AI sessions inherit context instead of starting from zero.
 
+## Company Memory
+- The broader company-building memory lives in `company-memory/`.
+- At the start of any long-running business, automation, repo-wide, infrastructure, or agent setup work, read:
+  - `agent.md`
+  - `company-memory/README.md`
+  - `company-memory/session-log.md`
+  - `company-memory/repo-analysis.md`
+- After meaningful work, update `company-memory/session-log.md`; if the session needs a detailed handoff, add a dated file under `company-memory/work-logs/`.
+- Use `scripts/record-ai-session.sh "short-title"` to create a consistent work-log template.
+- Never store plaintext passwords, API keys, private keys, cookies, or recovery codes in this repo. Store only secret names, locations, owners, and rotation notes in `company-memory/secrets-policy.md`.
+
 ## Marketing Expectations
 - InfraBuild Partners is being positioned as both a services company and a training / career-support brand.
 - Ongoing priorities include LinkedIn content, Instagram content, WhatsApp channel strategy, and AI-assisted content operations.
